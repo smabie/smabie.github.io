@@ -1,0 +1,67 @@
+---
+layout: post
+title: ETFs, Volatilty and Leverage Part 1
+category: posts
+---
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Sturm Mabie" />
+  <title>html – ETFs, Volatility and Leverage</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/contrib/auto-render.min.js"></script><script>document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body);
+  });</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header>
+<h1 class="title">ETFs, Volatility and Leverage</h1>
+<p class="author">Sturm Mabie</p>
+</header>
+<h2 id="background">Background</h2>
+<p>The recent ascent of ETFs as one of the most popular trading vehicles for both retail and institutional investors has dramatically affected the business of all funds seeking retail flows, and even many who do not. ETFs and ETNs serve as wrappers for a diverse array of strategies that run the gamut from simple and transparent to complex and proprietary. ETFs (and ETNs though for brevity's sake we will just refer to all securities employing this legal structure as &quot;ETFs&quot;) can be placed on a two dimensional spectrum: simple to complex on one axis, and transparent to proprietary on another. These products are united by several distinguishing features: placement on public equity markets with tickers alongside equities and a pricing mechanism that, also much like equities, utilizes arbitrage and a bid-ask mechanism that is used by market makers to provide liquidity. ETF shares are created and destroyed in blocks as needed in order ensure that the value of the wrapper is inline with the value of the underlying securities or strategy that the ETF conceptually represents.</p>
+<p>By far the most popular type of ETF in terms of total asset value and flows are ETFs that provide exposure to popular indices such as the S&amp;P 500, the Russell 2000, and many others. These ETFs simply aim to match the relative daily returns of their respective index and occupy the bottom left spot on the aforementioned two dimensional spectrum. A closely related (albeit far less popular) type of product that occupies the bottom middle is the leveraged ETF. A leveraged ETF seeks to obtain a daily exposure on an underlying index scaled by a constant <span class="math inline">\(L\)</span>; which, at this time, is somewhere between -3 and 3. If <span class="math inline">\(L &lt; 0\)</span>, the ETF provides short exposure to the index and are often called &quot;bear&quot; ETFs; conversely, if <span class="math inline">\(L &gt; 0\)</span>, the ETF provides long exposure to the index, commonly referred to as &quot;bull&quot; ETFs. These securities are usually implemented by means of a rolling futures strategy. By rebalancing everyday, the ETFs eliminate the risk of ruin (in this case, losing more money than the fund's total value) and obviate the need for margin payments.</p>
+<p>In this piece, we will focus on the properties of leveraged bull ETFs, common misconceptions, and their role in an investors' toolkit.</p>
+<h2 id="the-popular-argument-against-leverage">The Popular Argument Against Leverage</h2>
+<p>At face value, a retail investor might assume that if the S&amp;P 500 returned 10% in a year, a 3x leveraged ETF would return 30%. Fortunately or unfortunately depending on your perspective, this is not the case as the ETF seeks to attain a 3x multiple on the daily return of the S&amp;P 500 instead of the annualized return. As touched on in the previous section, by rebalancing daily the ETF can easily handle the inflows and outflows of the fund while also eliminating the need for capital to be held in margin. This strategy also greatly reduces the risk of ruin as the S&amp;P 500 would need to lose at least <span class="math inline">\(1/3\)</span> of it's total value in a single day for the fund to be wiped out. Though certainly imaginable, this event is unlikely as the biggest single day loss in the history of the S&amp;P 500 was Black Monday in 1987, in which over <span class="math inline">\(20\%\)</span> of value evaporated in a single day.</p>
+<p>The common wisdom about leveraged ETFs is that they don't so much fill a roll as an investment vehicle, but merely as a day-trading instrument that allows a trader to easily obtain short-term tactical Beta exposure to the market in an efficient and simple fashion. In numerous articles scattered across the internet, the author always drives home the point again and again that leveraged ETFs are ill-suited to long-term buy-and-hold investing and should only be purchased by those who are savvy enough to lay on short-term trades. Instead of cementing this advice on a solid mathematical foundation, the author usually cherry picks some example time window for the S&amp;P 500 of around two months where the market is mostly sideways and volatility is high. He then points out the prescient point that the levered fund made less or even lost money whilst the regular fund came out ahead. The conclusion to be drawn from this I suppose is that levered funds are deceptive, don't actually multiply your returns by the amount claimed, and are a bad investment. In the next section, we will discuss the mathematical foundation of this claim and reason about it's validity.</p>
+<h2 id="volatility-and-return">Volatility and Return</h2>
+<p>We can see the immediate effect of volatility from a simple example. What happens to a $100 portfolio that gains and then loses <span class="math inline">\(10\%\)</span> of value versus a portfolio that gains and then losses <span class="math inline">\(50\%\)</span></p>
+<p><span class="math display">\[\$100(1.10)(0.90) = \$99\]</span> <span class="math display">\[\$100(1.50)(0.50) = \$75\]</span></p>
+<p>As we can see, the difference between the arithmetic sum (which for both examples was 0) and the geometric sum appropriate for compounded returns can be quite significant. In order to calculate the affect that volatility has on a portfolio we can us the volatility tax formula:</p>
+<p><span class="math display">\[r_a = r_p - \frac{\sigma^2_p}{2}\]</span></p>
+<p>Where <span class="math inline">\(\sigma\)</span> is the standard deviation of the portfolio, <span class="math inline">\(r_p\)</span> the return of the portfolio and <span class="math inline">\(r_a\)</span> the actualized return of the portfolio after deducting for volatility.</p>
+<p>We need to rewrite the equation in terms of leverage. Assuming normality, we see that rescaling a normal distribution by a constant affects the mean linearly and the variance non-linearly (thus affecting the standard deviation linearly):</p>
+<p><span class="math display">\[ Y = aX \sim N(a\mu, a^2\sigma^2)\]</span></p>
+<p>In other words, a 2x levered portfolio with a mean return of 5% and a volatility of 5% is the same as an unlevered fund with a mean return of 10% and a volatility of 10%. As such we can rewrite <span class="math inline">\(r_p\)</span> in terms of <span class="math inline">\(r_b\)</span> (the base unlevered return of the portfolio) and the leverage amount (<span class="math inline">\(l\)</span>):</p>
+<p><span class="math display">\[r_p = r_bl\]</span></p>
+<p>Using the definition of the Sharpe ratio as:</p>
+<p><span class="math display">\[S = \frac{r_p - r_f}{\sigma_p} \]</span></p>
+<p>We can rewrite the portfolio volatility in terms of the returns of the portfolio and the risk-free rate:</p>
+<p><span class="math display">\[\sigma_p = \frac{r_p - r_f}{S} = \frac{r_bl - r_f}{S}\]</span></p>
+<p>Substituting into the volatility tax equation we have:</p>
+<p><span class="math display">\[r_a = r_bl - \frac{1}{2S^2}(r_b^2l^2 - 2r_br_fl + r_f^2)\]</span></p>
+<p>We then take the derivative in terms of the leverage ratio and set to zero and solve:</p>
+<p><span class="math display">\[ \frac{\text{d}(r_a)}{\text{d}l} = r_b - \frac{r^2_b}{S^2}l + \frac{r_br_f}{S^2} = 0\]</span></p>
+<p><span class="math display">\[ \frac{r^2_b}{S^2}l = r_b + \frac{r_br_f}{S^2}\]</span></p>
+<p><span class="math display">\[l = \frac{1}{r_b}S^2 + \frac{r_f}{r_b}\]</span></p>
+<p>Note that <span class="math inline">\(S\)</span> is our original Sharpe ratio, due to the volatility tax, our Sharpe linearly degrades. Our adjusted Sharpe is:</p>
+<p><span class="math display">\[S_a = \frac{r_b}{\sigma_b} - \frac{1}{2\sigma_b}l\]</span></p>
+<p>We can see that returns form a concave quadratic while the Sharpe ratio decreases linearly:</p>
+<figure>
+<img src="~/learn/vol-1.svg" alt="Returns vs Sharpe" /><figcaption>Returns vs Sharpe</figcaption>
+</figure>
+<p>&gt;</p>
+</body>
+</html>
