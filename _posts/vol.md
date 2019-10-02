@@ -2,6 +2,7 @@
 author:
 - Sturm Mabie
 category: Posts
+date: '2019-10-02'
 mathjax: true
 startup: showeverything
 title: 'ETFs, Volatility and Leverage'
@@ -34,15 +35,15 @@ the relative daily returns of their respective index and occupy the
 bottom left spot on the aforementioned two dimensional spectrum. A
 closely related (albeit far less popular) type of product that occupies
 the bottom middle is the leveraged ETF. A leveraged ETF seeks to obtain
-a daily exposure on an underlying index scaled by a constant $L$; which,
-at this time, is somewhere between -3 and 3. If $L < 0$, the ETF
-provides short exposure to the index and are often called \"bear\" ETFs;
-conversely, if $L > 0$, the ETF provides long exposure to the index,
-commonly referred to as \"bull\" ETFs. These securities are usually
-implemented by means of a rolling futures strategy. By rebalancing
-everyday, the ETFs eliminate the risk of ruin (in this case, losing more
-money than the fund\'s total value) and obviate the need for margin
-payments.
+a daily exposure on an underlying index scaled by a constant $l$; which,
+at this time, is somewhere between -3 and 3. If $l$ is less than zero,
+the ETF provides short exposure to the index and are often called
+\"bear\" ETFs; conversely, if $l$ is greater than zero, the ETF provides
+long exposure to the index, commonly referred to as \"bull\" ETFs. These
+securities are usually implemented by means of a rolling futures
+strategy. By rebalancing everyday, the ETFs eliminate the risk of ruin
+(in this case, losing more money than the fund\'s total value) and
+obviate the need for margin payments.
 
 In this piece, we will focus on the properties of leveraged bull ETFs,
 common misconceptions, and their role in an investors\' toolkit.
@@ -58,11 +59,11 @@ instead of the annualized return. As touched on in the previous section,
 by rebalancing daily the ETF can easily handle the inflows and outflows
 of the fund while also eliminating the need for capital to be held in
 margin. This strategy also greatly reduces the risk of ruin as the S&P
-500 would need to lose at least $1/3$ of it\'s total value in a single
-day for the fund to be wiped out. Though certainly imaginable, this
-event is unlikely as the biggest single day loss in the history of the
-S&P 500 was Black Monday in 1987, in which over $20\%$ of value
-evaporated in a single day.
+500 would need to lose at least 1/3 of it\'s total value in a single day
+for the fund to be wiped out. Though certainly imaginable, this event is
+unlikely as the biggest single day loss in the history of the S&P 500
+was Black Monday in 1987, in which over 20% of value evaporated in a
+single day.
 
 The common wisdom about leveraged ETFs is that they don\'t so much fill
 a roll as an investment vehicle, but merely as a day-trading instrument
@@ -86,8 +87,8 @@ Volatility and Return
 ---------------------
 
 We can see the immediate effect of volatility from a simple example.
-What happens to a \$100 portfolio that gains and then loses $10\%$ of
-value versus a portfolio that gains and then losses $50\%$
+What happens to a \$100 portfolio that gains and then loses 10% of value
+versus a portfolio that gains and then losses 50%
 
 $$\$100(1.10)(0.90) = \$99$$ $$\$100(1.50)(0.50) = \$75$$
 
