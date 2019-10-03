@@ -1,12 +1,5 @@
-#+TITLE: ETFs, Volatility and Leverage: Towards a New Leveraged ETF Part 1
-
-#+AUTHOR: Sturm Mabie
-#+DATE: 2019-10-03
-
-** Introduction
-   :PROPERTIES:
-   :CUSTOM_ID: introduction
-   :END:
+Introduction
+------------
 
 In part one of this three part series, we will explore the concept of
 levered ETFs, common misconceptions, the effect of volatility on the
@@ -21,20 +14,18 @@ In part three, we will construct a fully automated ETF that seeks to
 obtain variable leveraged exposure to the S&P 500 conditioned on the
 future forecasted market return and volatility regime.
 
-** Background
-   :PROPERTIES:
-   :CUSTOM_ID: background
-   :END:
+Background
+----------
 
 The recent ascent of ETFs as one of the most popular trading vehicles
 for both retail and institutional investors has dramatically affected
 the business of all funds seeking retail flows, and even many who do
 not. ETFs and ETNs serve as wrappers for a diverse array of strategies
 that run the gamut from simple and transparent to complex and
-proprietary. ETFs (and ETNs though for brevity's sake we will just refer
-to all securities employing this legal structure as "ETFs") can be
-placed on a two dimensional spectrum: simple to complex on one axis, and
-transparent to proprietary on another. These products are united by
+proprietary. ETFs (and ETNs though for brevity\'s sake we will just
+refer to all securities employing this legal structure as \"ETFs\") can
+be placed on a two dimensional spectrum: simple to complex on one axis,
+and transparent to proprietary on another. These products are united by
 several distinguishing features: placement on public equity markets with
 tickers alongside equities and a pricing mechanism that, also much like
 equities, utilizes arbitrage and a bid-ask mechanism that is used by
@@ -53,17 +44,15 @@ the bottom middle is the leveraged ETF. A leveraged ETF seeks to obtain
 a daily exposure on an underlying index scaled by a constant $l$; which,
 at this time, is somewhere between -3 and 3 for products currently on
 the market. If $l$ is less than zero, the ETF provides short exposure to
-the index and are often called "bear" ETFs; conversely, if $l$ is
+the index and are often called \"bear\" ETFs; conversely, if $l$ is
 greater than zero, the ETF provides long exposure to the index, commonly
-referred to as "bull" ETFs. These securities are usually implemented by
-means of a rolling futures strategy. By rebalancing everyday, the ETFs
-eliminate the risk of ruin (in this case, losing more money than the
-fund's total value) and obviate the need for margin payments.
+referred to as \"bull\" ETFs. These securities are usually implemented
+by means of a rolling futures strategy. By rebalancing everyday, the
+ETFs eliminate the risk of ruin (in this case, losing more money than
+the fund\'s total value) and obviate the need for margin payments.
 
-** The Popular Argument Against Leverage
-   :PROPERTIES:
-   :CUSTOM_ID: the-popular-argument-against-leverage
-   :END:
+The Popular Argument Against Leverage
+-------------------------------------
 
 At face value, a retail investor might assume that if the S&P 500
 returned 10% in a given year, a 3x leveraged ETF would return 30%.
@@ -79,8 +68,8 @@ certainly imaginable, this event is unlikely as the biggest single day
 loss in the history of the S&P 500 was Black Monday in 1987, in which
 around 20% of value evaporated from the S&P 500 in a single day.
 
-The common wisdom about leveraged ETFs is that they don't so much fill a
-roll as an investment vehicle, but merely as a day-trading instrument
+The common wisdom about leveraged ETFs is that they don\'t so much fill
+a roll as an investment vehicle, but merely as a day-trading instrument
 that allows a trader to easily obtain short-term tactical Beta exposure
 to the market in an efficient and simple fashion. In numerous articles
 scattered across the internet, the author always drives home the point
@@ -93,17 +82,15 @@ where the market is mostly sideways and volatility is high. He then
 usually remarks on the prescient insight that the levered fund made less
 or even lost money whilst the regular fund came out ahead. The
 conclusion to be drawn from this I suppose is that levered funds are
-deceptive, don't actually multiply your returns by the amount claimed,
+deceptive, don\'t actually multiply your returns by the amount claimed,
 and are a bad investment. In the next section, we will discuss the
 mathematical foundation of this claim and reason about its validity.
 
-** A Little Bit of Math
-   :PROPERTIES:
-   :CUSTOM_ID: a-little-bit-of-math
-   :END:
+A Little Bit of Math
+--------------------
 
 We can see the immediate effect of volatility from a simple example.
-What happens to a $100 portfolio that gains and then loses 10% of its
+What happens to a \$100 portfolio that gains and then loses 10% of its
 value versus a portfolio that gains and then losses 50%?
 
 $$\$100(1.10)(0.90) = \$99$$
@@ -121,10 +108,10 @@ Where $\sigma$ is the standard deviation of the portfolio, $r_p$ the
 return of the portfolio and $r_a$ the actualized return of the portfolio
 after deducting for volatility.
 
-It's important to understand that the value of the volatility drag
+It\'s important to understand that the value of the volatility drag
 equation is when we are changing the volatility of a known return
 stream. If we are using past realized returns to forecast future
-returns, the volatility equation isn't necessary or applicable, since
+returns, the volatility equation isn\'t necessary or applicable, since
 the past returns are already reflective of the post-drag return. The
 volatility drag equation becomes useful when we are asking ourselves
 about the returns of a levered portfolio in terms of the unlevered
@@ -173,13 +160,10 @@ return of a portfolio given $r_b= \sigma_b=10\%$. We can see that the
 returns form a concave quadratic, the Sharpe ratio a negative linear
 function, and the volatility a positive linear function.
 
-#+CAPTION: Returns vs Sharpe
-[[/assets/rvs.png]]
+![Returns vs Sharpe](/assets/rvs.png)
 
-** Historical S&P 500 Returns and Leverage
-   :PROPERTIES:
-   :CUSTOM_ID: historical-sp-500-returns-and-leverage
-   :END:
+Historical S&P 500 Returns and Leverage
+---------------------------------------
 
 While the leverage ratio formula is correct if we are sampling from a
 normal distribution, market returns often exhibit excess kurtosis and
@@ -189,8 +173,7 @@ positive skew, the model underestimates the magnitude of mean return,
 while in negative skew, the model overestimates the mean return. Below
 is a density plot of returns between 2018-01-01 and 2019-09-01:
 
-#+CAPTION: Density of Returns 2018-01-01 to 2019-09-01
-[[/assets/kde.png]]
+![Density of Returns 2018-01-01 to 2019-09-01](/assets/kde.png)
 
 For this periods volatility and returns, the model equation suggests a
 leverage ratio of approximately 3 in order to maximize returns. Looking
@@ -198,8 +181,7 @@ at the cumulative return streams of several different leverage ratios,
 we see that despite the non-normality of the data, the prediction is
 solid:
 
-#+CAPTION: Leveraged S&P 500 Returns
-[[/assets/lev1.png]]
+![Leveraged S&P 500 Returns](/assets/lev1.png)
 
 Unfortunately, the use of variable leverage conditioned on volatility
 and returns does not yet constitute a viable trading strategy: during
@@ -218,16 +200,14 @@ might include looking at the VIX (Volatility Index) or even constructing
 RNNs (Recurrent Neural Networks) to help forecast an ideal leverage
 ratio.
 
-** Conclusion
-   :PROPERTIES:
-   :CUSTOM_ID: conclusion
-   :END:
+Conclusion
+----------
 
 While the Sharpe ratio of a levered index ETF will indeed get worse as
 leverage is applied, the use of leverage and the associated volatility
 drag does not constitute a separate and distinct issue aside from
 volatility alone. For all investors, return and volatility are
-intimately related through a portfolio's Sharpe ratio. Ultimately
+intimately related through a portfolio\'s Sharpe ratio. Ultimately
 though, investors cannot eat risk-adjusted returns and must instead try
 to maximize the Sharpe ratio of their respective portfolios in order to
 always assume the greatest amount of risk in line with their investment
@@ -248,6 +228,6 @@ future returns, volatility, and personal risk limits.
 
 Thanks for reading, I hope you enjoyed this piece! If you want to play
 around with the Quantopian notebook, click
-[[https://www.quantopian.com/posts/etfs-volatility-and-leverage-towards-a-new-leveraged-etf-part-1][here]]!
+[here](https://www.quantopian.com/posts/etfs-volatility-and-leverage-towards-a-new-leveraged-etf-part-1)!
 Possible things to change would be the start and end dates, reference
 leverage ratios, and the ticker to analyze.
