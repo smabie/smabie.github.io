@@ -12,11 +12,11 @@
 ** Introduction
 
    In part one of this three part series, we will explore the concept
-   of levered ETFs, common misconceptions, the affect of volatility on
+   of levered ETFs, common misconceptions, the effect of volatility on
    the returns of a portfolio, and the compounded returns of the S&P
    500 utilizing different leverage ratios. We will also touch on the
    basic mathematical underpinnings of volatility drag and ideal
-   leverage ratios.
+   leverage ratio.
 
    In part two, we will look into different ways to forecast future
    market regimes and their associated optimal leverage ratios.
@@ -66,19 +66,19 @@
 ** The Popular Argument Against Leverage
 
   At face value, a retail investor might assume that if the S&P 500
-  returned 10% in a year, a 3x leveraged ETF would return 30%.
+  returned 10% in a given year, a 3x leveraged ETF would return 30%.
   Fortunately or unfortunately depending on your perspective, this is
-  not the case as the ETF seeks to attain a 3x multiple on the daily
+  not the case as the ETF seeks to maintain a 3x multiple on the daily
   return of the S&P 500 instead of the annualized return. As touched
   on in the previous section, by rebalancing daily the ETF can easily
   handle the inflows and outflows of the fund while also eliminating
   the need for capital to be held in margin. This strategy also
-  greatly reduces the risk of ruin as the S&P 500 would need to lose
-  at least 1/3 of it's total value in a single day for the fund to
-  be wiped out. Though certainly imaginable, this event is unlikely as
+  greatly reduces the risk of ruin, as the S&P 500 would need to lose
+  at least 1/3 of its total value in a single day for the fund to be
+  wiped out. Though certainly imaginable, this event is unlikely as
   the biggest single day loss in the history of the S&P 500 was Black
-  Monday in 1987, in which over 20% of value evaporated in a single
-  day.
+  Monday in 1987, in which around 20% of value evaporated from the S&P
+  500 in a single day.
 
   The common wisdom about leveraged ETFs is that they don't so much
   fill a roll as an investment vehicle, but merely as a day-trading
@@ -91,28 +91,28 @@
   trades. Instead of cementing this advice on a solid mathematical
   foundation, the author usually cherry picks some example time window
   for the S&P 500 of around two months where the market is mostly
-  sideways and volatility is high. He then points out the prescient
-  point that the levered fund made less or even lost money whilst the
-  regular fund came out ahead. The conclusion to be drawn from this I
-  suppose is that levered funds are deceptive, don't actually multiply
-  your returns by the amount claimed, and are a bad investment. In the
-  next section, we will discuss the mathematical foundation of this
-  claim and reason about it's validity.
+  sideways and volatility is high. He then usually remarks on the
+  prescient insight that the levered fund made less or even lost money
+  whilst the regular fund came out ahead. The conclusion to be drawn
+  from this I suppose is that levered funds are deceptive, don't
+  actually multiply your returns by the amount claimed, and are a bad
+  investment. In the next section, we will discuss the mathematical
+  foundation of this claim and reason about its validity.
 
 ** A Little Bit of Math
 
   We can see the immediate effect of volatility from a simple
   example. What happens to a $100 portfolio that gains and then loses
-  10% of value versus a portfolio that gains and then losses 50%
+  10% of its value versus a portfolio that gains and then losses 50%?
 
   $$\$100(1.10)(0.90) = \$99$$
 
   $$\$100(1.50)(0.50) = \$75$$
 
   As we can see, the difference between the arithmetic sum (which for
-  both examples was 0) and the geometric sum appropriate for
-  compounded returns can be quite significant. In order to calculate
-  the affect that volatility has on a portfolio we can us the
+  both examples was 0) and the geometric sum (appropriate for
+  compounded returns) can be quite significant. In order to calculate
+  the effect that volatility has on a portfolio we can use the
   volatility drag formula:
 
   $$r_a = r_p - \frac{\sigma^2_p}{2}$$
@@ -123,15 +123,15 @@
 
   It's important to understand that the value of the volatility drag
   equation is when we are changing the volatility of a known return
-  stream. If we are using past realized returns to predict future
-  returns, the volatility equation isn't appropriate, since the past
-  returns are already reflective of the post-drag return. Where the
-  volatility drag equation does come become useful if we are asking
-  ourselves about the returns of a levered portfolio in terms of the
-  unlevered returns and volatility. Alternatively, the equation also
-  comes in handy if we would like to answer questions as "If we
-  reduced the volatility our of current portfolio by 25%, how would
-  that affect the mean return?"
+  stream. If we are using past realized returns to forecast future
+  returns, the volatility equation isn't necessary or applicable,
+  since the past returns are already reflective of the post-drag
+  return. The volatility drag equation becomes useful when we are
+  asking ourselves about the returns of a levered portfolio in terms
+  of the unlevered returns and volatility. Alternatively, the equation
+  also comes in handy if we would like to answer questions such as: If
+  we reduced the volatility our of current portfolio by 25%, how would
+  that affect the mean return?
 
   We need to rewrite the volatility drag equation in terms of
   leverage. Assuming normality, we see that rescaling a normal
@@ -139,7 +139,7 @@
   variance non-linearly (thus affecting the standard deviation
   linearly):
 
-  $$ Y = aX \sim N(a\mu, a^2\sigma^2)$$
+  $$ Y = lX \sim N(l\mu, l^2\sigma^2)$$
 
   In other words, a 2x levered portfolio with a mean return of 5% and
   a volatility of 5% is the same as an unlevered fund with a mean
@@ -157,22 +157,23 @@
 
   $$r_a = r_bl - \frac{\sigma_b^2}{2}l^2$$
 
-  We then take the derivative in terms of the leverage ratio and set
-  to zero and solve:
+  In order to find the maximum leverage that will result in the
+  greatest mean return, we then take the derivative in terms of the
+  leverage ratio and set to zero and solve:
 
   $$ \frac{\text{d}(r_a)}{\text{d}l} = r_b - \sigma^2_bl = 0 $$
 
 
   $$l = \frac{r_b}{\sigma^2_b}$$
 
-  Also, are adjusted Sharpe ratio is:
+  Also, our adjusted Sharpe ratio is:
 
 
-  $$ \frac{r_b}{\sigma_b} - \frac{\sigma_b}{2}l - \frac{r_f}{\sigma_bl}$$
+  $$S_a = \frac{r_b}{\sigma_b} - \frac{\sigma_b}{2}l - \frac{r_f}{\sigma_bl}$$
 
   
   Below is a graph of the adjusted Sharpe ratio, volatility and mean
-  returns of a portfolio given $r_b= \sigma_b=10\%$. We can see that
+  return of a portfolio given $r_b= \sigma_b=10\%$. We can see that
   the returns form a concave quadratic, the Sharpe ratio a negative
   linear function, and the volatility a positive linear function.
 
@@ -185,9 +186,11 @@
    While the leverage ratio formula is correct if we are sampling from
    a normal distribution, market returns often exhibit excess kurtosis
    and skew, resulting in the decreased accuracy of our formula. The
-   greater skew or kurtosis, the worse the accuracy of the model
-   becomes. Below is a density plot of returns between 2018-01-01 and
-   2019-09-01:
+   greater the skew or kurtosis, the less accurate the model
+   becomes. In periods of positive skew, the model underestimates the
+   magnitude of mean return, while in negative skew, the model
+   overestimates the mean return. Below is a density plot of returns
+   between 2018-01-01 and 2019-09-01:
 
    #+caption: Density of Returns 2018-01-01 to 2019-09-01
    [[file:/assets/kde.png]]
@@ -202,21 +205,22 @@
    [[file:/assets/lev1.png]]
 
    Unfortunately, the use of variable leverage conditioned on
-   volatility and returns does not constitute a viable trading
-   strategy. Without a model to estimate the future returns and
-   volatility of the market, we will be unable to effectively
-   calculate the optimal leverage ratio for our portfolio. There are
-   several remediations of varying complexity and accuracy that we
-   could use to work around this problem. The most basic model we
-   could employ would be one that uses a trailing window of returns
-   and volatility in order to predict the future returns and
-   volatility. Other options would be to use statistical time series
-   models such as ARIMA (Auto-Regressive Integrated Moving Average) in
-   order to forecast returns and GARCH (Generalized Auto-Regressive
-   Conditional Heteroskedasticity) to predict volatility. Other
-   approaches might include looking at the VIX (Volatility Index) or
-   even constructing RNNs (Recurrent Neural Networks) to help forecast
-   an ideal leverage ratio.
+   volatility and returns does not yet constitute a viable trading
+   strategy: during actual trading, future volatility and return
+   information is not available. Without a model to estimate the
+   future returns and volatility of the market, we will be unable to
+   effectively calculate the optimal leverage ratio for our
+   portfolio. There are several remediations of varying complexity and
+   accuracy that we could use to work around this problem. The most
+   basic model we could employ would be one that uses a trailing
+   window of returns and volatility in order to predict the future
+   returns and volatility. Other options would be to use statistical
+   time series models such as ARIMA (Auto-Regressive Integrated Moving
+   Average) in order to forecast returns and GARCH (Generalized
+   Auto-Regressive Conditional Heteroskedasticity) to predict
+   volatility. Other approaches might include looking at the VIX
+   (Volatility Index) or even constructing RNNs (Recurrent Neural
+   Networks) to help forecast an ideal leverage ratio.
 
 ** Conclusion
 
@@ -230,7 +234,7 @@
    respective portfolios in order to always assume the greatest amount
    of risk in line with their investment objectives. For most
    investors, alpha generation through security selection and trading
-   is a lofty and unattainable strategy. Instead of chasing illusive
+   is a lofty and unattainable strategy. Instead of chasing elusive
    alpha, these investors adjust the lever of risk through the
    management of asset class and factor exposures. When market
    volatility is higher than personally tolerable, investors cycle
@@ -247,4 +251,6 @@
    personal risk limits.
 
    Thanks for reading, I hope you enjoyed this piece! If you want to
-   play around with the Quantopian notebook, click [[https://www.quantopian.com/posts/sharing][here]]!
+   play around with the Quantopian notebook, click [[https://www.quantopian.com/posts/etfs-volatility-and-leverage-towards-a-new-leveraged-etf-part-1][here]]! Possible
+   things to change would be the start and end dates, reference
+   leverage ratios, and the ticker to analyze.
