@@ -1,3 +1,13 @@
+---
+author:
+- Sturm Mabie
+category: posts
+date: '2019-10-03'
+mathjax: true
+startup: showeverything
+title: 'ETFs, Volatility and Leverage: Towards a New Leveraged ETF Part 1'
+---
+
 Introduction
 ------------
 
