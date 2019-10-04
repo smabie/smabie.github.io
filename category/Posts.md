@@ -12,7 +12,7 @@ specify it with the `category` attribute in the front matter.
 layout: category
 title: My Category
 ---
-```
+``` 
 
 Or ...
 
