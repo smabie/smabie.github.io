@@ -101,10 +101,7 @@ Where $a$ and $b$ are the proportion or weights of the assets in the
 portfolio. While the returns of the portfolio are a linear combination
 of the two return streams of the assets, the variance is:
 
-\\begin{align\*} *σ*~P~^2^ &= x~A~^2^ Cov(r~A~,r~a~) +
-x~B~^2^Cov(r~B~,r~B~) + 2x~AxB~Cov(r~A~,r~B~)\
-&= x~A~^2^ *σ*~A~^2^ + x~B~^2^ *σ*~B~^2^ + 2ab*ρ*~AB~*σ*~A~*σ*~B~\
-\\end{align}
+$$\sigma_P^2 = x_A^2 \text{Cov}(r_A,r_a) + x_B^2\text{Cov}(r_B,r_B) + 2x_Ax_B\text{Cov}(r_A,r_B)$$
 
 While not immediately obvious, the variance of the portfolio will always
 be lower the more assets we add, as long as the no asset has a
