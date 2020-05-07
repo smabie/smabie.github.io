@@ -150,84 +150,84 @@ not inadvertantly access variables defined in the caller’s scope.</p>
 <h2>Math<a class="headerlink" href="#math" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="neg-unary-negative">
 <h3><code class="docutils literal notranslate"><span class="pre">neg</span></code>: Unary Negative<a class="headerlink" href="#neg-unary-negative" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>neg {Z | R | L}
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>neg {Z | R | L} -&gt; {Z | R | L}
 </pre></div>
 </div>
 <p>Unary negative of a value, broadcasts across lists.</p>
 </div>
 <div class="section" id="addition">
 <h3><code class="docutils literal notranslate"><span class="pre">+</span></code>: Addition<a class="headerlink" href="#addition" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{Z | R | L} + {Z | R | L}
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{Z | R | L} + {Z | R | L} -&gt; {Z | R | L}
 </pre></div>
 </div>
 <p>Adds two values together. Broadcasts across lists.</p>
 </div>
 <div class="section" id="substraction">
 <h3><code class="docutils literal notranslate"><span class="pre">-</span></code>: Substraction<a class="headerlink" href="#substraction" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{Z | R | L} - {Z | R | L}
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{Z | R | L} - {Z | R | L} -&gt; {Z | R | L}
 </pre></div>
 </div>
 <p>Subtract two values. Broadcasts across lists.</p>
 </div>
 <div class="section" id="multiplication">
 <h3><code class="docutils literal notranslate"><span class="pre">*</span></code>: Multiplication<a class="headerlink" href="#multiplication" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{Z | R | L} * {Z | R | L}
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{Z | R | L} * {Z | R | L} -&gt; {Z | R | L}
 </pre></div>
 </div>
 <p>Multiplies two values. Broadcasts across lists.</p>
 </div>
 <div class="section" id="division">
 <h3><code class="docutils literal notranslate"><span class="pre">%</span></code>: Division<a class="headerlink" href="#division" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{Z | R | L} % {Z | R | L}
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{Z | R | L} % {Z | R | L} -&gt; {Z | R | L}
 </pre></div>
 </div>
 <p>Divides two values. Broadcasts across lists.</p>
 </div>
 <div class="section" id="mod-modulus">
 <h3><code class="docutils literal notranslate"><span class="pre">mod</span></code>: Modulus<a class="headerlink" href="#mod-modulus" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{Z | R | L} mod {Z | R | L}
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{Z | R | L} mod {Z | R | L} -&gt; {Z | R | L}
 </pre></div>
 </div>
 <p>Remainder of two values. Broadcasts across lists.</p>
 </div>
 <div class="section" id="power">
 <h3><code class="docutils literal notranslate"><span class="pre">**</span></code>: Power<a class="headerlink" href="#power" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{Z | R | L} ** {Z | R | L}
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{Z | R | L} ** {Z | R | L} -&gt; {Z | R | L}
 </pre></div>
 </div>
 <p>Power of two values. Broadcasts across lists.</p>
 </div>
 <div class="section" id="ln-natural-logarithm">
 <h3><code class="docutils literal notranslate"><span class="pre">ln</span></code>: Natural logarithm<a class="headerlink" href="#ln-natural-logarithm" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ln {Z | R | L}
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ln {Z | R | L} -&gt; {Z | R | L}
 </pre></div>
 </div>
 <p>Natural logarithm, broadcasts across lists.</p>
 </div>
 <div class="section" id="sin-sine">
 <h3><code class="docutils literal notranslate"><span class="pre">sin</span></code>: Sine<a class="headerlink" href="#sin-sine" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sin {Z | R | L}
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sin {Z | R | L} -&gt; {Z | R | L}
 </pre></div>
 </div>
 <p>Sin, broadcasts across lists.</p>
 </div>
 <div class="section" id="cos-cosine">
 <h3><code class="docutils literal notranslate"><span class="pre">cos</span></code>: Cosine<a class="headerlink" href="#cos-cosine" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cos {Z | R | L}
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cos {Z | R | L} -&gt; {Z | R | L}
 </pre></div>
 </div>
 <p>Cosine, broadcasts across lists.</p>
 </div>
 <div class="section" id="tan-tangent">
 <h3><code class="docutils literal notranslate"><span class="pre">tan</span></code>: Tangent<a class="headerlink" href="#tan-tangent" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>tan {Z | R | L}
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>tan {Z | R | L} -&gt; {Z | R | L}
 </pre></div>
 </div>
 <p>Tangent, broadcasts across lists.</p>
 </div>
 <div class="section" id="sum-sum-of-list">
 <h3><code class="docutils literal notranslate"><span class="pre">sum</span></code>: Sum of list<a class="headerlink" href="#sum-sum-of-list" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sum L
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sum L -&gt; {Z | R}
 </pre></div>
 </div>
 <p>Finds the sum of a list:</p>
@@ -238,7 +238,7 @@ not inadvertantly access variables defined in the caller’s scope.</p>
 </div>
 <div class="section" id="sums-partial-sums-of-list">
 <h3><code class="docutils literal notranslate"><span class="pre">sums</span></code>: Partial sums of list<a class="headerlink" href="#sums-partial-sums-of-list" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sums L
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sums L -&gt; L
 </pre></div>
 </div>
 <p>Returns the partial sums of the list:</p>
@@ -249,7 +249,7 @@ not inadvertantly access variables defined in the caller’s scope.</p>
 </div>
 <div class="section" id="prod-product-of-list">
 <h3><code class="docutils literal notranslate"><span class="pre">prod</span></code>: Product of list<a class="headerlink" href="#prod-product-of-list" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>prod L
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>prod L -&gt; {Z | R}
 </pre></div>
 </div>
 <p>Find the product of all elements in a list:</p>
@@ -260,13 +260,13 @@ not inadvertantly access variables defined in the caller’s scope.</p>
 </div>
 <div class="section" id="prods-partial-products-of-list">
 <h3><code class="docutils literal notranslate"><span class="pre">prods</span></code>: Partial products of list<a class="headerlink" href="#prods-partial-products-of-list" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>prods L
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>prods L -&gt; L
 </pre></div>
 </div>
 </div>
 <div class="section" id="abs-absolute-value">
 <h3><code class="docutils literal notranslate"><span class="pre">abs</span></code>: Absolute value<a class="headerlink" href="#abs-absolute-value" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>abs {Z | R | L}
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>abs {Z | R | L} -&gt; {Z | R | L}
 </pre></div>
 </div>
 <p>Find the absolute value of a number or list:</p>
@@ -277,7 +277,7 @@ not inadvertantly access variables defined in the caller’s scope.</p>
 </div>
 <div class="section" id="ceil-ceiling">
 <h3><code class="docutils literal notranslate"><span class="pre">ceil</span></code>: Ceiling<a class="headerlink" href="#ceil-ceiling" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ceil {Z | R | L}
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ceil {Z | R | L} -&gt; {Z | R | L}
 </pre></div>
 </div>
 <p>Find the ceiling of a number or list:</p>
@@ -288,7 +288,7 @@ not inadvertantly access variables defined in the caller’s scope.</p>
 </div>
 <div class="section" id="floor-floor">
 <h3><code class="docutils literal notranslate"><span class="pre">floor</span></code>: Floor<a class="headerlink" href="#floor-floor" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>floor {Z | R | L}
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>floor {Z | R | L} -&gt; {Z | R | L}
 </pre></div>
 </div>
 <p>Find the floor of a number or list:</p>
@@ -302,14 +302,14 @@ not inadvertantly access variables defined in the caller’s scope.</p>
 <h2>Boolean and Conditionals<a class="headerlink" href="#boolean-and-conditionals" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="equals">
 <h3><code class="docutils literal notranslate"><span class="pre">==</span></code>: Equals<a class="headerlink" href="#equals" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>A == A
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x == y -&gt; B
 </pre></div>
 </div>
 <p>Tests equality between two values.</p>
 </div>
 <div class="section" id="less-than">
 <h3><code class="docutils literal notranslate"><span class="pre">&lt;</span></code>: Less than<a class="headerlink" href="#less-than" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>A &lt; A
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x &lt; y -&gt; B
 </pre></div>
 </div>
 <p>Returns <code class="docutils literal notranslate"><span class="pre">1b</span></code> if the first argument is less than the second,
@@ -317,7 +317,7 @@ otherwise <code class="docutils literal notranslate"><span class="pre">0b</span>
 </div>
 <div class="section" id="greater-than">
 <h3><code class="docutils literal notranslate"><span class="pre">&gt;</span></code>: Greater than<a class="headerlink" href="#greater-than" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>A &gt; A
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x &gt; y -&gt; B
 </pre></div>
 </div>
 <p>Returns <code class="docutils literal notranslate"><span class="pre">1b</span></code> if the first argument is greater than the second,
@@ -325,7 +325,7 @@ otherwise <code class="docutils literal notranslate"><span class="pre">0b</span>
 </div>
 <div class="section" id="gq-greater-or-equal">
 <h3><code class="docutils literal notranslate"><span class="pre">gq</span></code>: Greater or equal<a class="headerlink" href="#gq-greater-or-equal" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>A &gt; A
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x &gt; y -&gt; B
 </pre></div>
 </div>
 <p>Returns <code class="docutils literal notranslate"><span class="pre">1b</span></code> if the first argument is greater or equal to the
@@ -333,7 +333,7 @@ second, otherwise <code class="docutils literal notranslate"><span class="pre">0
 </div>
 <div class="section" id="lq-less-or-equal">
 <h3><code class="docutils literal notranslate"><span class="pre">lq</span></code>: Less or equal<a class="headerlink" href="#lq-less-or-equal" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x &gt; y
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x &gt; y -&gt; B
 </pre></div>
 </div>
 <p>Returns <code class="docutils literal notranslate"><span class="pre">1b</span></code> if the first argument is less than or equal to the
@@ -341,28 +341,28 @@ second, otherwise <code class="docutils literal notranslate"><span class="pre">0
 </div>
 <div class="section" id="and">
 <h3><code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code>: And<a class="headerlink" href="#and" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>B &amp;&amp; B
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>B &amp;&amp; B -&gt; B
 </pre></div>
 </div>
 <p>Logical and operation.</p>
 </div>
 <div class="section" id="or">
 <h3><code class="docutils literal notranslate"><span class="pre">||</span></code>: Or<a class="headerlink" href="#or" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>B || B
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>B || B -&gt; B
 </pre></div>
 </div>
 <p>Logical or.</p>
 </div>
 <div class="section" id="if-if-expression">
 <h3><code class="docutils literal notranslate"><span class="pre">if</span></code>: If expression<a class="headerlink" href="#if-if-expression" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>if (cond: B) (f: F) (g: F)
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>if cond:B f:F g:F -&gt; {f. | g.}
 </pre></div>
 </div>
 <p>Evalues <code class="docutils literal notranslate"><span class="pre">f</span></code> if <code class="docutils literal notranslate"><span class="pre">cond</span></code> is <code class="docutils literal notranslate"><span class="pre">1b</span></code>, otherwise evaluates. <code class="docutils literal notranslate"><span class="pre">g</span></code>.</p>
 </div>
 <div class="section" id="cond-multiple-conditional">
 <h3><code class="docutils literal notranslate"><span class="pre">cond</span></code>: Multiple conditional<a class="headerlink" href="#cond-multiple-conditional" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cond [(cond_a: F) (f: F) (cond_b: F) (g: F) .. (h: F)]
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cond [(cond_a: F) (f: F) (cond_b: F) (g: F) .. (h: F)] -&gt; {f. | g. | h. ..}
 </pre></div>
 </div>
 <p>Takes a list of functions and tests each condition in order, executing
@@ -376,7 +376,7 @@ one function is ever executed and that the length of the list given to
 </div>
 <div class="section" id="every-tests-all-true">
 <h3><code class="docutils literal notranslate"><span class="pre">every</span></code>: Tests all true<a class="headerlink" href="#every-tests-all-true" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>every (L | B)
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>every {L | B} -&gt; B
 </pre></div>
 </div>
 <p>Returns true if the given boolean is true or if the given list only
@@ -384,7 +384,7 @@ contains <code class="docutils literal notranslate"><span class="pre">1b</span><
 </div>
 <div class="section" id="any-any-true">
 <h3><code class="docutils literal notranslate"><span class="pre">any</span></code>: Any true<a class="headerlink" href="#any-any-true" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>any (L | B)
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>any {L | B} -&gt; B
 </pre></div>
 </div>
 <p>Returns true if the given boolean is true or if the given list
@@ -392,7 +392,7 @@ contains at least one <code class="docutils literal notranslate"><span class="pr
 </div>
 <div class="section" id="cmp-comparison">
 <h3><code class="docutils literal notranslate"><span class="pre">cmp</span></code>: Comparison<a class="headerlink" href="#cmp-comparison" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(x: A) cmp  (y: A)
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x:* cmp y:* -&gt; {-1 | 0 | 1}
 </pre></div>
 </div>
 <p>Returns <code class="docutils literal notranslate"><span class="pre">-1</span></code> if <code class="docutils literal notranslate"><span class="pre">x</span></code> is less than <code class="docutils literal notranslate"><span class="pre">y</span></code>, <code class="docutils literal notranslate"><span class="pre">0</span></code> if <code class="docutils literal notranslate"><span class="pre">x</span></code> equals
@@ -403,21 +403,21 @@ contains at least one <code class="docutils literal notranslate"><span class="pr
 <h2>Stack Manipulation<a class="headerlink" href="#stack-manipulation" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="dup-duplicate-element">
 <h3><code class="docutils literal notranslate"><span class="pre">dup</span></code>: Duplicate element<a class="headerlink" href="#dup-duplicate-element" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>dup A
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>dup x:* -&gt; x x
 </pre></div>
 </div>
 <p>Duplicate the top element of the stack.</p>
 </div>
 <div class="section" id="swap-swap-elements">
 <h3><code class="docutils literal notranslate"><span class="pre">swap</span></code>: Swap elements<a class="headerlink" href="#swap-swap-elements" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>swap (x: A) (y: A)
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>swap x:* y:* -&gt; y x
 </pre></div>
 </div>
 <p>Swap <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> on the Stack.</p>
 </div>
 <div class="section" id="drop-drop-value">
 <h3><code class="docutils literal notranslate"><span class="pre">drop</span></code>; Drop value<a class="headerlink" href="#drop-drop-value" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>drop A
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>drop A -&gt;
 </pre></div>
 </div>
 <p>Discard the top element of the stack.</p>
@@ -464,52 +464,10 @@ push onto the stack otherwise. If <code class="docutils literal notranslate"><sp
 <li class="toctree-l2"><a class="reference internal" href="#data-types">Data Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#parsing">Parsing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#scoping">Scoping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#math">Math</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#neg-unary-negative"><code class="docutils literal notranslate"><span class="pre">neg</span></code>: Unary Negative</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#addition"><code class="docutils literal notranslate"><span class="pre">+</span></code>: Addition</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#substraction"><code class="docutils literal notranslate"><span class="pre">-</span></code>: Substraction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#multiplication"><code class="docutils literal notranslate"><span class="pre">*</span></code>: Multiplication</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#division"><code class="docutils literal notranslate"><span class="pre">%</span></code>: Division</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mod-modulus"><code class="docutils literal notranslate"><span class="pre">mod</span></code>: Modulus</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#power"><code class="docutils literal notranslate"><span class="pre">**</span></code>: Power</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#ln-natural-logarithm"><code class="docutils literal notranslate"><span class="pre">ln</span></code>: Natural logarithm</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sin-sine"><code class="docutils literal notranslate"><span class="pre">sin</span></code>: Sine</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#cos-cosine"><code class="docutils literal notranslate"><span class="pre">cos</span></code>: Cosine</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#tan-tangent"><code class="docutils literal notranslate"><span class="pre">tan</span></code>: Tangent</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sum-sum-of-list"><code class="docutils literal notranslate"><span class="pre">sum</span></code>: Sum of list</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sums-partial-sums-of-list"><code class="docutils literal notranslate"><span class="pre">sums</span></code>: Partial sums of list</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#prod-product-of-list"><code class="docutils literal notranslate"><span class="pre">prod</span></code>: Product of list</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#prods-partial-products-of-list"><code class="docutils literal notranslate"><span class="pre">prods</span></code>: Partial products of list</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#abs-absolute-value"><code class="docutils literal notranslate"><span class="pre">abs</span></code>: Absolute value</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#ceil-ceiling"><code class="docutils literal notranslate"><span class="pre">ceil</span></code>: Ceiling</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#floor-floor"><code class="docutils literal notranslate"><span class="pre">floor</span></code>: Floor</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#boolean-and-conditionals">Boolean and Conditionals</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#equals"><code class="docutils literal notranslate"><span class="pre">==</span></code>: Equals</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#less-than"><code class="docutils literal notranslate"><span class="pre">&lt;</span></code>: Less than</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#greater-than"><code class="docutils literal notranslate"><span class="pre">&gt;</span></code>: Greater than</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#gq-greater-or-equal"><code class="docutils literal notranslate"><span class="pre">gq</span></code>: Greater or equal</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#lq-less-or-equal"><code class="docutils literal notranslate"><span class="pre">lq</span></code>: Less or equal</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#and"><code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code>: And</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#or"><code class="docutils literal notranslate"><span class="pre">||</span></code>: Or</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#if-if-expression"><code class="docutils literal notranslate"><span class="pre">if</span></code>: If expression</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#cond-multiple-conditional"><code class="docutils literal notranslate"><span class="pre">cond</span></code>: Multiple conditional</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#every-tests-all-true"><code class="docutils literal notranslate"><span class="pre">every</span></code>: Tests all true</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#any-any-true"><code class="docutils literal notranslate"><span class="pre">any</span></code>: Any true</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#cmp-comparison"><code class="docutils literal notranslate"><span class="pre">cmp</span></code>: Comparison</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#stack-manipulation">Stack Manipulation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#dup-duplicate-element"><code class="docutils literal notranslate"><span class="pre">dup</span></code>: Duplicate element</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#swap-swap-elements"><code class="docutils literal notranslate"><span class="pre">swap</span></code>: Swap elements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#drop-drop-value"><code class="docutils literal notranslate"><span class="pre">drop</span></code>; Drop value</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#function-application">Function Application</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#apply"><code class="docutils literal notranslate"><span class="pre">.</span></code>: Apply</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#math">Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#boolean-and-conditionals">Boolean and Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stack-manipulation">Stack Manipulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#function-application">Function Application</a></li>
 </ul>
 </li>
 </ul>

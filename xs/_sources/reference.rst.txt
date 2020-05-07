@@ -96,7 +96,7 @@ Math
 ------------------------
 ::
 
-   neg {Z | R | L}
+   neg {Z | R | L} -> {Z | R | L}
 
 Unary negative of a value, broadcasts across lists.
 
@@ -104,7 +104,7 @@ Unary negative of a value, broadcasts across lists.
 ----------------
 ::
 
-  {Z | R | L} + {Z | R | L}
+  {Z | R | L} + {Z | R | L} -> {Z | R | L}
 
 Adds two values together. Broadcasts across lists.
 
@@ -112,7 +112,7 @@ Adds two values together. Broadcasts across lists.
 --------------------
 ::
 
-  {Z | R | L} - {Z | R | L}
+  {Z | R | L} - {Z | R | L} -> {Z | R | L}
 
 Subtract two values. Broadcasts across lists.
 
@@ -120,7 +120,7 @@ Subtract two values. Broadcasts across lists.
 ----------------------
 ::
 
-  {Z | R | L} * {Z | R | L}
+  {Z | R | L} * {Z | R | L} -> {Z | R | L}
 
 Multiplies two values. Broadcasts across lists.
 
@@ -129,7 +129,7 @@ Multiplies two values. Broadcasts across lists.
 
 ::
 
-  {Z | R | L} % {Z | R | L}
+  {Z | R | L} % {Z | R | L} -> {Z | R | L}
 
 Divides two values. Broadcasts across lists.
 
@@ -137,7 +137,7 @@ Divides two values. Broadcasts across lists.
 -------------
 ::
 
-  {Z | R | L} mod {Z | R | L}
+  {Z | R | L} mod {Z | R | L} -> {Z | R | L}
 
 Remainder of two values. Broadcasts across lists.
 
@@ -145,7 +145,7 @@ Remainder of two values. Broadcasts across lists.
 --------------
 ::
 
-  {Z | R | L} ** {Z | R | L}
+  {Z | R | L} ** {Z | R | L} -> {Z | R | L}
 
 Power of two values. Broadcasts across lists.
 
@@ -153,7 +153,7 @@ Power of two values. Broadcasts across lists.
 --------------
 ::
 
-  ln {Z | R | L}
+  ln {Z | R | L} -> {Z | R | L}
 
 Natural logarithm, broadcasts across lists.
 
@@ -161,7 +161,7 @@ Natural logarithm, broadcasts across lists.
 --------------
 ::
 
-  sin {Z | R | L}
+  sin {Z | R | L} -> {Z | R | L}
 
 Sin, broadcasts across lists.
 
@@ -169,7 +169,7 @@ Sin, broadcasts across lists.
 ----------------
 ::
 
-  cos {Z | R | L}
+  cos {Z | R | L} -> {Z | R | L}
 
 Cosine, broadcasts across lists.
 
@@ -177,7 +177,7 @@ Cosine, broadcasts across lists.
 -----------------
 ::
 
-  tan {Z | R | L}
+  tan {Z | R | L} -> {Z | R | L}
 
 Tangent, broadcasts across lists.
 
@@ -185,7 +185,7 @@ Tangent, broadcasts across lists.
 ---------------------
 ::
 
-   sum L
+   sum L -> {Z | R}
 
 Finds the sum of a list: ::
 
@@ -196,7 +196,7 @@ Finds the sum of a list: ::
 ------------------------------
 ::
 
-   sums L
+   sums L -> L
 
 Returns the partial sums of the list: ::
 
@@ -207,7 +207,7 @@ Returns the partial sums of the list: ::
 --------------------------
 ::
 
-   prod L
+   prod L -> {Z | R}
 
 Find the product of all elements in a list: ::
 
@@ -218,13 +218,13 @@ Find the product of all elements in a list: ::
 ------------------------------------
 ::
 
-   prods L
+   prods L -> L
 
 ``abs``: Absolute value
 ------------------------
 ::
 
-   abs {Z | R | L}
+   abs {Z | R | L} -> {Z | R | L}
 
 Find the absolute value of a number or list: ::
 
@@ -235,7 +235,7 @@ Find the absolute value of a number or list: ::
 -----------------------------------------------
 ::
 
-   ceil {Z | R | L}
+   ceil {Z | R | L} -> {Z | R | L}
 
 Find the ceiling of a number or list: ::
 
@@ -246,7 +246,7 @@ Find the ceiling of a number or list: ::
 -------------------------------------
 ::
 
-   floor {Z | R | L}
+   floor {Z | R | L} -> {Z | R | L}
 
 Find the floor of a number or list: ::
 
@@ -260,7 +260,7 @@ Boolean and Conditionals
 --------------
 ::
 
-   A == A
+   x == y -> B
 
 Tests equality between two values.
 
@@ -268,7 +268,7 @@ Tests equality between two values.
 ----------------
 ::
 
-   A < A
+   x < y -> B
 
 Returns ``1b`` if the first argument is less than the second,
 otherwise ``0b``.
@@ -277,7 +277,7 @@ otherwise ``0b``.
 -------------------
 ::
 
-   A > A
+   x > y -> B
 
 Returns ``1b`` if the first argument is greater than the second,
 otherwise ``0b``.
@@ -286,7 +286,7 @@ otherwise ``0b``.
 ------------------------
 ::
 
-   A > A
+   x > y -> B
 
 Returns ``1b`` if the first argument is greater or equal to the
 second, otherwise ``0b``.
@@ -295,7 +295,7 @@ second, otherwise ``0b``.
 ---------------------
 ::
 
-   x > y
+   x > y -> B
 
 Returns ``1b`` if the first argument is less than or equal to the
 second, otherwise ``0b``.
@@ -304,7 +304,7 @@ second, otherwise ``0b``.
 -----------
 ::
 
-   B && B
+   B && B -> B
 
 Logical and operation.
 
@@ -313,7 +313,7 @@ Logical and operation.
 ----------
 ::
 
-   B || B
+   B || B -> B
 
 Logical or.
 
@@ -322,7 +322,7 @@ Logical or.
 ---------------------
 ::
 
-   if (cond: B) (f: F) (g: F)
+   if cond:B f:F g:F -> {f. | g.}
 
 Evalues ``f`` if ``cond`` is ``1b``, otherwise evaluates. ``g``.
 
@@ -330,7 +330,7 @@ Evalues ``f`` if ``cond`` is ``1b``, otherwise evaluates. ``g``.
 ------------------------------
 ::
 
-   cond [(cond_a: F) (f: F) (cond_b: F) (g: F) .. (h: F)]
+   cond [(cond_a: F) (f: F) (cond_b: F) (g: F) .. (h: F)] -> {f. | g. | h. ..}
 
 Takes a list of functions and tests each condition in order, executing
 the corresponding function if the condition is true. Note that only
@@ -344,7 +344,7 @@ one function is ever executed and that the length of the list given to
 -------------------------
 ::
 
-   every (L | B)
+   every {L | B} -> B
 
 Returns true if the given boolean is true or if the given list only
 contains ``1b``.
@@ -353,7 +353,7 @@ contains ``1b``.
 -----------------
 ::
 
-   any (L | B)
+   any {L | B} -> B
 
 Returns true if the given boolean is true or if the given list
 contains at least one ``1b``.
@@ -362,7 +362,7 @@ contains at least one ``1b``.
 -------------------
 ::
 
-   (x: A) cmp  (y: A)
+   x:* cmp y:* -> {-1 | 0 | 1}
 
 Returns ``-1`` if ``x`` is less than ``y``, ``0`` if ``x`` equals
 ``y``, and ``1`` if ``x`` is greater than ``y``.
@@ -374,7 +374,7 @@ Stack Manipulation
 --------------------------
 ::
 
-   dup A
+   dup x:* -> x x
 
 Duplicate the top element of the stack.
 
@@ -382,7 +382,7 @@ Duplicate the top element of the stack.
 -----------------------
 ::
 
-   swap (x: A) (y: A)
+   swap x:* y:* -> y x
 
 Swap ``x`` and ``y`` on the Stack.
 
@@ -390,7 +390,7 @@ Swap ``x`` and ``y`` on the Stack.
 ----------------------
 ::
 
-   drop A
+   drop A ->
 
 Discard the top element of the stack.
 
