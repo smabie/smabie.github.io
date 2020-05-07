@@ -92,40 +92,40 @@ not inadvertantly access variables defined in the caller's scope.
 Math
 ####
 
-``neg``: Unary Negative
-------------------------
+``neg``: unary negative
+-----------------------
 ::
 
    neg {Z | R | L} -> {Z | R | L}
 
 Unary negative of a value, broadcasts across lists.
 
-``+``: Addition
-----------------
+``+``: addition
+---------------
 ::
 
   {Z | R | L} + {Z | R | L} -> {Z | R | L}
 
 Adds two values together. Broadcasts across lists.
 
-``-``: Substraction
---------------------
+``-``: substraction
+-------------------
 ::
 
   {Z | R | L} - {Z | R | L} -> {Z | R | L}
 
 Subtract two values. Broadcasts across lists.
 
-``*``: Multiplication
-----------------------
+``*``: multiplication
+---------------------
 ::
 
   {Z | R | L} * {Z | R | L} -> {Z | R | L}
 
 Multiplies two values. Broadcasts across lists.
 
-``%``: Division
-----------------
+``%``: division
+---------------
 
 ::
 
@@ -133,15 +133,15 @@ Multiplies two values. Broadcasts across lists.
 
 Divides two values. Broadcasts across lists.
 
-``mod``: Modulus
--------------
+``mod``: modulus
+----------------
 ::
 
   {Z | R | L} mod {Z | R | L} -> {Z | R | L}
 
 Remainder of two values. Broadcasts across lists.
 
-``**``: Power
+``**``: power
 --------------
 ::
 
@@ -149,7 +149,7 @@ Remainder of two values. Broadcasts across lists.
 
 Power of two values. Broadcasts across lists.
 
-``ln``: Natural logarithm
+``ln``: natural logarithm
 --------------
 ::
 
@@ -157,7 +157,7 @@ Power of two values. Broadcasts across lists.
 
 Natural logarithm, broadcasts across lists.
 
-``sin``: Sine
+``sin``: sine
 --------------
 ::
 
@@ -165,7 +165,7 @@ Natural logarithm, broadcasts across lists.
 
 Sin, broadcasts across lists.
 
-``cos``: Cosine
+``cos``: cosine
 ----------------
 ::
 
@@ -173,7 +173,7 @@ Sin, broadcasts across lists.
 
 Cosine, broadcasts across lists.
 
-``tan``: Tangent
+``tan``: tangent
 -----------------
 ::
 
@@ -181,7 +181,7 @@ Cosine, broadcasts across lists.
 
 Tangent, broadcasts across lists.
 
-``sum``: Sum of list
+``sum``: sum of list
 ---------------------
 ::
 
@@ -192,7 +192,7 @@ Finds the sum of a list: ::
   xs> sum til 5
   0: 10
 
-``sums``: Partial sums of list
+``sums``: partial sums of list
 ------------------------------
 ::
 
@@ -203,7 +203,7 @@ Returns the partial sums of the list: ::
   xs> sums til 5
   0: [0 1 3 6 10]
 
-``prod``: Product of list
+``prod``: product of list
 --------------------------
 ::
 
@@ -214,13 +214,13 @@ Find the product of all elements in a list: ::
    xs> prod 1+til 4
    0: 24
 
-``prods``: Partial products of list
+``prods``: partial products of list
 ------------------------------------
 ::
 
    prods L -> L
 
-``abs``: Absolute value
+``abs``: absolute value
 ------------------------
 ::
 
@@ -231,7 +231,7 @@ Find the absolute value of a number or list: ::
    xs> prods til 1+til 4
    0: [1 2 6 24]
 
-``ceil``: Ceiling
+``ceil``: ceiling
 -----------------------------------------------
 ::
 
@@ -242,7 +242,7 @@ Find the ceiling of a number or list: ::
   xs> ceil 3.2
   0: 4
 
-``floor``: Floor
+``floor``: floor
 -------------------------------------
 ::
 
@@ -256,7 +256,7 @@ Find the floor of a number or list: ::
 Boolean and Conditionals
 ########################
 
-``==``: Equals
+``==``: equals
 --------------
 ::
 
@@ -264,7 +264,7 @@ Boolean and Conditionals
 
 Tests equality between two values.
 
-``<``: Less than
+``<``: less than
 ----------------
 ::
 
@@ -273,7 +273,7 @@ Tests equality between two values.
 Returns ``1b`` if the first argument is less than the second,
 otherwise ``0b``.
 
-``>``: Greater than
+``>``: greater than
 -------------------
 ::
 
@@ -282,7 +282,7 @@ otherwise ``0b``.
 Returns ``1b`` if the first argument is greater than the second,
 otherwise ``0b``.
 
-``gq``: Greater or equal
+``gq``: greater or equal
 ------------------------
 ::
 
@@ -291,7 +291,7 @@ otherwise ``0b``.
 Returns ``1b`` if the first argument is greater or equal to the
 second, otherwise ``0b``.
 
-``lq``: Less or equal
+``lq``: less or equal
 ---------------------
 ::
 
@@ -318,7 +318,7 @@ Logical and operation.
 Logical or.
 
 
-``if``: If expression
+``if``: if expression
 ---------------------
 ::
 
@@ -326,7 +326,7 @@ Logical or.
 
 Evalues ``f`` if ``cond`` is ``1b``, otherwise evaluates. ``g``.
 
-``cond``: Multiple conditional
+``cond``: multiple conditional
 ------------------------------
 ::
 
@@ -340,7 +340,7 @@ one function is ever executed and that the length of the list given to
   xs> x:3; cond [(x==0) ("hello") (x==2) ("goodbye") ("world")]
   0: "world"
 
-``every``: Tests all true
+``every``: tests all true
 -------------------------
 ::
 
@@ -349,7 +349,7 @@ one function is ever executed and that the length of the list given to
 Returns true if the given boolean is true or if the given list only
 contains ``1b``.
 
-``any``: Any true
+``any``: any true
 -----------------
 ::
 
@@ -358,7 +358,7 @@ contains ``1b``.
 Returns true if the given boolean is true or if the given list
 contains at least one ``1b``.
 
-``cmp``: Comparison
+``cmp``: comparison
 -------------------
 ::
 
@@ -370,7 +370,7 @@ Returns ``-1`` if ``x`` is less than ``y``, ``0`` if ``x`` equals
 Stack Manipulation
 ##################
 
-``dup``: Duplicate element
+``dup``: duplicate element
 --------------------------
 ::
 
@@ -378,7 +378,7 @@ Stack Manipulation
 
 Duplicate the top element of the stack.
 
-``swap``: Swap elements
+``swap``: swap elements
 -----------------------
 ::
 
@@ -386,8 +386,8 @@ Duplicate the top element of the stack.
 
 Swap ``x`` and ``y`` on the Stack.
 
-``drop``; Drop value
-----------------------
+``drop``: drop value
+--------------------
 ::
 
    drop A ->
@@ -398,12 +398,20 @@ Discard the top element of the stack.
 Function Application
 ####################
 
-``.``: Apply
+``.``: apply
 ------------
 ::
 
-   x:A .
+   x:* . -> x.
 
 If ``x`` is a symbol, look up the value and call it if a function,
 push onto the stack otherwise. If ``x`` is a function literal, call
 ``x``, if ``x`` is any other value, simply push ``x`` onto the stack.
+
+``$``: swap and apply
+---------------------
+::
+
+   f $ x y -> f. y x
+
+Swap ``x`` and ``y`` and then apply ``f``.
