@@ -396,7 +396,43 @@ contains at least one <code class="docutils literal notranslate"><span class="pr
 </pre></div>
 </div>
 <p>Returns <code class="docutils literal notranslate"><span class="pre">-1</span></code> if <code class="docutils literal notranslate"><span class="pre">x</span></code> is less than <code class="docutils literal notranslate"><span class="pre">y</span></code>, <code class="docutils literal notranslate"><span class="pre">0</span></code> if <code class="docutils literal notranslate"><span class="pre">x</span></code> equals
-<code class="docutils literal notranslate"><span class="pre">y</span></code>, and <code class="docutils literal notranslate"><span class="pre">1</span></code> if <code class="docutils literal notranslate"><span class="pre">x</span></code> is greater than <code class="docutils literal notranslate"><span class="pre">`y</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">y</span></code>, and <code class="docutils literal notranslate"><span class="pre">1</span></code> if <code class="docutils literal notranslate"><span class="pre">x</span></code> is greater than <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p>
+</div>
+</div>
+<div class="section" id="stack-manipulation">
+<h2>Stack Manipulation<a class="headerlink" href="#stack-manipulation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="dup-duplicate-element">
+<h3><code class="docutils literal notranslate"><span class="pre">dup</span></code>: Duplicate element<a class="headerlink" href="#dup-duplicate-element" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>dup A
+</pre></div>
+</div>
+<p>Duplicate the top element of the stack.</p>
+</div>
+<div class="section" id="swap-swap-elements">
+<h3><code class="docutils literal notranslate"><span class="pre">swap</span></code>: Swap elements<a class="headerlink" href="#swap-swap-elements" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>swap (x: A) (y: A)
+</pre></div>
+</div>
+<p>Swap <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> on the Stack.</p>
+</div>
+<div class="section" id="drop-drop-value">
+<h3><code class="docutils literal notranslate"><span class="pre">drop</span></code>; Drop value<a class="headerlink" href="#drop-drop-value" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>drop A
+</pre></div>
+</div>
+<p>Discard the top element of the stack.</p>
+</div>
+</div>
+<div class="section" id="function-application">
+<h2>Function Application<a class="headerlink" href="#function-application" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="apply">
+<h3><code class="docutils literal notranslate"><span class="pre">.</span></code>: Apply<a class="headerlink" href="#apply" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x:A .
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">x</span></code> is a symbol, look up the value and call it if a function,
+push onto the stack otherwise. If <code class="docutils literal notranslate"><span class="pre">x</span></code> is a function literal, call
+<code class="docutils literal notranslate"><span class="pre">x</span></code>, if <code class="docutils literal notranslate"><span class="pre">x</span></code> is any other value, simply push <code class="docutils literal notranslate"><span class="pre">x</span></code> onto the stack.</p>
 </div>
 </div>
 </div>
@@ -462,6 +498,16 @@ contains at least one <code class="docutils literal notranslate"><span class="pr
 <li class="toctree-l3"><a class="reference internal" href="#every-tests-all-true"><code class="docutils literal notranslate"><span class="pre">every</span></code>: Tests all true</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#any-any-true"><code class="docutils literal notranslate"><span class="pre">any</span></code>: Any true</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cmp-comparison"><code class="docutils literal notranslate"><span class="pre">cmp</span></code>: Comparison</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#stack-manipulation">Stack Manipulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dup-duplicate-element"><code class="docutils literal notranslate"><span class="pre">dup</span></code>: Duplicate element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#swap-swap-elements"><code class="docutils literal notranslate"><span class="pre">swap</span></code>: Swap elements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#drop-drop-value"><code class="docutils literal notranslate"><span class="pre">drop</span></code>; Drop value</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#function-application">Function Application</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#apply"><code class="docutils literal notranslate"><span class="pre">.</span></code>: Apply</a></li>
 </ul>
 </li>
 </ul>

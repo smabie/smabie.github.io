@@ -365,4 +365,45 @@ contains at least one ``1b``.
    (x: A) cmp  (y: A)
 
 Returns ``-1`` if ``x`` is less than ``y``, ``0`` if ``x`` equals
-``y``, and ``1`` if ``x`` is greater than ```y``.
+``y``, and ``1`` if ``x`` is greater than ``y``.
+
+Stack Manipulation
+##################
+
+``dup``: Duplicate element
+--------------------------
+::
+
+   dup A
+
+Duplicate the top element of the stack.
+
+``swap``: Swap elements
+-----------------------
+::
+
+   swap (x: A) (y: A)
+
+Swap ``x`` and ``y`` on the Stack.
+
+``drop``; Drop value
+----------------------
+::
+
+   drop A
+
+Discard the top element of the stack.
+
+
+Function Application
+####################
+
+``.``: Apply
+------------
+::
+
+   x:A .
+
+If ``x`` is a symbol, look up the value and call it if a function,
+push onto the stack otherwise. If ``x`` is a function literal, call
+``x``, if ``x`` is any other value, simply push ``x`` onto the stack.

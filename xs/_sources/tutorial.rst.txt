@@ -91,7 +91,8 @@ follows is the sequence of operations taken to evaluate ``+. 3 2``:
    identifier to see if it has a definition in the current scope. The
    definition is found and the identifior references an operator. Now
    *xs* looks at the value to the left of ``.``. It sees another
-   identifier, which means it should push it's quoted form onto the stack: ::
+   identifier, which means it should push it's quoted form onto the
+   stack: ::
 
      2: 2
      1: 3
@@ -112,7 +113,9 @@ follows is the sequence of operations taken to evaluate ``+. 3 2``:
 Comments
 ########
 
-Comments are denoted by the ``!`` symbol and span until the end of the line: ::
+Comments are denoted by the ``!`` symbol and span until the end of the
+line: ::
+
   xs> 3+2 !     this is a comment
   0: 5
 
