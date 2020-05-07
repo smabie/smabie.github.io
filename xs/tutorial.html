@@ -1,0 +1,623 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Tutorial &#8212; xs 0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Language Reference" href="reference.html" />
+    <link rel="prev" title="Examples" href="examples.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="tutorial">
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Welcome to <em>xs</em>, an functional concatenative array language inspired
+by kdb+/q, forth, and others. The xs interpreter is written in OCaml
+and released into the public domain by yours truly. <em>xs</em> might
+initially strike you as unusual, strange, and perhaps even deliberatly
+unfriendly (especially if you don’t have any prior experience with
+array languages); but I guarantee that in no time writing <em>xs</em> will
+become second nature.</p>
+<p>If you haven’t already, check out the installation instructions in
+order to get a working environment. After the installation completes,
+start the interpreter by simply running:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ xs
+</pre></div>
+</div>
+<p>You should see a prompt like below in which you can enter commands:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Public domain interpreter for the xs language. Created by Sturm Mabie
+(sturm@cryptm.org). For more information check out the project&#39;s github at
+http://github.com/smabie/xs
+xs&gt;
+</pre></div>
+</div>
+<p>Try adding to numbers:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; 2+5
+0: 5
+</pre></div>
+</div>
+<p><em>xs</em> is a concatenative (or stack based) language in which all
+operations are parsed from right-to-left. You might be wondering at
+this point how the <code class="docutils literal notranslate"><span class="pre">+</span></code> operator works since it’s being used in an
+infix fashion. The answer is that <em>xs</em> allows you to define special
+operators that switch the operator with the position of it’s left
+adjacent value. So internally, the interpreter is evaluating <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">2</span>
+<span class="pre">5</span></code>. Now clear the top most element:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; drop
+xs&gt;
+</pre></div>
+</div>
+<p>From now on, we will assume that you are starting from a clean stack,
+though you can keep old values on the stack if you so choose.</p>
+<p>Since everything is evaluated from right-to-left, all operators have
+the same precedence:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; 2*3+1
+0: 8
+</pre></div>
+</div>
+<p>In order to turn an operator into a normal function, we can use the
+<code class="docutils literal notranslate"><span class="pre">.</span></code> operator to apply the function:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; +. 3 2
+0:5
+</pre></div>
+</div>
+<p>You might be wondering how this works, since the interpreter will
+switch the plus with the dot and then evaluate the dot. For example if
+we just try:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; + 3 2
+(Invalid_argument &quot;index out of bounds&quot;)
+</pre></div>
+</div>
+<p>We get an error. The interpreter is trying to switch the addition
+operator with the value to its left, but there is no value to its
+left, so we receive an error. One might think that the same thing
+would happen with the <code class="docutils literal notranslate"><span class="pre">.</span></code> operator. In order to solve this problem,
+<em>xs</em> will conditionally quote the left-most value if it is an
+identifier. So <code class="docutils literal notranslate"><span class="pre">+.</span> <span class="pre">3</span> <span class="pre">2</span></code> will turn into:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>. `+ 3 2
+</pre></div>
+</div>
+<p>A backtick followed by an identifier represents a quoted value, which
+is in many ways similar to a string, but cannot contain spaces. What
+follows is the sequence of operations taken to evaluate <code class="docutils literal notranslate"><span class="pre">+.</span> <span class="pre">3</span> <span class="pre">2</span></code>:</p>
+<ol class="arabic">
+<li><p>The interpreter sees the integer <code class="docutils literal notranslate"><span class="pre">2</span></code> and pushes it onto the
+stack. The stack now looks like:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>0: 2
+</pre></div>
+</div>
+</li>
+<li><p>The interpreter sees the integer <code class="docutils literal notranslate"><span class="pre">3</span></code> and pushes it onto the
+stack. The stack now looks like:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1: 2
+0: 3
+</pre></div>
+</div>
+</li>
+<li><p>The interpreter now sees the identifier <code class="docutils literal notranslate"><span class="pre">.</span></code>. It looks up the
+identifier to see if it has a definition in the current scope. The
+definition is found and the identifior references an operator. Now
+<em>xs</em> looks at the value to the left of <code class="docutils literal notranslate"><span class="pre">.</span></code>. It sees another
+identifier, which means it should push it’s quoted form onto the stack:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>2: 2
+1: 3
+0: `+
+</pre></div>
+</div>
+</li>
+<li><p>Now <em>xs</em> goes back to the <code class="docutils literal notranslate"><span class="pre">.</span></code> and calls the function associated
+with its definition; in this case, the apply function. The apply
+function now expects one argument, an identifier or a function. If
+it’s a function literal (a function that has been pushed onto the
+stack), it calls it. If it’s an identifier it looks up the value
+(which must be a function), and calls it. Note that when a quoted
+value bound to a function is applied by <code class="docutils literal notranslate"><span class="pre">.</span></code>, it does not matter
+if the function is an operator or not. Finally, the stack looks
+like:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>0: 5
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="comments">
+<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>Comments are denoted by the <code class="docutils literal notranslate"><span class="pre">!</span></code> symbol and span until the end of the line: ::</dt><dd><p>xs&gt; 3+2 !     this is a comment
+0: 5</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="function-and-variables">
+<h2>Function and Variables<a class="headerlink" href="#function-and-variables" title="Permalink to this headline">¶</a></h2>
+<p>We could define a function that multiplies the top level value on the
+stack by <code class="docutils literal notranslate"><span class="pre">2</span></code> with the following:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; mul2:(2*)
+</pre></div>
+</div>
+<p>We can now call it with <code class="docutils literal notranslate"><span class="pre">5</span></code> as the parameter:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; mul2 5
+0: 10
+</pre></div>
+</div>
+<p>Parenthesis are used to define a function an the <code class="docutils literal notranslate"><span class="pre">:</span></code> operator is
+used to set assign a value (including a function) to an identifier:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; x:3
+xs&gt; mul2 x
+0: 6
+</pre></div>
+</div>
+<p>Note that we don’t have to name the function in order to call it:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; (2*). 5
+0: 10
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">.</span></code> is given a function it will be evaluated, if it’s given an
+identifier, it looks up the definition and pushes it onto the stack if
+it’s not a function; if it is, it will called as well. For example:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; x:5
+xs&gt; x.
+0:5
+</pre></div>
+</div>
+<p>You can also use <code class="docutils literal notranslate"><span class="pre">.</span></code> on itself:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; x:5
+xs&gt; ..`x
+0:5
+</pre></div>
+</div>
+<p>We need to use the <code class="docutils literal notranslate"><span class="pre">.</span></code> operator because when a function literal in
+encountered, it is simply placed on the stack instead of being
+evaluated. When bound to an identifier on the otherhand, the function
+is automatically called. Note that we did not define any argument name
+for the function, and instead used what is called point-free style. If
+we wanted to explicitly bind the parameter to a name, we could write:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; (x:; 2*x). 5
+0: 10
+</pre></div>
+</div>
+<p><em>xs</em> evalues expressions from from right-to-left, but lines can be
+broken up with a semicolon. For example:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; (2+2; 3+)
+0: 7
+</pre></div>
+</div>
+<p>the <code class="docutils literal notranslate"><span class="pre">:</span></code> operator pops the value off of the stack, but we can use the
+<code class="docutils literal notranslate"><span class="pre">~</span></code> operator if we wish to only bind and leave the stack unchanged:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; sq:(x*x~)
+xs&gt; sq 5
+0: 25
+</pre></div>
+</div>
+<p>This operator is often useful for intermediate of temporary variables
+that are used multiple times in an expression.</p>
+</div>
+<div class="section" id="operators">
+<h2>Operators<a class="headerlink" href="#operators" title="Permalink to this headline">¶</a></h2>
+<p>In <em>xs</em>, operators are not special and can be defined by the user. In
+order to define an operator, we simply use curly brackets instead of
+parenthesis to enclose our function definition:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; add:{y:x:..; x+y}
+xs&gt; 3 add 4
+0: 7
+</pre></div>
+</div>
+<p>Because we’re defining an operator, the top-most value of the stack
+must be evaluated with <code class="docutils literal notranslate"><span class="pre">..</span></code> before being assigned to <code class="docutils literal notranslate"><span class="pre">x</span></code>. If we
+did not, the function will still work since the addition operator
+would look up the value anyways (<code class="docutils literal notranslate"><span class="pre">x</span></code> is also the first argument to
+<code class="docutils literal notranslate"><span class="pre">+</span></code>).</p>
+<p>how in our first statement we bound the variable <code class="docutils literal notranslate"><span class="pre">x</span></code> to the
+first-most value (after being evaluated) on the stack, and then the
+variable <code class="docutils literal notranslate"><span class="pre">y</span></code> to the second-most value. This turns out to be a common
+operation in <em>xs</em>, as the first line of many functions first set up
+their variables (often times, using implicit names can be clearer than
+a point free style).  <code class="docutils literal notranslate"><span class="pre">:</span></code> and <code class="docutils literal notranslate"><span class="pre">~</span></code> therefore supports binding
+multiple values at once:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; ([`x`y`z]):1 2 3
+xs&gt; x*y-z
+0: -1
+</pre></div>
+</div>
+<p>What is happening here is that <code class="docutils literal notranslate"><span class="pre">:</span></code> is taking a function that
+produces a list as its first argument and binding them, in order, to
+values on the stack. The list syntax is unfamilar, but we will cover
+that in the next section.</p>
+<p>Like functions, operators are pushed onto the stack in literal form
+and as such, are identical to regular functions until bound to an
+identifier.</p>
+</div>
+<div class="section" id="lists">
+<h2>Lists<a class="headerlink" href="#lists" title="Permalink to this headline">¶</a></h2>
+<p>The primary datatype in <em>xs</em> is the list datatype, represented
+internal by an OCaml array. Creating a list is easy:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; [1 2 3]
+0: [1 2 3]
+</pre></div>
+</div>
+<p>Even though this looks like a list literal, both <code class="docutils literal notranslate"><span class="pre">[</span></code> and <code class="docutils literal notranslate"><span class="pre">]</span></code> are
+actually functions defined in the language. <code class="docutils literal notranslate"><span class="pre">]</span></code> records the current
+length of the data stack and pushes onto a special stack only used for
+list construction. <code class="docutils literal notranslate"><span class="pre">[</span></code> then compares the length of the stack now to
+the value pushed upon the list construction stack and creates a list
+with a length equal to the difference between the two, using the
+elements from the top of the stack to populate it.</p>
+<p>Below are some operations we can do on lists:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; ([1 2 3]),[4 5]           ! concatenative lists
+0: [1 2 3 4 5]
+
+xs&gt; ([0 3])@til 10            ! select the 0th and 3rd elements
+0: [0 2
+
+xs&gt; rev til 3                 ! reverse
+0: [2 1 0]
+
+xs&gt; flip [[1 2][3 4][5 6]]    ! flip rectangular list
+0: [[1 3 5] [2 4 6]]
+
+xs&gt; 3?[1 3 5]                 ! return index of element
+0: 1
+
+xs&gt; 3 enlist 1 2 3            ! make a list
+0: [1 2 3]
+
+xs&gt; ^[1 2 3]                  ! push the list elements onto the stack
+2: 3
+1: 2
+0: 0
+
+xs&gt; dsc til 5                 ! sort descending
+0: [4 3 2 1 0]
+
+xs&gt; 2#til 10                  ! take first 2 elements
+0: [0 1]
+
+xs&gt; (neg 2)#til 10            ! take last 2 elements
+0: [8 9]
+
+xs&gt; 2_til 5                   ! drop first 2 elements
+0: [2 3 4]
+
+xs&gt; (neg 2)_til 5             ! drop last 2 elements
+0: [0 1 2]
+</pre></div>
+</div>
+<p>Most functions and operators in <em>xs</em> operate on lists as well as atoms:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; 1+[1 2 3]
+0: [2 3 4]
+</pre></div>
+</div>
+<p>If we wanted to have the list be the first argument instead of the
+integer <code class="docutils literal notranslate"><span class="pre">1</span></code>, we would need to surround it in a function:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; ([1 2 3])+1
+0: [2 3 4]
+</pre></div>
+</div>
+<p>This is because a list is only created after the <code class="docutils literal notranslate"><span class="pre">[</span></code> function is
+executed, the <code class="docutils literal notranslate"><span class="pre">+</span></code> operator would not see the list as its first
+argument, it would only see the <code class="docutils literal notranslate"><span class="pre">3</span></code>. To solve this problem, A
+function is passed instead, which is evaluated by <code class="docutils literal notranslate"><span class="pre">+</span></code> and result
+added to <code class="docutils literal notranslate"><span class="pre">1</span></code>. For this reason, all operators in <em>xs</em> take a function
+as their first argument.</p>
+<p>To generate a list from 0 to 4 (exclusive), we can use the <code class="docutils literal notranslate"><span class="pre">til</span></code> function:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; til 5
+0: [0 1 2 3 4]
+</pre></div>
+</div>
+<p>If instead we wanted a list from 5 to 10, we can simply add 5 to it:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt;5+til 5
+0: [5 6 7 8 9]
+</pre></div>
+</div>
+<p>Now what if we wanted the squares between 5 and 10?:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt;(x*x~)&#39;5+til 5
+0: [25 36 49 64 81]
+</pre></div>
+</div>
+<p>This introduces us to a new function, the <code class="docutils literal notranslate"><span class="pre">'</span></code> or map function. <code class="docutils literal notranslate"><span class="pre">'</span></code>
+simply applies the given function to each element of the list and
+pushes the new list onto the stack. Now let’s multiply them all
+together:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt;*/(x*x~)&#39;5+til 5
+0: 228614400
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">/</span></code> or fold function successively applies the given function to
+the list until a single result is produced. For more information about
+folds, click <a class="reference external" href="https://en.wikipedia.org/wiki/Fold_(higher-order_function)">here</a>.</p>
+<p>In order to see the intermediate results, we can use the <code class="docutils literal notranslate"><span class="pre">\</span></code> or scan
+function:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; *\(x*x~)&#39;5+til 5
+0: [25 900 44100 2822400 228614400]
+</pre></div>
+</div>
+<p>Note that scan uses the first element of the list as the first element
+of the output list.</p>
+</div>
+<div class="section" id="scoping">
+<h2>Scoping<a class="headerlink" href="#scoping" title="Permalink to this headline">¶</a></h2>
+<p><em>xs</em> uses dynamic scoping which means that variables in a function
+refer to the context in which they are called, not in the one that
+they are written in:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; f:(x)
+xs&gt; (x:5; f).
+0: 5
+</pre></div>
+</div>
+<p>While dynamic scoping is more flexible and powerful than lexical
+scoping, care must be taken to not accidentally refer to an
+incorrect variable in the surrounding scope.</p>
+</div>
+<div class="section" id="data-types">
+<h2>Data Types<a class="headerlink" href="#data-types" title="Permalink to this headline">¶</a></h2>
+<p>Below is a table of data types in <em>xs</em>:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 49%" />
+<col style="width: 37%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>symbol</p></th>
+<th class="head"><p>description</p></th>
+<th class="head"><p>example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>`Z</p></td>
+<td><p>61-bit integer type</p></td>
+<td><p>42</p></td>
+</tr>
+<tr class="row-odd"><td><p>`R</p></td>
+<td><p>64-bit floating point type</p></td>
+<td><p>1.235</p></td>
+</tr>
+<tr class="row-even"><td><p>`B</p></td>
+<td><p>Boolean type</p></td>
+<td><p>1b</p></td>
+</tr>
+<tr class="row-odd"><td><p>`Q</p></td>
+<td><p>Symbol type</p></td>
+<td><p><a href="#id1"><span class="problematic" id="id2">`</span></a>hello</p></td>
+</tr>
+<tr class="row-even"><td><p>`S</p></td>
+<td><p>String type</p></td>
+<td><p>“world”</p></td>
+</tr>
+<tr class="row-odd"><td><p>`F</p></td>
+<td><p>Function type</p></td>
+<td><p>(3*2+)</p></td>
+</tr>
+<tr class="row-even"><td><p>`L</p></td>
+<td><p>List type</p></td>
+<td><p>[1 2 3]</p></td>
+</tr>
+<tr class="row-odd"><td><p>`H</p></td>
+<td><p>I/O handle</p></td>
+<td><p>h:open <a href="#id3"><span class="problematic" id="id4">`</span></a>R “foo.txt”</p></td>
+</tr>
+<tr class="row-even"><td><p>`N</p></td>
+<td><p>Null type</p></td>
+<td><p>0n</p></td>
+</tr>
+</tbody>
+</table>
+<p>In order to convert from one data type to another, we can use the
+<code class="docutils literal notranslate"><span class="pre">of</span></code> operator:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; `Z of 3.2
+0: 3
+xs&gt; `s of 42
+0: &quot;42&quot;
+</pre></div>
+</div>
+</div>
+<div class="section" id="day-1-advent-of-code-2019-solution">
+<h2>Day 1 Advent of Code 2019 Solution<a class="headerlink" href="#day-1-advent-of-code-2019-solution" title="Permalink to this headline">¶</a></h2>
+<p>To conclude this quick tutorial, we’re going to solve both parts of
+the <a class="reference external" href="https://adventofcode.com/2019/day/1">Day 1 Advent of Code 2019</a> problem. Read the part 1 problem
+first and then come back here.</p>
+<p>First we need to read in the file of masses in order to calculate the
+required fuel:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>masses:(`Z of)&#39;read &quot;ex/1.txt&quot;;
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">read</span></code> function reads the given file and returns a list of each
+line of the file. In order to convert the strings to integers, we
+first use the <code class="docutils literal notranslate"><span class="pre">'</span></code> (map) function to apply the conversion to each
+element of the list. The <cite>of</cite> operator converts one datatype to
+another: the <code class="docutils literal notranslate"><span class="pre">`Z</span></code> quoted symbol tells the operator to try and
+convert to an integer. After the conversion, we assign the entire list
+to the variable <code class="docutils literal notranslate"><span class="pre">masses</span></code>.</p>
+<p>Now that the data is read in and in the proper form, we need to write
+the function to calculate the fuel usage:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>fuel:(x:;(x%3)-2);
+</pre></div>
+</div>
+<p>This function implements the requirement specified in the problem
+“Fuel required to launch a given module is based on its
+mass. Specifically, to find the fuel required for a module, take its
+mass, divide by three, round down, and subtract 2.” Note that <code class="docutils literal notranslate"><span class="pre">%</span></code> is
+used for division instead of the traditional forward slash. Now let’s
+calculate the fuel required and print it to the screen:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>0n:sum fuel masses;
+</pre></div>
+</div>
+<p>Since each operation in the <code class="docutils literal notranslate"><span class="pre">fuel</span></code> definition applies to lists, we
+don’t need to use the map operator. The <code class="docutils literal notranslate"><span class="pre">sum</span></code> function simply adds
+up all the numbers in a list and is equivalent to <code class="docutils literal notranslate"><span class="pre">+/</span></code>. Next we
+assign the result to null, represented by <code class="docutils literal notranslate"><span class="pre">0n</span></code> in <em>xs</em>. This has the
+effect of printing the result to the screen.</p>
+<p>The Advent of Code site doesn’t display the part 2 problem until part
+1 has been submitted, so, if you haven’t already, create an account
+and execute the <em>xs</em> code on your given input in order to view
+part 2. Come back here once you’ve read it.</p>
+<p>Now that part 1 is out of the way, here’s part 2:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>0n:sum(sum(where 0&lt;x)@x~fuel fixes)&#39;fl;
+</pre></div>
+</div>
+<p>What a doozy! Let’s piece it apart, identifier by identifier. Part two
+calls for recursively calculating the weight of the fuel, so like
+before we’ll need to apply some function to the fuel masses and then
+add them all up. We first apply the <code class="docutils literal notranslate"><span class="pre">fixes</span></code> function, which is
+similar to <code class="docutils literal notranslate"><span class="pre">\</span></code> (scan), except that it continues applying the given
+function until one of two conditions is met:</p>
+<ol class="arabic simple">
+<li><p>Two consecutive results are equal</p></li>
+<li><p>The output equals the initial input</p></li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">fuel</span></code> is passed as the input to <code class="docutils literal notranslate"><span class="pre">fixes</span></code> and is applied until two
+consecutive outputs are the same, which means that we don’t need to
+calculate for anymore fuel. But because the fuel amount could be
+negative, we need to remove the negative numbers from the list. The
+<code class="docutils literal notranslate"><span class="pre">&#64;</span></code> operator takes either a number of a list and returns those
+elements of a list. For example:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; ([0 2])@[1 3 2]
+0: [1 2]
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">where</span></code> function returns the indices of the list if given a list
+of binary values:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; where [1b 0b 1b]
+0: [0 2]
+</pre></div>
+</div>
+<p>If given a list of integer values, it works like this:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; where [1 2 3 1]
+0: [0 1 1 2 2 2 3]
+</pre></div>
+</div>
+<p>So we use the <code class="docutils literal notranslate"><span class="pre">0&lt;x</span></code> expression to return a binary list, indicating
+where the positive numbers are; then, we use <code class="docutils literal notranslate"><span class="pre">where</span></code> to return the
+indices of the list; and finally, we use the <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> operator to select
+out those indices. Now that we have our list, we simply <code class="docutils literal notranslate"><span class="pre">sum</span></code> it in
+order to get the total fuel requirement for that module. We <code class="docutils literal notranslate"><span class="pre">sum</span></code>
+to calculate the total fuel requirement for all modules.</p>
+<p>Below is the script in full:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>masses:(`Z of)&#39;readl &quot;ex/1.txt&quot;;        ! read in data
+fuel:(x:;(neg 2)+x%3);                  ! fuel function, broadcasts implicitly
+fl:fuel masses;                         ! calculate masses for each module
+0n:sum fl;                              ! sum masses for part 1
+0n:sum(sum(where 0&lt;x)@x~fuel fixes)&#39;fl; ! recursively calculate and sum
+</pre></div>
+</div>
+<p>In order to run the script in full, save the above in a file (<em>xs</em>
+uses the <code class="docutils literal notranslate"><span class="pre">.xs</span></code> extension), and run with:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ xs /path/to/file
+</pre></div>
+</div>
+<p>Now that you’re finished reading this tutorial, you’re ready to check
+out the API documentation for a full reference of all <em>xs</em> functions
+and operators! <em>xs</em> is a unique language and might take a little bit
+getting used to. If you have any questions, don’t hesitate to open an
+issue on github at the <a class="reference external" href="https://github.com/smabie/xs">project page</a> or shoot  me an email at
+<a class="reference external" href="mailto://sturm&#37;&#52;&#48;cryptm&#46;org">sturm<span>&#64;</span>cryptm<span>&#46;</span>org</a></p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">xs</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#comments">Comments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#function-and-variables">Function and Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#operators">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lists">Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scoping">Scoping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-types">Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#day-1-advent-of-code-2019-solution">Day 1 Advent of Code 2019 Solution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">Language Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="examples.html" title="previous chapter">Examples</a></li>
+      <li>Next: <a href="reference.html" title="next chapter">Language Reference</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Sturm Mabie.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/tutorial.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

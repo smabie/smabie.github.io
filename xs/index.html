@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Welcome to xs’s documentation! &#8212; xs 0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-xs-s-documentation">
+<h1>Welcome to xs’s documentation!<a class="headerlink" href="#welcome-to-xs-s-documentation" title="Permalink to this headline">¶</a></h1>
+<p><em>xs</em> is a dynamically typed, dynamically scoped, concatenative array
+language inspired by kdb+/q and released into the public domain. The
+interpreter and builtin functions are written in OCaml. Check out the
+<a class="reference external" href="https://github.com/smabie/xs">project page</a> on github if you wish to browse the source, open an
+issue or pull request.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#comments">Comments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#function-and-variables">Function and Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#operators">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#lists">Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#scoping">Scoping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#data-types">Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#day-1-advent-of-code-2019-solution">Day 1 Advent of Code 2019 Solution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">Language Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reference.html#command-line-parameters">Command-Line Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html#syntax">Syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html#data-types">Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html#parsing">Parsing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html#scoping">Scoping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html#math">Math</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#neg-unary-negative"><code class="docutils literal notranslate"><span class="pre">neg</span></code>: Unary Negative</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#addition"><code class="docutils literal notranslate"><span class="pre">+</span></code>: Addition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#substraction"><code class="docutils literal notranslate"><span class="pre">-</span></code>: Substraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#multiplication"><code class="docutils literal notranslate"><span class="pre">*</span></code>: Multiplication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#division"><code class="docutils literal notranslate"><span class="pre">%</span></code>: Division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#mod-modulus"><code class="docutils literal notranslate"><span class="pre">mod</span></code>: Modulus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#power"><code class="docutils literal notranslate"><span class="pre">**</span></code>: Power</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#ln-natural-logarithm"><code class="docutils literal notranslate"><span class="pre">ln</span></code>: Natural logarithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#sin-sine"><code class="docutils literal notranslate"><span class="pre">sin</span></code>: Sine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#cos-cosine"><code class="docutils literal notranslate"><span class="pre">cos</span></code>: Cosine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#tan-tangent"><code class="docutils literal notranslate"><span class="pre">tan</span></code>: Tangent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#sum-sum-of-list"><code class="docutils literal notranslate"><span class="pre">sum</span></code>: Sum of list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#sums-partial-sums-of-list"><code class="docutils literal notranslate"><span class="pre">sums</span></code>: Partial sums of list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#prod-product-of-list"><code class="docutils literal notranslate"><span class="pre">prod</span></code>: Product of list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#prods-partial-products-of-list"><code class="docutils literal notranslate"><span class="pre">prods</span></code>: Partial products of list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#abs-absolute-value"><code class="docutils literal notranslate"><span class="pre">abs</span></code>: Absolute value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#ceil-ceiling"><code class="docutils literal notranslate"><span class="pre">ceil</span></code>: Ceiling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#floor-floor"><code class="docutils literal notranslate"><span class="pre">floor</span></code>: Floor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html#boolean-and-conditionals">Boolean and Conditionals</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#equals"><code class="docutils literal notranslate"><span class="pre">==</span></code>: Equals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#less-than"><code class="docutils literal notranslate"><span class="pre">&lt;</span></code>: Less than</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#greater-than"><code class="docutils literal notranslate"><span class="pre">&gt;</span></code>: Greater than</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#gq-greater-or-equal"><code class="docutils literal notranslate"><span class="pre">gq</span></code>: Greater or equal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#lq-less-or-equal"><code class="docutils literal notranslate"><span class="pre">lq</span></code>: Less or equal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#and"><code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code>: And</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#or"><code class="docutils literal notranslate"><span class="pre">||</span></code>: Or</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#if-if-expression"><code class="docutils literal notranslate"><span class="pre">if</span></code>: If expression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#cond-multiple-conditional"><code class="docutils literal notranslate"><span class="pre">cond</span></code>: Multiple conditional</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#every-tests-all-true"><code class="docutils literal notranslate"><span class="pre">every</span></code>: Tests all true</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#any-any-true"><code class="docutils literal notranslate"><span class="pre">any</span></code>: Any true</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#cmp-comparison"><code class="docutils literal notranslate"><span class="pre">cmp</span></code>: Comparison</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">xs</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">Language Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="installation.html" title="next chapter">Installation</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Sturm Mabie.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
