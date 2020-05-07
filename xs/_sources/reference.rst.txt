@@ -150,7 +150,7 @@ Remainder of two values. Broadcasts across lists.
 Power of two values. Broadcasts across lists.
 
 ``ln``: natural logarithm
---------------
+-------------------------
 ::
 
   ln {Z | R | L} -> {Z | R | L}
@@ -158,7 +158,7 @@ Power of two values. Broadcasts across lists.
 Natural logarithm, broadcasts across lists.
 
 ``sin``: sine
---------------
+-------------
 ::
 
   sin {Z | R | L} -> {Z | R | L}
@@ -166,7 +166,7 @@ Natural logarithm, broadcasts across lists.
 Sin, broadcasts across lists.
 
 ``cos``: cosine
-----------------
+---------------
 ::
 
   cos {Z | R | L} -> {Z | R | L}
@@ -174,7 +174,7 @@ Sin, broadcasts across lists.
 Cosine, broadcasts across lists.
 
 ``tan``: tangent
------------------
+----------------
 ::
 
   tan {Z | R | L} -> {Z | R | L}
@@ -182,7 +182,7 @@ Cosine, broadcasts across lists.
 Tangent, broadcasts across lists.
 
 ``sum``: sum of list
----------------------
+--------------------
 ::
 
    sum L -> {Z | R}
@@ -204,7 +204,7 @@ Returns the partial sums of the list: ::
   0: [0 1 3 6 10]
 
 ``prod``: product of list
---------------------------
+-------------------------
 ::
 
    prod L -> {Z | R}
@@ -215,13 +215,13 @@ Find the product of all elements in a list: ::
    0: 24
 
 ``prods``: partial products of list
-------------------------------------
+-----------------------------------
 ::
 
    prods L -> L
 
 ``abs``: absolute value
-------------------------
+-----------------------
 ::
 
    abs {Z | R | L} -> {Z | R | L}
@@ -232,7 +232,7 @@ Find the absolute value of a number or list: ::
    0: [1 2 6 24]
 
 ``ceil``: ceiling
------------------------------------------------
+-----------------
 ::
 
    ceil {Z | R | L} -> {Z | R | L}
@@ -243,7 +243,7 @@ Find the ceiling of a number or list: ::
   0: 4
 
 ``floor``: floor
--------------------------------------
+----------------
 ::
 
    floor {Z | R | L} -> {Z | R | L}

@@ -13,7 +13,7 @@ interpreter and builtin functions are written in OCaml. Check out the
 issue or pull request.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
    installation.rst
    examples.rst
