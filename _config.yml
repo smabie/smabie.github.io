@@ -35,4 +35,3 @@ sidebar_home_link:  true
                                 # to enable a separate blog link.
 
 exclude: [xs]
-include: [xs/_sources]
