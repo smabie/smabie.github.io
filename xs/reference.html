@@ -160,7 +160,7 @@ not inadvertantly access variables defined in the caller’s scope.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{Z | R | L} + {Z | R | L} -&gt; {Z | R | L}
 </pre></div>
 </div>
-<p>Adds two values together. Broadcasts across lists.</p>
+<p>Add two values together. Broadcasts across lists.</p>
 </div>
 <div class="section" id="substraction">
 <h3><code class="docutils literal notranslate"><span class="pre">-</span></code> substraction<a class="headerlink" href="#substraction" title="Permalink to this headline">¶</a></h3>
@@ -174,14 +174,14 @@ not inadvertantly access variables defined in the caller’s scope.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{Z | R | L} * {Z | R | L} -&gt; {Z | R | L}
 </pre></div>
 </div>
-<p>Multiplies two values. Broadcasts across lists.</p>
+<p>Multiply two values. Broadcasts across lists.</p>
 </div>
 <div class="section" id="division">
 <h3><code class="docutils literal notranslate"><span class="pre">%</span></code> division<a class="headerlink" href="#division" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{Z | R | L} % {Z | R | L} -&gt; {Z | R | L}
 </pre></div>
 </div>
-<p>Divides two values. Broadcasts across lists.</p>
+<p>Divide two values. Broadcasts across lists.</p>
 </div>
 <div class="section" id="mod-modulus">
 <h3><code class="docutils literal notranslate"><span class="pre">mod</span></code> modulus<a class="headerlink" href="#mod-modulus" title="Permalink to this headline">¶</a></h3>
@@ -305,15 +305,15 @@ not inadvertantly access variables defined in the caller’s scope.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x == y -&gt; B
 </pre></div>
 </div>
-<p>Tests equality between two values.</p>
+<p>Test equality between two values.</p>
 </div>
 <div class="section" id="less-than">
 <h3><code class="docutils literal notranslate"><span class="pre">&lt;</span></code> less than<a class="headerlink" href="#less-than" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x &lt; y -&gt; B
 </pre></div>
 </div>
-<p>Returns <code class="docutils literal notranslate"><span class="pre">1b</span></code> if the first argument is less than the second,
-otherwise <code class="docutils literal notranslate"><span class="pre">0b</span></code>.</p>
+<p>Return <code class="docutils literal notranslate"><span class="pre">1b</span></code> if the first argument is less than the second, otherwise
+<code class="docutils literal notranslate"><span class="pre">0b</span></code>.</p>
 </div>
 <div class="section" id="greater-than">
 <h3><code class="docutils literal notranslate"><span class="pre">&gt;</span></code> greater than<a class="headerlink" href="#greater-than" title="Permalink to this headline">¶</a></h3>
@@ -336,7 +336,7 @@ second, otherwise <code class="docutils literal notranslate"><span class="pre">0
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x &gt; y -&gt; B
 </pre></div>
 </div>
-<p>Returns <code class="docutils literal notranslate"><span class="pre">1b</span></code> if the first argument is less than or equal to the
+<p>Return <code class="docutils literal notranslate"><span class="pre">1b</span></code> if the first argument is less than or equal to the
 second, otherwise <code class="docutils literal notranslate"><span class="pre">0b</span></code>.</p>
 </div>
 <div class="section" id="and">
@@ -358,14 +358,14 @@ second, otherwise <code class="docutils literal notranslate"><span class="pre">0
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>if cond:B f:F g:F -&gt; {f. | g.}
 </pre></div>
 </div>
-<p>Evalues <code class="docutils literal notranslate"><span class="pre">f</span></code> if <code class="docutils literal notranslate"><span class="pre">cond</span></code> is <code class="docutils literal notranslate"><span class="pre">1b</span></code>, otherwise evaluates. <code class="docutils literal notranslate"><span class="pre">g</span></code>.</p>
+<p>Evaluate <code class="docutils literal notranslate"><span class="pre">f</span></code> if <code class="docutils literal notranslate"><span class="pre">cond</span></code> is <code class="docutils literal notranslate"><span class="pre">1b</span></code>, otherwise evaluates. <code class="docutils literal notranslate"><span class="pre">g</span></code>.</p>
 </div>
 <div class="section" id="cond-multiple-conditional">
 <h3><code class="docutils literal notranslate"><span class="pre">cond</span></code> multiple conditional<a class="headerlink" href="#cond-multiple-conditional" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cond [(cond_a: F) (f: F) (cond_b: F) (g: F) ... (h: F)] -&gt; {f. | g. | h. ...}
 </pre></div>
 </div>
-<p>Takes a list of functions and tests each condition in order, executing
+<p>Take a list of functions and tests each condition in order, executing
 the corresponding function if the condition is true. Note that only
 one function is ever executed and that the length of the list given to
 <code class="docutils literal notranslate"><span class="pre">cond</span></code> must be odd.</p>
@@ -379,7 +379,7 @@ one function is ever executed and that the length of the list given to
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>every {L | B} -&gt; B
 </pre></div>
 </div>
-<p>Returns true if the given boolean is true or if the given list only
+<p>Return true if the given boolean is true or if the given list only
 contains <code class="docutils literal notranslate"><span class="pre">1b</span></code>.</p>
 </div>
 <div class="section" id="any-any-true">
@@ -387,7 +387,7 @@ contains <code class="docutils literal notranslate"><span class="pre">1b</span><
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>any {L | B} -&gt; B
 </pre></div>
 </div>
-<p>Returns true if the given boolean is true or if the given list
+<p>Return true if the given boolean is true or if the given list
 contains at least one <code class="docutils literal notranslate"><span class="pre">1b</span></code>.</p>
 </div>
 <div class="section" id="cmp-comparison">
@@ -395,7 +395,7 @@ contains at least one <code class="docutils literal notranslate"><span class="pr
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x:* cmp y:* -&gt; {-1 | 0 | 1}
 </pre></div>
 </div>
-<p>Returns <code class="docutils literal notranslate"><span class="pre">-1</span></code> if <code class="docutils literal notranslate"><span class="pre">x</span></code> is less than <code class="docutils literal notranslate"><span class="pre">y</span></code>, <code class="docutils literal notranslate"><span class="pre">0</span></code> if <code class="docutils literal notranslate"><span class="pre">x</span></code> equals
+<p>Return <code class="docutils literal notranslate"><span class="pre">-1</span></code> if <code class="docutils literal notranslate"><span class="pre">x</span></code> is less than <code class="docutils literal notranslate"><span class="pre">y</span></code>, <code class="docutils literal notranslate"><span class="pre">0</span></code> if <code class="docutils literal notranslate"><span class="pre">x</span></code> equals
 <code class="docutils literal notranslate"><span class="pre">y</span></code>, and <code class="docutils literal notranslate"><span class="pre">1</span></code> if <code class="docutils literal notranslate"><span class="pre">x</span></code> is greater than <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p>
 </div>
 </div>
@@ -446,11 +446,11 @@ push onto the stack otherwise. If <code class="docutils literal notranslate"><sp
 <h2>Assignment<a class="headerlink" href="#assignment" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="set-print">
 <h3><code class="docutils literal notranslate"><span class="pre">:</span></code> set/print<a class="headerlink" href="#set-print" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{Q | L } : x... -&gt; ()
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{Q | L} : x... -&gt; ()
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">:</span></code> either takes a symbol or a list of symbols and binds them to the
-corresponding values on the stack:</p>
+<p>Take a symbol or a list of symbols and bind them to the corresponding
+values on the stack:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; x:5; x;
 0: 5
 
@@ -480,10 +480,225 @@ xs&gt; ([`x`y])~2 3; x+y+ +.
 0: 10
 </pre></div>
 </div>
-<p>Likewise, if given a null, <code class="docutils literal notranslate"><span class="pre">~</span></code> will print out the value(s) to <code class="docutils literal notranslate"><span class="pre">stdout</span></code>:</p>
+<p>Likewise, if given a null, <code class="docutils literal notranslate"><span class="pre">~</span></code> will print out the value(s) to
+<code class="docutils literal notranslate"><span class="pre">stdout</span></code>:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; 0n~5
 5
 0: 5
+</pre></div>
+</div>
+</div>
+<div class="section" id="reassign">
+<h3><code class="docutils literal notranslate"><span class="pre">::</span></code> reassign<a class="headerlink" href="#reassign" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{Q | L} :: x... -&gt; ()
+</pre></div>
+</div>
+<p>Resassign a variable that already has a definition. Allows the user to
+modify variables outside the local scope:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; x:5; (x::3); x
+0: 3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="iterators-and-accumulators">
+<h2>Iterators and Accumulators<a class="headerlink" href="#iterators-and-accumulators" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="map">
+<h3><code class="docutils literal notranslate"><span class="pre">'</span></code> map<a class="headerlink" href="#map" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>f:F &#39; xs:L -&gt; L
+</pre></div>
+</div>
+<p>Apply <code class="docutils literal notranslate"><span class="pre">f</span></code> to each element of <code class="docutils literal notranslate"><span class="pre">xs</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; (2*)&#39;til 3
+0: [0 2 4]
+</pre></div>
+</div>
+</div>
+<div class="section" id="fold">
+<h3><code class="docutils literal notranslate"><span class="pre">/</span></code> fold<a class="headerlink" href="#fold" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>f:F / xs:L -&gt; *
+</pre></div>
+</div>
+<p>Fold <code class="docutils literal notranslate"><span class="pre">f</span></code> over <code class="docutils literal notranslate"><span class="pre">xs</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; +/til 4
+0: 10
+</pre></div>
+</div>
+</div>
+<div class="section" id="scan">
+<h3><code class="docutils literal notranslate"><span class="pre">\</span></code> scan<a class="headerlink" href="#scan" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>f:F \ xs:L -&gt; *
+</pre></div>
+</div>
+<p>Fold <code class="docutils literal notranslate"><span class="pre">f</span></code> over <code class="docutils literal notranslate"><span class="pre">xs</span></code>, keeping each partial fold:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; +\til 4
+0:[0 1 3 6]
+</pre></div>
+</div>
+</div>
+<div class="section" id="fix-fixpoint">
+<h3><code class="docutils literal notranslate"><span class="pre">fix</span></code> fixpoint<a class="headerlink" href="#fix-fixpoint" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>fix f:F x:*-&gt; *
+</pre></div>
+</div>
+<p>Successively apply <code class="docutils literal notranslate"><span class="pre">f</span></code> on <code class="docutils literal notranslate"><span class="pre">x</span></code> until two sucessive values equal
+each other or one value equals the starting value <code class="docutils literal notranslate"><span class="pre">x</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt;(x:; x%2) fix 6
+0: 0
+</pre></div>
+</div>
+</div>
+<div class="section" id="fixes-partial-fixpoints">
+<h3><code class="docutils literal notranslate"><span class="pre">fixes</span></code> partial fixpoints<a class="headerlink" href="#fixes-partial-fixpoints" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>fixes f:F x:* -&gt; L
+</pre></div>
+</div>
+<p>Successively apply <code class="docutils literal notranslate"><span class="pre">f</span></code> on <code class="docutils literal notranslate"><span class="pre">x</span></code> until two sucessive values equal
+each other or one value equals the starting value <code class="docutils literal notranslate"><span class="pre">x</span></code> while keeping
+intermediate values:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; (x:; x%2) fixes 6
+0: [6 3 1 0]
+</pre></div>
+</div>
+</div>
+<div class="section" id="do-iteration">
+<h3><code class="docutils literal notranslate"><span class="pre">do</span></code> iteration<a class="headerlink" href="#do-iteration" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x:{F | Z} do f:F -&gt; *
+</pre></div>
+</div>
+<p>Apply the function <code class="docutils literal notranslate"><span class="pre">f</span></code> either <code class="docutils literal notranslate"><span class="pre">x</span></code> times if <code class="docutils literal notranslate"><span class="pre">x</span></code> is an integer; if
+a function, until <code class="docutils literal notranslate"><span class="pre">x</span></code> returns <code class="docutils literal notranslate"><span class="pre">0b</span></code>.</p>
+</div>
+</div>
+<div class="section" id="list-and-string">
+<h2>List  and String<a class="headerlink" href="#list-and-string" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="make-list">
+<h3><code class="docutils literal notranslate"><span class="pre">[]</span></code> make list<a class="headerlink" href="#make-list" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">[]</span></code> are special functions that can be used to create a new list:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; [[1 2] [3 4]]
+0: [[1 2] [3 4]]
+</pre></div>
+</div>
+</div>
+<div class="section" id="enlist-make-list">
+<h3><code class="docutils literal notranslate"><span class="pre">enlist</span></code> make list<a class="headerlink" href="#enlist-make-list" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>n:Z enlist x... -&gt; L
+</pre></div>
+</div>
+<p>Create a list from the top <code class="docutils literal notranslate"><span class="pre">n</span></code> elements from the stack:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; 3 enlist 1 2 3
+0:[1 2 3]
+</pre></div>
+</div>
+</div>
+<div class="section" id="delist">
+<h3><code class="docutils literal notranslate"><span class="pre">^</span></code> delist<a class="headerlink" href="#delist" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>^ L -&gt; x...
+</pre></div>
+</div>
+<p>Convert a list into elements on the stack:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; ^[1 2 3]
+2: 3
+1: 2
+0: 1
+</pre></div>
+</div>
+</div>
+<div class="section" id="til-construct-numbered-list">
+<h3><code class="docutils literal notranslate"><span class="pre">til</span></code> construct numbered list<a class="headerlink" href="#til-construct-numbered-list" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>til n:Z -&gt; L
+</pre></div>
+</div>
+<p>Construct a list between <code class="docutils literal notranslate"><span class="pre">0</span></code> and <code class="docutils literal notranslate"><span class="pre">n</span></code> (exclusive):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; til 4
+[0 1 2 3]
+</pre></div>
+</div>
+</div>
+<div class="section" id="len-length-of-list">
+<h3><code class="docutils literal notranslate"><span class="pre">len</span></code> length of list<a class="headerlink" href="#len-length-of-list" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>len xs:L -&gt; Z
+</pre></div>
+</div>
+<p>Return the length of <code class="docutils literal notranslate"><span class="pre">xs</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; len til 3
+0: 3
+</pre></div>
+</div>
+</div>
+<div class="section" id="flip-flip-list">
+<h3><code class="docutils literal notranslate"><span class="pre">flip</span></code> flip list<a class="headerlink" href="#flip-flip-list" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>flip L -&gt; L
+</pre></div>
+</div>
+<p>Flip a multidimensional list across its first two dimensions. In the
+case of a list with only one dimension (or a string), creates a column
+vector:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; flip [[1 2] [3 4] [5 6]]
+0: [[1 3 5] [2 4 6]]
+
+xs&gt; flip til 3
+0: [[0] [1] [2]]
+
+xs&gt; flip [&quot;abc&quot; &quot;abc&quot; &quot;abc&quot;]
+0: [&quot;aaa&quot; &quot;bbb&quot; &quot;ccc&quot;]
+
+xs&gt; flip &quot;abc&quot;
+0: [&quot;a&quot; &quot;b&quot; &quot;c&quot;]
+</pre></div>
+</div>
+</div>
+<div class="section" id="rev-reverse">
+<h3><code class="docutils literal notranslate"><span class="pre">rev</span></code> reverse<a class="headerlink" href="#rev-reverse" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>rev {L | S} -&gt; {L | S}
+</pre></div>
+</div>
+<p>Reverse the given list or list:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; rev til 3
+0:[2 1 0]
+
+xs&gt; rev &quot;abc&quot;
+0:&quot;cba&quot;
+</pre></div>
+</div>
+</div>
+<div class="section" id="concatenate">
+<h3><code class="docutils literal notranslate"><span class="pre">,</span></code> concatenate<a class="headerlink" href="#concatenate" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x:* | y:* -&gt; L
+</pre></div>
+</div>
+<p>Concatenate two values. If both <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> are lists, append
+them; if both are atoms, create a list with two elements; if one is a
+list and one an atom, cons the value onto the front or back of the
+list:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; 3,4
+0:[3 4]
+
+xs&gt; 3,[1 2]
+0: [3 1 2]
+
+xs&gt;[1 2],3
+0: [1 2 3]
+
+xs&gt;([1 2]),[3 4]
+0: [1 2 3 4]
+</pre></div>
+</div>
+</div>
+<div class="section" id="cons">
+<h3><code class="docutils literal notranslate"><span class="pre">,,</span></code> cons<a class="headerlink" href="#cons" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x:* :: xs:L -&gt; L
+</pre></div>
+</div>
+<p>places <code class="docutils literal notranslate"><span class="pre">x</span></code> at the head of <code class="docutils literal notranslate"><span class="pre">xs</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; 3,,[1 2]
+0: [3 1 2]
+
+xs&gt; ([3]),,[1 2]
+0: [[3] 1 2]
+
+xs&gt; ([1 2]),,3
+0: [1 2 3]
 </pre></div>
 </div>
 </div>
@@ -567,6 +782,28 @@ xs&gt; ([`x`y])~2 3; x+y+ +.
 <li class="toctree-l2"><a class="reference internal" href="#assignment">Assignment</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#set-print"><code class="docutils literal notranslate"><span class="pre">:</span></code> set/print</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#peek-set-print"><code class="docutils literal notranslate"><span class="pre">~</span></code> peek set/print</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reassign"><code class="docutils literal notranslate"><span class="pre">::</span></code> reassign</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#iterators-and-accumulators">Iterators and Accumulators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#map"><code class="docutils literal notranslate"><span class="pre">'</span></code> map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fold"><code class="docutils literal notranslate"><span class="pre">/</span></code> fold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scan"><code class="docutils literal notranslate"><span class="pre">\</span></code> scan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fix-fixpoint"><code class="docutils literal notranslate"><span class="pre">fix</span></code> fixpoint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fixes-partial-fixpoints"><code class="docutils literal notranslate"><span class="pre">fixes</span></code> partial fixpoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#do-iteration"><code class="docutils literal notranslate"><span class="pre">do</span></code> iteration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#list-and-string">List  and String</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#make-list"><code class="docutils literal notranslate"><span class="pre">[]</span></code> make list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enlist-make-list"><code class="docutils literal notranslate"><span class="pre">enlist</span></code> make list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#delist"><code class="docutils literal notranslate"><span class="pre">^</span></code> delist</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#til-construct-numbered-list"><code class="docutils literal notranslate"><span class="pre">til</span></code> construct numbered list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#len-length-of-list"><code class="docutils literal notranslate"><span class="pre">len</span></code> length of list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#flip-flip-list"><code class="docutils literal notranslate"><span class="pre">flip</span></code> flip list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rev-reverse"><code class="docutils literal notranslate"><span class="pre">rev</span></code> reverse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#concatenate"><code class="docutils literal notranslate"><span class="pre">,</span></code> concatenate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cons"><code class="docutils literal notranslate"><span class="pre">,,</span></code> cons</a></li>
 </ul>
 </li>
 </ul>

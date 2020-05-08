@@ -106,7 +106,7 @@ Unary negative of a value, broadcasts across lists.
 
   {Z | R | L} + {Z | R | L} -> {Z | R | L}
 
-Adds two values together. Broadcasts across lists.
+Add two values together. Broadcasts across lists.
 
 ``-`` substraction
 -------------------
@@ -122,7 +122,7 @@ Subtract two values. Broadcasts across lists.
 
   {Z | R | L} * {Z | R | L} -> {Z | R | L}
 
-Multiplies two values. Broadcasts across lists.
+Multiply two values. Broadcasts across lists.
 
 ``%`` division
 ---------------
@@ -131,7 +131,7 @@ Multiplies two values. Broadcasts across lists.
 
   {Z | R | L} % {Z | R | L} -> {Z | R | L}
 
-Divides two values. Broadcasts across lists.
+Divide two values. Broadcasts across lists.
 
 ``mod`` modulus
 ----------------
@@ -262,7 +262,7 @@ Boolean and Conditionals
 
    x == y -> B
 
-Tests equality between two values.
+Test equality between two values.
 
 ``<`` less than
 ----------------
@@ -270,8 +270,8 @@ Tests equality between two values.
 
    x < y -> B
 
-Returns ``1b`` if the first argument is less than the second,
-otherwise ``0b``.
+Return ``1b`` if the first argument is less than the second, otherwise
+``0b``.
 
 ``>`` greater than
 -------------------
@@ -297,7 +297,7 @@ second, otherwise ``0b``.
 
    x > y -> B
 
-Returns ``1b`` if the first argument is less than or equal to the
+Return ``1b`` if the first argument is less than or equal to the
 second, otherwise ``0b``.
 
 ``&&`` And
@@ -324,7 +324,7 @@ Logical or.
 
    if cond:B f:F g:F -> {f. | g.}
 
-Evalues ``f`` if ``cond`` is ``1b``, otherwise evaluates. ``g``.
+Evaluate ``f`` if ``cond`` is ``1b``, otherwise evaluates. ``g``.
 
 ``cond`` multiple conditional
 ------------------------------
@@ -332,7 +332,7 @@ Evalues ``f`` if ``cond`` is ``1b``, otherwise evaluates. ``g``.
 
    cond [(cond_a: F) (f: F) (cond_b: F) (g: F) ... (h: F)] -> {f. | g. | h. ...}
 
-Takes a list of functions and tests each condition in order, executing
+Take a list of functions and tests each condition in order, executing
 the corresponding function if the condition is true. Note that only
 one function is ever executed and that the length of the list given to
 ``cond`` must be odd. ::
@@ -346,7 +346,7 @@ one function is ever executed and that the length of the list given to
 
    every {L | B} -> B
 
-Returns true if the given boolean is true or if the given list only
+Return true if the given boolean is true or if the given list only
 contains ``1b``.
 
 ``any`` any true
@@ -355,7 +355,7 @@ contains ``1b``.
 
    any {L | B} -> B
 
-Returns true if the given boolean is true or if the given list
+Return true if the given boolean is true or if the given list
 contains at least one ``1b``.
 
 ``cmp`` comparison
@@ -364,7 +364,7 @@ contains at least one ``1b``.
 
    x:* cmp y:* -> {-1 | 0 | 1}
 
-Returns ``-1`` if ``x`` is less than ``y``, ``0`` if ``x`` equals
+Return ``-1`` if ``x`` is less than ``y``, ``0`` if ``x`` equals
 ``y``, and ``1`` if ``x`` is greater than ``y``.
 
 Stack Manipulation
@@ -423,10 +423,10 @@ Assignment
 ---------------
 ::
 
-   {Q | L } : x... -> ()
+   {Q | L} : x... -> ()
 
-``:`` either takes a symbol or a list of symbols and binds them to the
-corresponding values on the stack: ::
+Take a symbol or a list of symbols and bind them to the corresponding
+values on the stack: ::
 
   xs> x:5; x;
   0: 5
@@ -456,8 +456,224 @@ like ``:``, except the value is not popped off the stack: ::
   xs> ([`x`y])~2 3; x+y+ +.
   0: 10
 
-Likewise, if given a null, ``~`` will print out the value(s) to ``stdout``: ::
+Likewise, if given a null, ``~`` will print out the value(s) to
+``stdout``: ::
 
   xs> 0n~5
   5
   0: 5
+
+``::`` reassign
+---------------
+::
+
+   {Q | L} :: x... -> ()
+
+Resassign a variable that already has a definition. Allows the user to
+modify variables outside the local scope: ::
+
+  xs> x:5; (x::3); x
+  0: 3
+
+Iterators and Accumulators
+##########################
+
+``'`` map
+---------
+::
+
+   f:F ' xs:L -> L
+
+Apply ``f`` to each element of ``xs``: ::
+
+  xs> (2*)'til 3
+  0: [0 2 4]
+
+``/`` fold
+----------
+::
+
+   f:F / xs:L -> *
+
+Fold ``f`` over ``xs``: ::
+
+  xs> +/til 4
+  0: 10
+
+``\`` scan
+----------
+::
+
+   f:F \ xs:L -> *
+
+Fold ``f`` over ``xs``, keeping each partial fold: ::
+
+  xs> +\til 4
+  0:[0 1 3 6]
+
+``fix`` fixpoint
+----------------
+::
+
+   fix f:F x:*-> *
+
+Successively apply ``f`` on ``x`` until two sucessive values equal
+each other or one value equals the starting value ``x``: ::
+
+  xs>(x:; x%2) fix 6
+  0: 0
+
+``fixes`` partial fixpoints
+---------------------------
+::
+
+   fixes f:F x:* -> L
+
+Successively apply ``f`` on ``x`` until two sucessive values equal
+each other or one value equals the starting value ``x`` while keeping
+intermediate values: ::
+
+  xs> (x:; x%2) fixes 6
+  0: [6 3 1 0]
+
+``do`` iteration
+----------------
+::
+
+   x:{F | Z} do f:F -> *
+
+Apply the function ``f`` either ``x`` times if ``x`` is an integer; if
+a function, until ``x`` returns ``0b``.
+
+List  and String
+################
+
+``[]`` make list
+----------------
+
+``[]`` are special functions that can be used to create a new list: ::
+
+  xs> [[1 2] [3 4]]
+  0: [[1 2] [3 4]]
+
+``enlist`` make list
+--------------------
+::
+
+   n:Z enlist x... -> L
+
+Create a list from the top ``n`` elements from the stack: ::
+
+  xs> 3 enlist 1 2 3
+  0:[1 2 3]
+
+``^`` delist
+------------
+::
+
+   ^ L -> x...
+
+Convert a list into elements on the stack: ::
+
+  xs> ^[1 2 3]
+  2: 3
+  1: 2
+  0: 1
+
+``til`` construct numbered list
+-------------------------------
+::
+
+   til n:Z -> L
+
+Construct a list between ``0`` and ``n`` (exclusive): ::
+
+  xs> til 4
+  [0 1 2 3]
+
+``len`` length of list
+----------------------
+::
+
+   len xs:L -> Z
+
+Return the length of ``xs``: ::
+
+  xs> len til 3
+  0: 3
+
+``flip`` flip list
+------------------
+::
+
+   flip L -> L
+
+Flip a multidimensional list across its first two dimensions. In the
+case of a list with only one dimension (or a string), creates a column
+vector: ::
+
+  xs> flip [[1 2] [3 4] [5 6]]
+  0: [[1 3 5] [2 4 6]]
+
+  xs> flip til 3
+  0: [[0] [1] [2]]
+
+  xs> flip ["abc" "abc" "abc"]
+  0: ["aaa" "bbb" "ccc"]
+
+  xs> flip "abc"
+  0: ["a" "b" "c"]
+
+``rev`` reverse
+---------------
+::
+
+   rev {L | S} -> {L | S}
+
+Reverse the given list or list: ::
+
+  xs> rev til 3
+  0:[2 1 0]
+
+  xs> rev "abc"
+  0:"cba"
+
+``,`` concatenate
+-----------------
+::
+
+   x:* | y:* -> L
+
+Concatenate two values. If both ``x`` and ``y`` are lists, append
+them; if both are atoms, create a list with two elements; if one is a
+list and one an atom, cons the value onto the front or back of the
+list: ::
+
+  xs> 3,4
+  0:[3 4]
+
+  xs> 3,[1 2]
+  0: [3 1 2]
+
+  xs>[1 2],3
+  0: [1 2 3]
+
+  xs>([1 2]),[3 4]
+  0: [1 2 3 4]
+
+``,,`` cons
+-----------
+::
+
+   x:* :: xs:L -> L
+
+places ``x`` at the head of ``xs``: ::
+
+  xs> 3,,[1 2]
+  0: [3 1 2]
+
+  xs> ([3]),,[1 2]
+  0: [[3] 1 2]
+
+  xs> ([1 2]),,3
+  0: [1 2 3]
