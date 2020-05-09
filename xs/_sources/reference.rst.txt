@@ -875,3 +875,12 @@ Scan ``.`` over ``xs``: ::
 
   xs> cats ["a" "b" "c"]
   0: ["a" "ab" "abc"]
+
+Set Operations
+##############
+
+``in`` contains
+---------------
+::
+
+   {L | *} in L -> {L | B}
