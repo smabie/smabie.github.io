@@ -38,4 +38,4 @@ at `sturm@cryptm.org`_
 
 .. _project page: https://github.com/smabie/xs
 
-.. _sturm@cryptm.org.org: mailto://sturm@cryptm.org
+.. _sturm@cryptm.org: mailto://sturm@cryptm.org
