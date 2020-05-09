@@ -37,19 +37,20 @@
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>Welcome to <em>xs</em>, an functional concatenative array language inspired
-by kdb+/q, forth, and others. The xs interpreter is written in OCaml
+by kdb+/q, forth, and others. The <em>xs</em> interpreter is written in OCaml
 and released into the public domain by yours truly. <em>xs</em> might
 initially strike you as unusual, strange, and perhaps even deliberatly
 unfriendly (especially if you don’t have any prior experience with
-array languages); but I guarantee that in no time writing <em>xs</em> will
-become second nature.</p>
+array languages); but I guarantee that in no time at all reading and
+writing <em>xs</em> will become second nature!</p>
 <p>If you haven’t already, check out the installation instructions in
 order to get a working environment. After the installation completes,
 start the interpreter by simply running:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ xs
 </pre></div>
 </div>
-<p>You should see a prompt like below in which you can enter commands:</p>
+<p>You should see a prompt similar to the below in which you can enter
+commands:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Public domain interpreter for the xs language. Created by Sturm Mabie
 (sturm@cryptm.org). For more information check out the project&#39;s github at
 http://github.com/smabie/xs
@@ -62,12 +63,12 @@ xs&gt;
 </pre></div>
 </div>
 <p><em>xs</em> is a concatenative (or stack based) language in which all
-operations are parsed from right-to-left. You might be wondering at
-this point how the <code class="docutils literal notranslate"><span class="pre">+</span></code> operator works since it’s being used in an
-infix fashion. The answer is that <em>xs</em> allows you to define special
-operators that switch the operator with the position of it’s left
-adjacent value. So internally, the interpreter is evaluating <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">2</span>
-<span class="pre">5</span></code>. Now clear the top most element:</p>
+operations are parsed from right-to-left.</p>
+<p>You might be wondering at this point how the <code class="docutils literal notranslate"><span class="pre">+</span></code> operator works
+since it’s being used in an infix fashion. The answer is that <em>xs</em>
+allows you to define special operators that switch the operator with
+the position of it’s left adjacent value. So internally, the
+interpreter is evaluating <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">2</span> <span class="pre">5</span></code>. Now clear the top most element:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; drop
 xs&gt;
 </pre></div>
@@ -87,13 +88,13 @@ the same precedence:</p>
 </pre></div>
 </div>
 <p>You might be wondering how this works, since the interpreter will
-switch the plus with the dot and then evaluate the dot. For example if
-we just try:</p>
+switch the <code class="docutils literal notranslate"><span class="pre">+</span></code> with the <code class="docutils literal notranslate"><span class="pre">.</span></code> and then evaluate the <code class="docutils literal notranslate"><span class="pre">.</span></code>. For
+example if we just try:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; + 3 2
 (Invalid_argument &quot;index out of bounds&quot;)
 </pre></div>
 </div>
-<p>We get an error. The interpreter is trying to switch the addition
+<p>We get an error. The interpreter is trying to switch the <code class="docutils literal notranslate"><span class="pre">+</span></code>
 operator with the value to its left, but there is no value to its
 left, so we receive an error. One might think that the same thing
 would happen with the <code class="docutils literal notranslate"><span class="pre">.</span></code> operator. In order to solve this problem,
@@ -150,7 +151,7 @@ like:</p>
 <h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
 <p>Comments are denoted by the <code class="docutils literal notranslate"><span class="pre">!</span></code> symbol and span until the end of the
 line:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; 3+2 !     this is a comment
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; 3+2       ! this is a comment
 0: 5
 </pre></div>
 </div>
@@ -167,8 +168,8 @@ stack by <code class="docutils literal notranslate"><span class="pre">2</span></
 0: 10
 </pre></div>
 </div>
-<p>Parenthesis are used to define a function an the <code class="docutils literal notranslate"><span class="pre">:</span></code> operator is
-used to set assign a value (including a function) to an identifier:</p>
+<p>Parenthesis are used to define a function and the <code class="docutils literal notranslate"><span class="pre">:</span></code> operator is
+used to assign a value (including a function) to an identifier:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; x:3
 xs&gt; mul2 x
 0: 6
@@ -216,7 +217,7 @@ xs&gt; sq 5
 0: 25
 </pre></div>
 </div>
-<p>This operator is often useful for intermediate of temporary variables
+<p>This operator is often useful for intermediate or temporary variables
 that are used multiple times in an expression.</p>
 </div>
 <div class="section" id="operators">
@@ -224,23 +225,35 @@ that are used multiple times in an expression.</p>
 <p>In <em>xs</em>, operators are not special and can be defined by the user. In
 order to define an operator, we simply use curly brackets instead of
 parenthesis to enclose our function definition:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; add:{y:x:..; x+y}
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; add:{y:x; x+y}
 xs&gt; 3 add 4
 0: 7
 </pre></div>
 </div>
-<p>Because we’re defining an operator, the top-most value of the stack
-must be evaluated with <code class="docutils literal notranslate"><span class="pre">..</span></code> before being assigned to <code class="docutils literal notranslate"><span class="pre">x</span></code>. If we
-did not, the function will still work since the addition operator
-would look up the value anyways (<code class="docutils literal notranslate"><span class="pre">x</span></code> is also the first argument to
-<code class="docutils literal notranslate"><span class="pre">+</span></code>).</p>
-<p>how in our first statement we bound the variable <code class="docutils literal notranslate"><span class="pre">x</span></code> to the
-first-most value (after being evaluated) on the stack, and then the
-variable <code class="docutils literal notranslate"><span class="pre">y</span></code> to the second-most value. This turns out to be a common
-operation in <em>xs</em>, as the first line of many functions first set up
-their variables (often times, using implicit names can be clearer than
-a point free style).  <code class="docutils literal notranslate"><span class="pre">:</span></code> and <code class="docutils literal notranslate"><span class="pre">~</span></code> therefore supports binding
-multiple values at once:</p>
+<p>While this will work for literals, a problem arises when trying to
+call <code class="docutils literal notranslate"><span class="pre">add</span></code> on a variable:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; x:3; x add 4
+(Failure &quot;+ applied on invalid types&quot;)
+</pre></div>
+</div>
+<p>Behind the scenes, <code class="docutils literal notranslate"><span class="pre">x</span></code> is being passed in as the quoted literal
+<code class="docutils literal notranslate"><span class="pre">`x</span></code>, which is invalid. In order to solve this problem, we first
+need to dereference <code class="docutils literal notranslate"><span class="pre">x</span></code> before passing the value to the <code class="docutils literal notranslate"><span class="pre">+</span></code>
+operator:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; add:{y:x:..; x+y}
+xs&gt; x:3; x add 4
+0: 7
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">..</span></code> isn’t a unique operator, we’re simply using the regular
+<code class="docutils literal notranslate"><span class="pre">.</span></code> operator on itself in order to use the prefix form of it.</p>
+<p>Notice how in our first statement we bound the variable <code class="docutils literal notranslate"><span class="pre">x</span></code> to the
+first-most value (after being dereferenced by <code class="docutils literal notranslate"><span class="pre">.</span></code>) on the stack, and
+then the variable <code class="docutils literal notranslate"><span class="pre">y</span></code> to the second-most value. This turns out to be
+a common operation in <em>xs</em>, as the first line of many functions first
+set up their variables (often times, using explicit variables can be
+clearer than a point free style).  <code class="docutils literal notranslate"><span class="pre">:</span></code> and <code class="docutils literal notranslate"><span class="pre">~</span></code> therefore supports
+binding multiple values at once:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; ([`x`y`z]):1 2 3
 xs&gt; x*y-z
 0: -1
@@ -270,7 +283,7 @@ the value pushed upon the list construction stack and creates a list
 with a length equal to the difference between the two, using the
 elements from the top of the stack to populate it.</p>
 <p>Below are some operations we can do on lists:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; ([1 2 3]),[4 5]           ! concatenative lists
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; ([1 2 3]),[4 5]           ! concatenate two lists
 0: [1 2 3 4 5]
 
 xs&gt; ([0 3])@til 10            ! select the 0th and 3rd elements
@@ -292,6 +305,9 @@ xs&gt; ^[1 2 3]                  ! push the list elements onto the stack
 2: 3
 1: 2
 0: 0
+
+xs&gt; 4#0                       ! create a list of length 4 containing all 0s
+0: [0 0 0 0]
 
 xs&gt; dsc til 5                 ! sort descending
 0: [4 3 2 1 0]
@@ -324,9 +340,10 @@ integer <code class="docutils literal notranslate"><span class="pre">1</span></c
 executed, the <code class="docutils literal notranslate"><span class="pre">+</span></code> operator would not see the list as its first
 argument, it would only see the <code class="docutils literal notranslate"><span class="pre">3</span></code>. To solve this problem, A
 function is passed instead, which is evaluated by <code class="docutils literal notranslate"><span class="pre">+</span></code> and result
-added to <code class="docutils literal notranslate"><span class="pre">1</span></code>. For this reason, all operators in <em>xs</em> take a function
-as their first argument.</p>
-<p>To generate a list from 0 to 4 (exclusive), we can use the <code class="docutils literal notranslate"><span class="pre">til</span></code> function:</p>
+added to <code class="docutils literal notranslate"><span class="pre">1</span></code>. For this reason, all operators in <em>xs</em> can take a
+function as their first argument.</p>
+<p>To generate a list from 0 to 4 (exclusive), we can use the <code class="docutils literal notranslate"><span class="pre">til</span></code>
+function:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; til 5
 0: [0 1 2 3 4]
 </pre></div>
@@ -381,8 +398,8 @@ incorrect variable in the surrounding scope.</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 14%" />
-<col style="width: 49%" />
-<col style="width: 37%" />
+<col style="width: 48%" />
+<col style="width: 38%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>symbol</p></th>
@@ -405,7 +422,7 @@ incorrect variable in the surrounding scope.</p>
 </tr>
 <tr class="row-odd"><td><p>`Q</p></td>
 <td><p>Symbol type</p></td>
-<td><p><a href="#id1"><span class="problematic" id="id2">`</span></a>hello</p></td>
+<td><p>`hello</p></td>
 </tr>
 <tr class="row-even"><td><p>`S</p></td>
 <td><p>String type</p></td>
@@ -421,7 +438,7 @@ incorrect variable in the surrounding scope.</p>
 </tr>
 <tr class="row-odd"><td><p>`H</p></td>
 <td><p>I/O handle</p></td>
-<td><p>h:open <a href="#id3"><span class="problematic" id="id4">`</span></a>R “foo.txt”</p></td>
+<td><p>h:open `R “foo.txt”</p></td>
 </tr>
 <tr class="row-even"><td><p>`N</p></td>
 <td><p>Null type</p></td>
@@ -445,10 +462,10 @@ the <a class="reference external" href="https://adventofcode.com/2019/day/1">Day
 first and then come back here.</p>
 <p>First we need to read in the file of masses in order to calculate the
 required fuel:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>masses:(`Z of)&#39;read &quot;ex/1.txt&quot;;
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>masses:(`Z of)&#39;readl &quot;ex/1.txt&quot;;
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">read</span></code> function reads the given file and returns a list of each
+<p>The <code class="docutils literal notranslate"><span class="pre">readl</span></code> function reads the given file and returns a list of each
 line of the file. In order to convert the strings to integers, we
 first use the <code class="docutils literal notranslate"><span class="pre">'</span></code> (map) function to apply the conversion to each
 element of the list. The <cite>of</cite> operator converts one datatype to

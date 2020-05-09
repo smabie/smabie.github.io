@@ -38,12 +38,11 @@ Below is the EBNF grammar for *xs*:
    expr = {{ws}, (float | integer | identifier | quote | boolean | null | string | fn | infix_fn)};
 
 A valid identifier is either a letter followed by one or more letters
-and numbers or a symbol repeated one or more times, such as ``%%%`` or
-``$``. Note that one is not allowed to defined an operator such as
-``%#`` as each of these symbols will be parsed seperately. ``[``,
-``]``, and ``.`` will always be parsed seperately, even if not
-seperated by whitespace.
-
+and numbers or a symbol (``oper`` in the grammar) repeated one or more
+times, such as ``%%%`` or ``$``. Note that one is not allowed to
+define an operator such as ``%#`` as each of these symbols will be
+parsed seperately. ``[``, ``]``, and ``.`` will always be parsed
+individually, even if not seperated by whitespace.
 
 Data Types
 ##########
@@ -86,8 +85,14 @@ Scoping
 
 *xs* is dynamically scoped instead of lexically scoped. This means
 that an evaluated identifier will look for its definition in the
-current running context instead of the lexical context. Take care to
-not inadvertantly access variables defined in the caller's scope.
+current running context instead of the lexical context: ::
+
+  xs> f:(x)
+  xs> (x:5; f).
+  0: 5
+
+Take care to not inadvertantly access variables defined in the
+caller's scope.
 
 Math
 ####
@@ -435,8 +440,8 @@ values on the stack: ::
   1: 5
   0: 3
 
-If given a null, instead of a symbol, ``:`` will print out the value
-to ``stdout``: ::
+If given a null instead of a symbol, ``:`` will print out the value to
+``stdout``: ::
 
   xs> 0n:"Hello, World!"
   "Hello, World!"
@@ -543,7 +548,12 @@ intermediate values: ::
    x:{F | Z} do f:F -> *
 
 Apply the function ``f`` either ``x`` times if ``x`` is an integer; if
-a function, until ``x`` returns ``0b``.
+a function, until ``x`` returns ``0b``: ::
+
+  xs> 3 do ("hello")
+  2: "hello"
+  1: "hello"
+  0: "hello"
 
 List  and String
 ################
@@ -595,18 +605,21 @@ Construct a list between ``0`` and ``n`` (exclusive): ::
 ----------------------
 ::
 
-   len xs:L -> Z
+   len xs:{L | S} -> Z
 
 Return the length of ``xs``: ::
 
   xs> len til 3
   0: 3
 
+  xs> len "abc"
+  0: 3
+
 ``flip`` flip list
 ------------------
 ::
 
-   flip L -> L
+   flip {L | S} -> L
 
 Flip a multidimensional list across its first two dimensions. In the
 case of a list with only one dimension (or a string), creates a column
@@ -630,7 +643,7 @@ vector: ::
 
    rev {L | S} -> {L | S}
 
-Reverse the given list or list: ::
+Reverse the given list or string: ::
 
   xs> rev til 3
   0:[2 1 0]
@@ -655,7 +668,7 @@ list: ::
   xs> 3,[1 2]
   0: [3 1 2]
 
-  xs>[1 2],3
+  xs>([1 2]),3
   0: [1 2 3]
 
   xs>([1 2]),[3 4]
@@ -665,9 +678,10 @@ list: ::
 -----------
 ::
 
-   x:* :: xs:L -> L
+   x:* ,, xs:L -> L
+   xs:L ,, x:L -> L
 
-places ``x`` at the head of ``xs``: ::
+places ``x`` at the head or end of ``xs``: ::
 
   xs> 3,,[1 2]
   0: [3 1 2]

@@ -68,11 +68,11 @@ expr = {{ws}, (float | integer | identifier | quote | boolean | null | string | 
 </pre></div>
 </div>
 <p>A valid identifier is either a letter followed by one or more letters
-and numbers or a symbol repeated one or more times, such as <code class="docutils literal notranslate"><span class="pre">%%%</span></code> or
-<code class="docutils literal notranslate"><span class="pre">$</span></code>. Note that one is not allowed to defined an operator such as
-<code class="docutils literal notranslate"><span class="pre">%#</span></code> as each of these symbols will be parsed seperately. <code class="docutils literal notranslate"><span class="pre">[</span></code>,
-<code class="docutils literal notranslate"><span class="pre">]</span></code>, and <code class="docutils literal notranslate"><span class="pre">.</span></code> will always be parsed seperately, even if not
-seperated by whitespace.</p>
+and numbers or a symbol (<code class="docutils literal notranslate"><span class="pre">oper</span></code> in the grammar) repeated one or more
+times, such as <code class="docutils literal notranslate"><span class="pre">%%%</span></code> or <code class="docutils literal notranslate"><span class="pre">$</span></code>. Note that one is not allowed to
+define an operator such as <code class="docutils literal notranslate"><span class="pre">%#</span></code> as each of these symbols will be
+parsed seperately. <code class="docutils literal notranslate"><span class="pre">[</span></code>, <code class="docutils literal notranslate"><span class="pre">]</span></code>, and <code class="docutils literal notranslate"><span class="pre">.</span></code> will always be parsed
+individually, even if not seperated by whitespace.</p>
 </div>
 <div class="section" id="data-types">
 <h2>Data Types<a class="headerlink" href="#data-types" title="Permalink to this headline">¶</a></h2>
@@ -143,8 +143,14 @@ a b; c d; -&gt; b a d c
 <h2>Scoping<a class="headerlink" href="#scoping" title="Permalink to this headline">¶</a></h2>
 <p><em>xs</em> is dynamically scoped instead of lexically scoped. This means
 that an evaluated identifier will look for its definition in the
-current running context instead of the lexical context. Take care to
-not inadvertantly access variables defined in the caller’s scope.</p>
+current running context instead of the lexical context:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; f:(x)
+xs&gt; (x:5; f).
+0: 5
+</pre></div>
+</div>
+<p>Take care to not inadvertantly access variables defined in the
+caller’s scope.</p>
 </div>
 <div class="section" id="math">
 <h2>Math<a class="headerlink" href="#math" title="Permalink to this headline">¶</a></h2>
@@ -459,8 +465,8 @@ xs&gt; ([`x`y]):3 5; x y;
 0: 3
 </pre></div>
 </div>
-<p>If given a null, instead of a symbol, <code class="docutils literal notranslate"><span class="pre">:</span></code> will print out the value
-to <code class="docutils literal notranslate"><span class="pre">stdout</span></code>:</p>
+<p>If given a null instead of a symbol, <code class="docutils literal notranslate"><span class="pre">:</span></code> will print out the value to
+<code class="docutils literal notranslate"><span class="pre">stdout</span></code>:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; 0n:&quot;Hello, World!&quot;
 &quot;Hello, World!&quot;
 </pre></div>
@@ -567,7 +573,13 @@ intermediate values:</p>
 </pre></div>
 </div>
 <p>Apply the function <code class="docutils literal notranslate"><span class="pre">f</span></code> either <code class="docutils literal notranslate"><span class="pre">x</span></code> times if <code class="docutils literal notranslate"><span class="pre">x</span></code> is an integer; if
-a function, until <code class="docutils literal notranslate"><span class="pre">x</span></code> returns <code class="docutils literal notranslate"><span class="pre">0b</span></code>.</p>
+a function, until <code class="docutils literal notranslate"><span class="pre">x</span></code> returns <code class="docutils literal notranslate"><span class="pre">0b</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; 3 do (&quot;hello&quot;)
+2: &quot;hello&quot;
+1: &quot;hello&quot;
+0: &quot;hello&quot;
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="list-and-string">
@@ -617,18 +629,21 @@ a function, until <code class="docutils literal notranslate"><span class="pre">x
 </div>
 <div class="section" id="len-length-of-list">
 <h3><code class="docutils literal notranslate"><span class="pre">len</span></code> length of list<a class="headerlink" href="#len-length-of-list" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>len xs:L -&gt; Z
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>len xs:{L | S} -&gt; Z
 </pre></div>
 </div>
 <p>Return the length of <code class="docutils literal notranslate"><span class="pre">xs</span></code>:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; len til 3
+0: 3
+
+xs&gt; len &quot;abc&quot;
 0: 3
 </pre></div>
 </div>
 </div>
 <div class="section" id="flip-flip-list">
 <h3><code class="docutils literal notranslate"><span class="pre">flip</span></code> flip list<a class="headerlink" href="#flip-flip-list" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>flip L -&gt; L
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>flip {L | S} -&gt; L
 </pre></div>
 </div>
 <p>Flip a multidimensional list across its first two dimensions. In the
@@ -653,7 +668,7 @@ xs&gt; flip &quot;abc&quot;
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>rev {L | S} -&gt; {L | S}
 </pre></div>
 </div>
-<p>Reverse the given list or list:</p>
+<p>Reverse the given list or string:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; rev til 3
 0:[2 1 0]
 
@@ -677,7 +692,7 @@ list:</p>
 xs&gt; 3,[1 2]
 0: [3 1 2]
 
-xs&gt;[1 2],3
+xs&gt;([1 2]),3
 0: [1 2 3]
 
 xs&gt;([1 2]),[3 4]
@@ -687,10 +702,11 @@ xs&gt;([1 2]),[3 4]
 </div>
 <div class="section" id="cons">
 <h3><code class="docutils literal notranslate"><span class="pre">,,</span></code> cons<a class="headerlink" href="#cons" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x:* :: xs:L -&gt; L
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x:* ,, xs:L -&gt; L
+xs:L ,, x:L -&gt; L
 </pre></div>
 </div>
-<p>places <code class="docutils literal notranslate"><span class="pre">x</span></code> at the head of <code class="docutils literal notranslate"><span class="pre">xs</span></code>:</p>
+<p>places <code class="docutils literal notranslate"><span class="pre">x</span></code> at the head or end of <code class="docutils literal notranslate"><span class="pre">xs</span></code>:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; 3,,[1 2]
 0: [3 1 2]
 
