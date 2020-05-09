@@ -883,4 +883,264 @@ Set Operations
 ---------------
 ::
 
-   {L | *} in L -> {L | B}
+   x:{L | *} in L -> xs:{L | B}
+
+Returns a boolean or list of booleans indicating whether the
+element(s) were found in ``xs``: ::
+
+  xs> 5 in til 10
+  0: 1b
+
+  xs> ([5 10 2]) in til 10
+  0: 101b
+
+  xs> "ac" in "abc"
+  0: 11b
+
+``inter`` intersection
+----------------------
+::
+
+   x:{L | S} inter y:{L | S} -> {L | S}
+
+Find the intersection of ``x`` and ``y``: ::
+
+  xs> "ac" inter "ab"
+  0: "a"
+
+  xs> ([2 5 3]) inter [2 4 3]
+  0: [2 3]
+
+``union``
+---------
+::
+
+   x:{L | S | *} union y:{L | S} -> {L | S}
+
+Find the union of ``x`` and ``y``: ::
+
+  xs> 3 union til 2
+  0: [0 1 3]
+
+  xs> ([1 2]) union [3 4]
+  0: [1 2 3 4]
+
+  xs> "ab" union "ac"
+  0: "abc"
+
+``uniq`` unique elements
+------------------------
+::
+
+   uniq {L | S | *} -> {L | S}
+
+Return a list of unique elements. If given an atom instead of a string
+or a list, return a list containing that atom: ::
+
+  xs> uniq 3
+  0: [3]
+
+  xs> uniq [1 2 1 3]
+  0: [1 2 3]
+
+  xs> uniq "aabccc"
+  0: "abc"
+
+Sorting
+#######
+
+``asc`` sort ascending
+----------------------
+::
+
+   asc x:{L | S | *} -> {L | S}
+
+Sort ``x`` from smallest to largest. If ``x`` is an atom, return a
+list with just one element: ::
+
+  xs> asc 4
+  0: [4]
+
+  xs> asc rev til 4
+  0:[0 1 2 3]
+
+  xs> asc "csa"
+  0: "acs"
+
+``dsc`` sort descending
+-----------------------
+::
+
+   dsc x:{L | S | *} -> {L | S}
+
+Sort ``x`` from largest to smallest. If ``x`` is an atom, return a
+list with just one element: ::
+
+  xs> dsc 4
+  0: [4]
+
+  xs> dsc til 4
+  0: [3 2 1 0]
+
+  xs> dsc "csa"
+  0: "sca"
+
+``sort`` custom sort
+--------------------
+::
+
+   f:F sort {L | S} -> {L | S}
+
+Sort using comparison function ``f``. ``f`` must return either -1, 0,
+or 1 depending on whether the first argument is smaller than, equal
+to, or greater than the second argument. ``cmp sort`` is identical to
+``asc``: ::
+
+  xs> cmp sort [3 1 2]
+  0: [1 2 3]
+
+  xs> cmp sort "bca"
+  0: "abc"
+
+  xs> ((neg 1)*cmp.) sort [3 1 2]
+  0: [3 2 1]
+
+Types
+#####
+
+``of`` type conversion
+----------------------
+::
+
+   q:Q of x:* -> *
+
+Convert ``x`` to the type specified by ``q``. For a list of valid
+``q`` values, Check out the list of data types at the beginning of
+this reference manual. Examples: ::
+
+  xs> `R of 5
+  0: 5.00000
+
+  xs> `L of "abc"
+  0: ["a" "b" "c"]
+
+  xs> `S of `hello
+  0: "hello"
+
+``type``
+--------
+::
+
+   type x:* -> Q
+
+Return the type of ``x``: ::
+
+  xs> type 5.2
+  0: `F
+
+  xs> type "ab"
+  0: `S
+
+  xs> type til 5
+  0: `L
+
+``sv`` scalar from vector
+-------------------------
+::
+
+   x:S sv xs:L -> S
+
+Take a string and a list of strings and return a string from the
+concatenation of ``xs`` interspersed with ``x``: ::
+
+  xs> ", " sv ["hello" "world"]
+  0: "hello, world"
+
+In the future, this function will do other scalar from vector operations as well.
+
+``vs`` vector from scalar
+-------------------------
+::
+
+   x:S vs y:S -> L
+
+Break up the list ``y`` into a list, using ``x`` as a seperator: ::
+
+  xs> ", " vs "hello, world"
+  0: ["hello" "world"]
+
+I/O
+###
+
+``open`` open file
+------------------
+::
+   {`r | `w | `a} open f:S -> H
+
+Open a file specified by the filepath ``f`` in read (```r``), write
+(```w``), or append (```a``) mode and return a handle to tha file.
+
+
+``read`` read data
+------------------
+::
+
+   n:Z read {H | 0} -> S
+
+Read ``n`` characters from either stdin (0), or a file handle that was
+opened in read mode.
+
+``write`` write data
+--------------------
+::
+
+   x:S write {H | 1 | 2} -> ()
+
+Write ``x`` to either stdout (1), stderr (2), or the given file
+handle.
+
+
+``seek`` change file position
+-----------------------------
+::
+
+   i:Z seek {0 | 1 | 2 | H} -> ()
+
+Move to position ``i`` of the given handle. 0 Represents stdin, 1
+stdout, and 2 stderr.
+
+``close`` close file handle
+---------------------------
+::
+
+   close H -> ()
+
+Close the given file handle.
+
+``readl`` read lines
+--------------------
+::
+
+   readl f:S -> L
+
+Read the entire file at the filepath ``f`` as a list of strings, one
+string per line.
+
+``writel`` write lines
+----------------------
+::
+
+   writel f:S xs:L -> ()
+
+Write the list of strings ``xs`` to the file at filepath ``f``.
+
+Misc
+####
+
+``measure`` elapsed time
+------------------------
+::
+
+   measure f:F -> R
+
+Measure the time taken to execute function ``f``.
