@@ -520,6 +520,18 @@ modify variables outside the local scope:</p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="map2">
+<h3><code class="docutils literal notranslate"><span class="pre">''</span></code> map2<a class="headerlink" href="#map2" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>f:F &#39;&#39; xs:L ys:L -&gt; L
+</pre></div>
+</div>
+<p>Apply <code class="docutils literal notranslate"><span class="pre">f</span></code> to each pair of values from <code class="docutils literal notranslate"><span class="pre">xs</span></code> and <code class="docutils literal notranslate"><span class="pre">ys</span></code>. The length
+of <code class="docutils literal notranslate"><span class="pre">xs</span></code> and <code class="docutils literal notranslate"><span class="pre">ys</span></code> must be equal. Example:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; (+.)&#39;&#39;til 5 til 5
+0: [0 2 4 6 8]
+</pre></div>
+</div>
+</div>
 <div class="section" id="fold">
 <h3><code class="docutils literal notranslate"><span class="pre">/</span></code> fold<a class="headerlink" href="#fold" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>f:F / xs:L -&gt; *
@@ -692,18 +704,21 @@ list:</p>
 xs&gt; 3,[1 2]
 0: [3 1 2]
 
-xs&gt;([1 2]),3
+xs&gt; ([1 2]),3
 0: [1 2 3]
 
-xs&gt;([1 2]),[3 4]
+xs&gt; ([1 2]),[3 4]
 0: [1 2 3 4]
+
+xs&gt; &quot;foo&quot;,&quot;bar&quot;
+0: &quot;foobar&quot;
 </pre></div>
 </div>
 </div>
 <div class="section" id="cons">
 <h3><code class="docutils literal notranslate"><span class="pre">,,</span></code> cons<a class="headerlink" href="#cons" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x:* ,, xs:L -&gt; L
-xs:L ,, x:L -&gt; L
+xs:L ,, x:* -&gt; L
 </pre></div>
 </div>
 <p>places <code class="docutils literal notranslate"><span class="pre">x</span></code> at the head or end of <code class="docutils literal notranslate"><span class="pre">xs</span></code>:</p>
@@ -715,6 +730,172 @@ xs&gt; ([3]),,[1 2]
 
 xs&gt; ([1 2]),,3
 0: [1 2 3]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="indexing-reshaping-changing">
+<h2>Indexing, Reshaping, Changing<a class="headerlink" href="#indexing-reshaping-changing" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="get">
+<h3><code class="docutils literal notranslate"><span class="pre">&#64;</span></code> get<a class="headerlink" href="#get" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{L | Z} @ {L| S} -&gt; *
+</pre></div>
+</div>
+<p>Take an index or list of indices and return either the single element
+stored at that index or a list containing the elements at the given
+indices, modulo the length of the list:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; 2@til 3
+0: 2
+
+xs&gt; 4@[1 2]
+0: 1
+
+xs&gt; ([1 3])@[5 2 7]
+0: [2 5]
+</pre></div>
+</div>
+</div>
+<div class="section" id="find">
+<h3><code class="docutils literal notranslate"><span class="pre">?</span></code> find<a class="headerlink" href="#find" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{* | L | S} ? {L | S} -&gt; {* | L}
+</pre></div>
+</div>
+<p>Find the element(s) in the list or string and return the corresponding
+indices:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; 3?[5 3 2]
+0: 1
+
+xs&gt; ([3 2])?[5 3 2]
+0: [1 2]
+
+xs&gt; &quot;hll&quot;?&quot;hello&quot;
+0: [0 2 2]
+</pre></div>
+</div>
+<p>If the element cannot be found, <code class="docutils literal notranslate"><span class="pre">?</span></code> returns the length of the list:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; 10?til 4
+0: 4
+</pre></div>
+</div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">?</span></code> always returns the index of the first found element.</p>
+</div>
+<div class="section" id="where">
+<h3><code class="docutils literal notranslate"><span class="pre">where</span></code><a class="headerlink" href="#where" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>where x:L -&gt; L
+</pre></div>
+</div>
+<p>Return a list containing, for each item of <code class="docutils literal notranslate"><span class="pre">x</span></code>, that number of
+copies of its index:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; where [1 2 3]
+0: [0 1 1 2 2 2]
+
+xs&gt; where [0b 1b 0b 1b]
+0: [1 3]
+</pre></div>
+</div>
+<p>Where is often used in conjunction with <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> to select out certain
+elements from a list. For example, if we wanted to get all even
+numbers between 0 and 10:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; (where (0==mod$ 2)&#39;x)@x~til 10
+0: [0 2 4 6 8]
+</pre></div>
+</div>
+</div>
+<div class="section" id="take">
+<h3><code class="docutils literal notranslate"><span class="pre">#</span></code> take<a class="headerlink" href="#take" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>n:Z # xs:{L | S |  *} -&gt; {L | S}
+</pre></div>
+</div>
+<p>Take <code class="docutils literal notranslate"><span class="pre">n</span></code> elements from <code class="docutils literal notranslate"><span class="pre">xs</span></code>. If <code class="docutils literal notranslate"><span class="pre">n</span></code> is positive, take from the
+front of the <code class="docutils literal notranslate"><span class="pre">xs</span></code>, if negative, take from the back:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; 2#til 5
+0: [0 1]
+
+xs&gt; (neg 2)#til 5
+0: [3 4]
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">n</span></code> is greater than the length of <code class="docutils literal notranslate"><span class="pre">xs</span></code>, <code class="docutils literal notranslate"><span class="pre">#</span></code> wraps around as
+needed:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; 5#til 3
+0: [0 1 2 0 1]
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">xs</span></code> is not a list or string, create a list containing <code class="docutils literal notranslate"><span class="pre">n</span></code>
+copies of <code class="docutils literal notranslate"><span class="pre">xs</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; 5#3
+0: [3 3 3 3 3]
+</pre></div>
+</div>
+</div>
+<div class="section" id="drop">
+<h3><code class="docutils literal notranslate"><span class="pre">_</span></code> drop<a class="headerlink" href="#drop" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>n:Z _ xs:{L | S} -&gt; {L | S}
+</pre></div>
+</div>
+<p>Drop <code class="docutils literal notranslate"><span class="pre">n</span></code> elements from <code class="docutils literal notranslate"><span class="pre">xs</span></code>. If <code class="docutils literal notranslate"><span class="pre">n</span></code> is positive, drop from the
+front of the list, otherwise drop from the end:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; 2_til 5
+0: [2 3 4]
+
+xs&gt; (neg 2)_til 5
+0: [0 1 2]
+
+xs&gt; 6_til 5
+0: []
+</pre></div>
+</div>
+</div>
+<div class="section" id="cut-reshape">
+<h3><code class="docutils literal notranslate"><span class="pre">cut</span></code> reshape<a class="headerlink" href="#cut-reshape" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x:{Z | L} cut y:{L | S} -&gt; L
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">x</span></code> is a integer, cut every <code class="docutils literal notranslate"><span class="pre">x</span></code> element:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; 3 cut til 10
+0: [[0 1 2] [3 4 5] [6 7 8] [9]]
+
+xs&gt; 2 cut &quot;abcd&quot;
+0: [&quot;ab&quot; &quot;cd&quot;]
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">x</span></code> is a list, cut at the indices:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; ([2 4]) cut til 10
+0: [[2 3] [4 5 6 7 8 9]]
+
+xs&gt; ([2 4]) cut &quot;abcdefg&quot;
+0: [&quot;cd&quot; &quot;efg&quot;]
+</pre></div>
+</div>
+</div>
+<div class="section" id="cat-concatenate-all">
+<h3><code class="docutils literal notranslate"><span class="pre">cat</span></code> concatenate all<a class="headerlink" href="#cat-concatenate-all" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cat xs:L -&gt; {L | S}
+</pre></div>
+</div>
+<p>Fold <code class="docutils literal notranslate"><span class="pre">,</span></code> over <code class="docutils literal notranslate"><span class="pre">xs</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; cat [&quot;a&quot; &quot;b&quot; &quot;c&quot;]
+0: &quot;abc&quot;
+
+xs&gt; cat [1 2 3]
+0: [1 2 3]
+
+xs&gt; cat [[1 2] [3 4]]
+0: [1 2 3 4]
+</pre></div>
+</div>
+</div>
+<div class="section" id="cats-partial-concatenate-all">
+<h3><code class="docutils literal notranslate"><span class="pre">cats</span></code> partial concatenate all<a class="headerlink" href="#cats-partial-concatenate-all" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cats xs:L -&gt; L
+</pre></div>
+</div>
+<p>Scan <code class="docutils literal notranslate"><span class="pre">.</span></code> over <code class="docutils literal notranslate"><span class="pre">xs</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; cats [[1 2] [3 4]]
+0: [[1 2] [1 2 3 4]]
+
+xs&gt; cats [&quot;a&quot; &quot;b&quot; &quot;c&quot;]
+0: [&quot;a&quot; &quot;ab&quot; &quot;abc&quot;]
 </pre></div>
 </div>
 </div>
@@ -803,6 +984,7 @@ xs&gt; ([1 2]),,3
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#iterators-and-accumulators">Iterators and Accumulators</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#map"><code class="docutils literal notranslate"><span class="pre">'</span></code> map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#map2"><code class="docutils literal notranslate"><span class="pre">''</span></code> map2</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#fold"><code class="docutils literal notranslate"><span class="pre">/</span></code> fold</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#scan"><code class="docutils literal notranslate"><span class="pre">\</span></code> scan</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#fix-fixpoint"><code class="docutils literal notranslate"><span class="pre">fix</span></code> fixpoint</a></li>
@@ -820,6 +1002,17 @@ xs&gt; ([1 2]),,3
 <li class="toctree-l3"><a class="reference internal" href="#rev-reverse"><code class="docutils literal notranslate"><span class="pre">rev</span></code> reverse</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#concatenate"><code class="docutils literal notranslate"><span class="pre">,</span></code> concatenate</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cons"><code class="docutils literal notranslate"><span class="pre">,,</span></code> cons</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#indexing-reshaping-changing">Indexing, Reshaping, Changing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#get"><code class="docutils literal notranslate"><span class="pre">&#64;</span></code> get</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#find"><code class="docutils literal notranslate"><span class="pre">?</span></code> find</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#where"><code class="docutils literal notranslate"><span class="pre">where</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#take"><code class="docutils literal notranslate"><span class="pre">#</span></code> take</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#drop"><code class="docutils literal notranslate"><span class="pre">_</span></code> drop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cut-reshape"><code class="docutils literal notranslate"><span class="pre">cut</span></code> reshape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cat-concatenate-all"><code class="docutils literal notranslate"><span class="pre">cat</span></code> concatenate all</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cats-partial-concatenate-all"><code class="docutils literal notranslate"><span class="pre">cats</span></code> partial concatenate all</a></li>
 </ul>
 </li>
 </ul>

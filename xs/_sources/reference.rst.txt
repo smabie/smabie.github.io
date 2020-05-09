@@ -494,6 +494,18 @@ Apply ``f`` to each element of ``xs``: ::
   xs> (2*)'til 3
   0: [0 2 4]
 
+``''`` map2
+-----------
+::
+
+   f:F '' xs:L ys:L -> L
+
+Apply ``f`` to each pair of values from ``xs`` and ``ys``. The length
+of ``xs`` and ``ys`` must be equal. Example: ::
+
+  xs> (+.)''til 5 til 5
+  0: [0 2 4 6 8]
+
 ``/`` fold
 ----------
 ::
@@ -668,18 +680,21 @@ list: ::
   xs> 3,[1 2]
   0: [3 1 2]
 
-  xs>([1 2]),3
+  xs> ([1 2]),3
   0: [1 2 3]
 
-  xs>([1 2]),[3 4]
+  xs> ([1 2]),[3 4]
   0: [1 2 3 4]
+
+  xs> "foo","bar"
+  0: "foobar"
 
 ``,,`` cons
 -----------
 ::
 
    x:* ,, xs:L -> L
-   xs:L ,, x:L -> L
+   xs:L ,, x:* -> L
 
 places ``x`` at the head or end of ``xs``: ::
 
@@ -691,3 +706,172 @@ places ``x`` at the head or end of ``xs``: ::
 
   xs> ([1 2]),,3
   0: [1 2 3]
+
+Indexing, Reshaping, Changing
+#############################
+
+``@`` get
+---------
+::
+
+   {L | Z} @ {L| S} -> *
+
+Take an index or list of indices and return either the single element
+stored at that index or a list containing the elements at the given
+indices, modulo the length of the list: ::
+
+  xs> 2@til 3
+  0: 2
+
+  xs> 4@[1 2]
+  0: 1
+
+  xs> ([1 3])@[5 2 7]
+  0: [2 5]
+
+``?`` find
+----------
+::
+
+   {* | L | S} ? {L | S} -> {* | L}
+
+Find the element(s) in the list or string and return the corresponding
+indices: ::
+
+  xs> 3?[5 3 2]
+  0: 1
+
+  xs> ([3 2])?[5 3 2]
+  0: [1 2]
+
+  xs> "hll"?"hello"
+  0: [0 2 2]
+
+If the element cannot be found, ``?`` returns the length of the list: ::
+
+  xs> 10?til 4
+  0: 4
+
+Note that ``?`` always returns the index of the first found element.
+
+``where``
+---------
+::
+
+   where x:L -> L
+
+Return a list containing, for each item of ``x``, that number of
+copies of its index: ::
+
+  xs> where [1 2 3]
+  0: [0 1 1 2 2 2]
+
+  xs> where [0b 1b 0b 1b]
+  0: [1 3]
+
+Where is often used in conjunction with ``@`` to select out certain
+elements from a list. For example, if we wanted to get all even
+numbers between 0 and 10: ::
+
+  xs> (where (0==mod$ 2)'x)@x~til 10
+  0: [0 2 4 6 8]
+
+``#`` take
+----------
+::
+
+   n:Z # xs:{L | S |  *} -> {L | S}
+
+
+Take ``n`` elements from ``xs``. If ``n`` is positive, take from the
+front of the ``xs``, if negative, take from the back: ::
+
+  xs> 2#til 5
+  0: [0 1]
+
+  xs> (neg 2)#til 5
+  0: [3 4]
+
+If ``n`` is greater than the length of ``xs``, ``#`` wraps around as
+needed: ::
+
+  xs> 5#til 3
+  0: [0 1 2 0 1]
+
+If ``xs`` is not a list or string, create a list containing ``n``
+copies of ``xs``: ::
+
+  xs> 5#3
+  0: [3 3 3 3 3]
+
+``_`` drop
+----------
+::
+
+   n:Z _ xs:{L | S} -> {L | S}
+
+Drop ``n`` elements from ``xs``. If ``n`` is positive, drop from the
+front of the list, otherwise drop from the end: ::
+
+  xs> 2_til 5
+  0: [2 3 4]
+
+  xs> (neg 2)_til 5
+  0: [0 1 2]
+
+  xs> 6_til 5
+  0: []
+
+
+``cut`` reshape
+---------------
+::
+
+   x:{Z | L} cut y:{L | S} -> L
+
+If ``x`` is a integer, cut every ``x`` element: ::
+
+  xs> 3 cut til 10
+  0: [[0 1 2] [3 4 5] [6 7 8] [9]]
+
+  xs> 2 cut "abcd"
+  0: ["ab" "cd"]
+
+If ``x`` is a list, cut at the indices: ::
+
+  xs> ([2 4]) cut til 10
+  0: [[2 3] [4 5 6 7 8 9]]
+
+  xs> ([2 4]) cut "abcdefg"
+  0: ["cd" "efg"]
+
+``cat`` concatenate all
+-----------------------
+::
+
+   cat xs:L -> {L | S}
+
+Fold ``,`` over ``xs``: ::
+
+  xs> cat ["a" "b" "c"]
+  0: "abc"
+
+  xs> cat [1 2 3]
+  0: [1 2 3]
+
+  xs> cat [[1 2] [3 4]]
+  0: [1 2 3 4]
+
+``cats`` partial concatenate all
+--------------------------------
+::
+
+   cats xs:L -> L
+
+Scan ``.`` over ``xs``: ::
+
+  xs> cats [[1 2] [3 4]]
+  0: [[1 2] [1 2 3 4]]
+
+  xs> cats ["a" "b" "c"]
+  0: ["a" "ab" "abc"]
