@@ -1075,6 +1075,7 @@ I/O
 ``open`` open file
 ------------------
 ::
+
    {`r | `w | `a} open f:S -> H
 
 Open a file specified by the filepath ``f`` in read (```r``), write
