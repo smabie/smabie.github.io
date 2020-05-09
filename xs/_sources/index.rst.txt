@@ -10,12 +10,13 @@ Welcome to xs's documentation!
 language inspired by kdb+/q and released into the public domain. The
 interpreter and builtin functions are written in OCaml. Check out the
 `project page`_ on github if you wish to browse the source, open an
-issue or pull request. *xs* aims to be a small language
-
+issue or pull request. *xs* aims to be a small language with a focus
+on compactness and  expressiveness.
 
 The name "xs" either stands for:
 
-1) eXtra Small,
+1) eXtra Small
+2) The plural of "x"
 
 .. toctree::
    :maxdepth: 3
