@@ -1078,7 +1078,10 @@ concatenation of <code class="docutils literal notranslate"><span class="pre">xs
 0: &quot;hello, world&quot;
 </pre></div>
 </div>
-<p>In the future, this function will do other scalar from vector operations as well.</p>
+<dl class="simple">
+<dt><em>Todo</em>: in the future, this function will do other scalar from vector</dt><dd><p>operations as well.</p>
+</dd>
+</dl>
 </div>
 <div class="section" id="vs-vector-from-scalar">
 <h3><code class="docutils literal notranslate"><span class="pre">vs</span></code> vector from scalar<a class="headerlink" href="#vs-vector-from-scalar" title="Permalink to this headline">¶</a></h3>
@@ -1090,6 +1093,10 @@ concatenation of <code class="docutils literal notranslate"><span class="pre">xs
 0: [&quot;hello&quot; &quot;world&quot;]
 </pre></div>
 </div>
+<dl class="simple">
+<dt><em>Todo</em>: in the future, this function will do other vector from scalar</dt><dd><p>operations as well.</p>
+</dd>
+</dl>
 </div>
 </div>
 <div class="section" id="i-o">
@@ -1143,10 +1150,11 @@ string per line.</p>
 </div>
 <div class="section" id="writel-write-lines">
 <h3><code class="docutils literal notranslate"><span class="pre">writel</span></code> write lines<a class="headerlink" href="#writel-write-lines" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>writel f:S xs:L -&gt; ()
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs:{S | L} writel f:{1 | 2 | S} -&gt; ()
 </pre></div>
 </div>
-<p>Write the list of strings <code class="docutils literal notranslate"><span class="pre">xs</span></code> to the file at filepath <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p>
+<p>Write the list of strings <code class="docutils literal notranslate"><span class="pre">xs</span></code> to the file at filepath <code class="docutils literal notranslate"><span class="pre">f</span></code>, stdout
+(<code class="docutils literal notranslate"><span class="pre">1</span></code>), or stderr <code class="docutils literal notranslate"><span class="pre">2</span></code>.</p>
 </div>
 </div>
 <div class="section" id="misc">
@@ -1157,6 +1165,13 @@ string per line.</p>
 </pre></div>
 </div>
 <p>Measure the time taken to execute function <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p>
+</div>
+<div class="section" id="eval-evaluate">
+<h3><code class="docutils literal notranslate"><span class="pre">eval</span></code> evaluate<a class="headerlink" href="#eval-evaluate" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>eval x:S -&gt; *...
+</pre></div>
+</div>
+<p>Evaluate the given string <code class="docutils literal notranslate"><span class="pre">x</span></code> in the current scope.</p>
 </div>
 </div>
 </div>
@@ -1306,6 +1321,7 @@ string per line.</p>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#misc">Misc</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#measure-elapsed-time"><code class="docutils literal notranslate"><span class="pre">measure</span></code> elapsed time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eval-evaluate"><code class="docutils literal notranslate"><span class="pre">eval</span></code> evaluate</a></li>
 </ul>
 </li>
 </ul>
