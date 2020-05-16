@@ -269,6 +269,11 @@ caller’s scope.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>prods L -&gt; L
 </pre></div>
 </div>
+<p>Returns the partial sums of the list:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; prods til 1+til 4
+0: [1 2 6 24]
+</pre></div>
+</div>
 </div>
 <div class="section" id="abs-absolute-value">
 <h3><code class="docutils literal notranslate"><span class="pre">abs</span></code> absolute value<a class="headerlink" href="#abs-absolute-value" title="Permalink to this headline">¶</a></h3>
@@ -276,8 +281,8 @@ caller’s scope.</p>
 </pre></div>
 </div>
 <p>Find the absolute value of a number or list:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; prods til 1+til 4
-0: [1 2 6 24]
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; abs (til 10) - 10
+0: [10 9 8 7 6 5 4 3 2 1]
 </pre></div>
 </div>
 </div>
