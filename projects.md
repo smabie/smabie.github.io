@@ -4,9 +4,6 @@ title: Projects
 sidebar_link: true
 ---
 
-Projects
---------
-
 [xs](/xs/): a dynamically typed, dynamically scoped, concatenative
 array language inspired by kdb+/q and released into the public
 domain. The interpreter and builtin functions are written in OCaml.
