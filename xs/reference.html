@@ -1,35 +1,284 @@
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta charset="utf-8" />
-    <title>Language Reference &#8212; xs 0.1 documentation</title>
-    <link rel="stylesheet" href="static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="./" src="static/documentation_options.js"></script>
-    <script src="static/jquery.js"></script>
-    <script src="static/underscore.js"></script>
-    <script src="static/doctools.js"></script>
-    <script src="static/language_data.js"></script>
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Language Reference &mdash; xs 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="static/documentation_options.js"></script>
+        <script src="static/jquery.js"></script>
+        <script src="static/underscore.js"></script>
+        <script src="static/doctools.js"></script>
+        <script src="static/language_data.js"></script>
+    
+    <script type="text/javascript" src="static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Tutorial" href="tutorial.html" />
+    <link rel="prev" title="Tutorial" href="tutorial.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
    
-  <link rel="stylesheet" href="static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
-
-  </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
           
 
-          <div class="body" role="main">
+          
+            <a href="index.html" class="icon icon-home"> xs
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Language Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#command-line-parameters">Command-Line Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#syntax">Syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-types">Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parsing">Parsing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scoping">Scoping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#math">Math</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#neg-unary-negative"><code class="docutils literal notranslate"><span class="pre">neg</span></code> unary negative</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#addition"><code class="docutils literal notranslate"><span class="pre">+</span></code> addition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#substraction"><code class="docutils literal notranslate"><span class="pre">-</span></code> substraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multiplication"><code class="docutils literal notranslate"><span class="pre">*</span></code> multiplication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#division"><code class="docutils literal notranslate"><span class="pre">%</span></code> division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mod-modulus"><code class="docutils literal notranslate"><span class="pre">mod</span></code> modulus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#power"><code class="docutils literal notranslate"><span class="pre">**</span></code> power</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ln-natural-logarithm"><code class="docutils literal notranslate"><span class="pre">ln</span></code> natural logarithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sin-sine"><code class="docutils literal notranslate"><span class="pre">sin</span></code> sine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cos-cosine"><code class="docutils literal notranslate"><span class="pre">cos</span></code> cosine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tan-tangent"><code class="docutils literal notranslate"><span class="pre">tan</span></code> tangent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sum-sum-of-list"><code class="docutils literal notranslate"><span class="pre">sum</span></code> sum of list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sums-partial-sums-of-list"><code class="docutils literal notranslate"><span class="pre">sums</span></code> partial sums of list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prod-product-of-list"><code class="docutils literal notranslate"><span class="pre">prod</span></code> product of list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prods-partial-products-of-list"><code class="docutils literal notranslate"><span class="pre">prods</span></code> partial products of list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#abs-absolute-value"><code class="docutils literal notranslate"><span class="pre">abs</span></code> absolute value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ceil-ceiling"><code class="docutils literal notranslate"><span class="pre">ceil</span></code> ceiling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#floor-floor"><code class="docutils literal notranslate"><span class="pre">floor</span></code> floor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#boolean-and-conditionals">Boolean and Conditionals</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#equals"><code class="docutils literal notranslate"><span class="pre">==</span></code> equals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#less-than"><code class="docutils literal notranslate"><span class="pre">&lt;</span></code> less than</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#greater-than"><code class="docutils literal notranslate"><span class="pre">&gt;</span></code> greater than</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gq-greater-or-equal"><code class="docutils literal notranslate"><span class="pre">gq</span></code> greater or equal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lq-less-or-equal"><code class="docutils literal notranslate"><span class="pre">lq</span></code> less or equal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#and"><code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> And</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#or"><code class="docutils literal notranslate"><span class="pre">||</span></code> Or</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#if-if-expression"><code class="docutils literal notranslate"><span class="pre">if</span></code> if expression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cond-multiple-conditional"><code class="docutils literal notranslate"><span class="pre">cond</span></code> multiple conditional</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#every-tests-all-true"><code class="docutils literal notranslate"><span class="pre">every</span></code> tests all true</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#any-any-true"><code class="docutils literal notranslate"><span class="pre">any</span></code> any true</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cmp-comparison"><code class="docutils literal notranslate"><span class="pre">cmp</span></code> comparison</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#stack-manipulation">Stack Manipulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dup-duplicate-element"><code class="docutils literal notranslate"><span class="pre">dup</span></code> duplicate element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#swap-swap-elements"><code class="docutils literal notranslate"><span class="pre">swap</span></code> swap elements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#drop-drop-value"><code class="docutils literal notranslate"><span class="pre">drop</span></code> drop value</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#function-application">Function Application</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#apply"><code class="docutils literal notranslate"><span class="pre">.</span></code> apply</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#swap-and-apply"><code class="docutils literal notranslate"><span class="pre">$</span></code> swap and apply</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#assignment">Assignment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#set-print"><code class="docutils literal notranslate"><span class="pre">:</span></code> set/print</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#peek-set-print"><code class="docutils literal notranslate"><span class="pre">~</span></code> peek set/print</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reassign"><code class="docutils literal notranslate"><span class="pre">::</span></code> reassign</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#iterators-and-accumulators">Iterators and Accumulators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#map"><code class="docutils literal notranslate"><span class="pre">'</span></code> map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#map2"><code class="docutils literal notranslate"><span class="pre">''</span></code> map2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fold"><code class="docutils literal notranslate"><span class="pre">/</span></code> fold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scan"><code class="docutils literal notranslate"><span class="pre">\</span></code> scan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fix-fixpoint"><code class="docutils literal notranslate"><span class="pre">fix</span></code> fixpoint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fixes-partial-fixpoints"><code class="docutils literal notranslate"><span class="pre">fixes</span></code> partial fixpoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#do-iteration"><code class="docutils literal notranslate"><span class="pre">do</span></code> iteration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#list-and-string">List and String</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#make-list"><code class="docutils literal notranslate"><span class="pre">[]</span></code> make list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enlist-make-list"><code class="docutils literal notranslate"><span class="pre">enlist</span></code> make list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#delist"><code class="docutils literal notranslate"><span class="pre">^</span></code> delist</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#til-construct-numbered-list"><code class="docutils literal notranslate"><span class="pre">til</span></code> construct numbered list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#len-length-of-list"><code class="docutils literal notranslate"><span class="pre">len</span></code> length of list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#flip-flip-list"><code class="docutils literal notranslate"><span class="pre">flip</span></code> flip list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rev-reverse"><code class="docutils literal notranslate"><span class="pre">rev</span></code> reverse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#concatenate"><code class="docutils literal notranslate"><span class="pre">,</span></code> concatenate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cons"><code class="docutils literal notranslate"><span class="pre">,,</span></code> cons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lower-lowercase-string"><code class="docutils literal notranslate"><span class="pre">lower</span></code> lowercase string</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#upper-uppercase-string"><code class="docutils literal notranslate"><span class="pre">upper</span></code> uppercase string</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#indexing-reshaping-changing">Indexing, Reshaping, Changing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#get"><code class="docutils literal notranslate"><span class="pre">&#64;</span></code> get</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#find"><code class="docutils literal notranslate"><span class="pre">?</span></code> find</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#where"><code class="docutils literal notranslate"><span class="pre">where</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#take"><code class="docutils literal notranslate"><span class="pre">#</span></code> take</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#drop"><code class="docutils literal notranslate"><span class="pre">_</span></code> drop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cut-reshape"><code class="docutils literal notranslate"><span class="pre">cut</span></code> reshape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cat-concatenate-all"><code class="docutils literal notranslate"><span class="pre">cat</span></code> concatenate all</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cats-partial-concatenate-all"><code class="docutils literal notranslate"><span class="pre">cats</span></code> partial concatenate all</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#set-operations">Set Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#in-contains"><code class="docutils literal notranslate"><span class="pre">in</span></code> contains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#inter-intersection"><code class="docutils literal notranslate"><span class="pre">inter</span></code> intersection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#union"><code class="docutils literal notranslate"><span class="pre">union</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uniq-unique-elements"><code class="docutils literal notranslate"><span class="pre">uniq</span></code> unique elements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#sorting">Sorting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#asc-sort-ascending"><code class="docutils literal notranslate"><span class="pre">asc</span></code> sort ascending</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsc-sort-descending"><code class="docutils literal notranslate"><span class="pre">dsc</span></code> sort descending</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sort-custom-sort"><code class="docutils literal notranslate"><span class="pre">sort</span></code> custom sort</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#types">Types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#of-type-conversion"><code class="docutils literal notranslate"><span class="pre">of</span></code> type conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#type"><code class="docutils literal notranslate"><span class="pre">type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sv-scalar-from-vector"><code class="docutils literal notranslate"><span class="pre">sv</span></code> scalar from vector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vs-vector-from-scalar"><code class="docutils literal notranslate"><span class="pre">vs</span></code> vector from scalar</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#i-o">I/O</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#open-open-file"><code class="docutils literal notranslate"><span class="pre">open</span></code> open file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#read-read-data"><code class="docutils literal notranslate"><span class="pre">read</span></code> read data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#write-write-data"><code class="docutils literal notranslate"><span class="pre">write</span></code> write data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#seek-change-file-position"><code class="docutils literal notranslate"><span class="pre">seek</span></code> change file position</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#close-close-file-handle"><code class="docutils literal notranslate"><span class="pre">close</span></code> close file handle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#readl-read-lines"><code class="docutils literal notranslate"><span class="pre">readl</span></code> read lines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writel-write-lines"><code class="docutils literal notranslate"><span class="pre">writel</span></code> write lines</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#misc">Misc</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rand-random-value"><code class="docutils literal notranslate"><span class="pre">rand</span></code> random value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#include-evaluate-file"><code class="docutils literal notranslate"><span class="pre">include</span></code> evaluate file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#measure-elapsed-time"><code class="docutils literal notranslate"><span class="pre">measure</span></code> elapsed time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eval-evaluate"><code class="docutils literal notranslate"><span class="pre">eval</span></code> evaluate</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">xs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Language Reference</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/reference.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="language-reference">
 <h1>Language Reference<a class="headerlink" href="#language-reference" title="Permalink to this headline">¶</a></h1>
@@ -607,7 +856,7 @@ a function, until <code class="docutils literal notranslate"><span class="pre">x
 </div>
 </div>
 <div class="section" id="list-and-string">
-<h2>List  and String<a class="headerlink" href="#list-and-string" title="Permalink to this headline">¶</a></h2>
+<h2>List and String<a class="headerlink" href="#list-and-string" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="make-list">
 <h3><code class="docutils literal notranslate"><span class="pre">[]</span></code> make list<a class="headerlink" href="#make-list" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">[]</span></code> are special functions that can be used to create a new list:</p>
@@ -742,6 +991,28 @@ xs&gt; ([3]),,[1 2]
 
 xs&gt; ([1 2]),,3
 0: [1 2 3]
+</pre></div>
+</div>
+</div>
+<div class="section" id="lower-lowercase-string">
+<h3><code class="docutils literal notranslate"><span class="pre">lower</span></code> lowercase string<a class="headerlink" href="#lower-lowercase-string" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>lower S -&gt; S
+</pre></div>
+</div>
+<p>Lowercase the given string:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; lower &quot;ABC&quot;
+0: &quot;abc&quot;
+</pre></div>
+</div>
+</div>
+<div class="section" id="upper-uppercase-string">
+<h3><code class="docutils literal notranslate"><span class="pre">upper</span></code> uppercase string<a class="headerlink" href="#upper-uppercase-string" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>upper S -&gt; S
+</pre></div>
+</div>
+<p>Uppercase the given string:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; upper &quot;abc&quot;
+0: &quot;ABC&quot;
 </pre></div>
 </div>
 </div>
@@ -1212,203 +1483,50 @@ xs&gt; rand 2
 </div>
 
 
+           </div>
+           
           </div>
-          
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">xs</a></h1>
-
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Language Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#command-line-parameters">Command-Line Parameters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#syntax">Syntax</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#data-types">Data Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#parsing">Parsing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#scoping">Scoping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#math">Math</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#neg-unary-negative"><code class="docutils literal notranslate"><span class="pre">neg</span></code> unary negative</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#addition"><code class="docutils literal notranslate"><span class="pre">+</span></code> addition</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#substraction"><code class="docutils literal notranslate"><span class="pre">-</span></code> substraction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#multiplication"><code class="docutils literal notranslate"><span class="pre">*</span></code> multiplication</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#division"><code class="docutils literal notranslate"><span class="pre">%</span></code> division</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mod-modulus"><code class="docutils literal notranslate"><span class="pre">mod</span></code> modulus</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#power"><code class="docutils literal notranslate"><span class="pre">**</span></code> power</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#ln-natural-logarithm"><code class="docutils literal notranslate"><span class="pre">ln</span></code> natural logarithm</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sin-sine"><code class="docutils literal notranslate"><span class="pre">sin</span></code> sine</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#cos-cosine"><code class="docutils literal notranslate"><span class="pre">cos</span></code> cosine</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#tan-tangent"><code class="docutils literal notranslate"><span class="pre">tan</span></code> tangent</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sum-sum-of-list"><code class="docutils literal notranslate"><span class="pre">sum</span></code> sum of list</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sums-partial-sums-of-list"><code class="docutils literal notranslate"><span class="pre">sums</span></code> partial sums of list</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#prod-product-of-list"><code class="docutils literal notranslate"><span class="pre">prod</span></code> product of list</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#prods-partial-products-of-list"><code class="docutils literal notranslate"><span class="pre">prods</span></code> partial products of list</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#abs-absolute-value"><code class="docutils literal notranslate"><span class="pre">abs</span></code> absolute value</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#ceil-ceiling"><code class="docutils literal notranslate"><span class="pre">ceil</span></code> ceiling</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#floor-floor"><code class="docutils literal notranslate"><span class="pre">floor</span></code> floor</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#boolean-and-conditionals">Boolean and Conditionals</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#equals"><code class="docutils literal notranslate"><span class="pre">==</span></code> equals</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#less-than"><code class="docutils literal notranslate"><span class="pre">&lt;</span></code> less than</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#greater-than"><code class="docutils literal notranslate"><span class="pre">&gt;</span></code> greater than</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#gq-greater-or-equal"><code class="docutils literal notranslate"><span class="pre">gq</span></code> greater or equal</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#lq-less-or-equal"><code class="docutils literal notranslate"><span class="pre">lq</span></code> less or equal</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#and"><code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> And</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#or"><code class="docutils literal notranslate"><span class="pre">||</span></code> Or</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#if-if-expression"><code class="docutils literal notranslate"><span class="pre">if</span></code> if expression</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#cond-multiple-conditional"><code class="docutils literal notranslate"><span class="pre">cond</span></code> multiple conditional</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#every-tests-all-true"><code class="docutils literal notranslate"><span class="pre">every</span></code> tests all true</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#any-any-true"><code class="docutils literal notranslate"><span class="pre">any</span></code> any true</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#cmp-comparison"><code class="docutils literal notranslate"><span class="pre">cmp</span></code> comparison</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#stack-manipulation">Stack Manipulation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#dup-duplicate-element"><code class="docutils literal notranslate"><span class="pre">dup</span></code> duplicate element</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#swap-swap-elements"><code class="docutils literal notranslate"><span class="pre">swap</span></code> swap elements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#drop-drop-value"><code class="docutils literal notranslate"><span class="pre">drop</span></code> drop value</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#function-application">Function Application</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#apply"><code class="docutils literal notranslate"><span class="pre">.</span></code> apply</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#swap-and-apply"><code class="docutils literal notranslate"><span class="pre">$</span></code> swap and apply</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#assignment">Assignment</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#set-print"><code class="docutils literal notranslate"><span class="pre">:</span></code> set/print</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#peek-set-print"><code class="docutils literal notranslate"><span class="pre">~</span></code> peek set/print</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#reassign"><code class="docutils literal notranslate"><span class="pre">::</span></code> reassign</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#iterators-and-accumulators">Iterators and Accumulators</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#map"><code class="docutils literal notranslate"><span class="pre">'</span></code> map</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#map2"><code class="docutils literal notranslate"><span class="pre">''</span></code> map2</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fold"><code class="docutils literal notranslate"><span class="pre">/</span></code> fold</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#scan"><code class="docutils literal notranslate"><span class="pre">\</span></code> scan</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fix-fixpoint"><code class="docutils literal notranslate"><span class="pre">fix</span></code> fixpoint</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fixes-partial-fixpoints"><code class="docutils literal notranslate"><span class="pre">fixes</span></code> partial fixpoints</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#do-iteration"><code class="docutils literal notranslate"><span class="pre">do</span></code> iteration</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#list-and-string">List  and String</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#make-list"><code class="docutils literal notranslate"><span class="pre">[]</span></code> make list</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#enlist-make-list"><code class="docutils literal notranslate"><span class="pre">enlist</span></code> make list</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#delist"><code class="docutils literal notranslate"><span class="pre">^</span></code> delist</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#til-construct-numbered-list"><code class="docutils literal notranslate"><span class="pre">til</span></code> construct numbered list</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#len-length-of-list"><code class="docutils literal notranslate"><span class="pre">len</span></code> length of list</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#flip-flip-list"><code class="docutils literal notranslate"><span class="pre">flip</span></code> flip list</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#rev-reverse"><code class="docutils literal notranslate"><span class="pre">rev</span></code> reverse</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#concatenate"><code class="docutils literal notranslate"><span class="pre">,</span></code> concatenate</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#cons"><code class="docutils literal notranslate"><span class="pre">,,</span></code> cons</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#indexing-reshaping-changing">Indexing, Reshaping, Changing</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#get"><code class="docutils literal notranslate"><span class="pre">&#64;</span></code> get</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#find"><code class="docutils literal notranslate"><span class="pre">?</span></code> find</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#where"><code class="docutils literal notranslate"><span class="pre">where</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#take"><code class="docutils literal notranslate"><span class="pre">#</span></code> take</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#drop"><code class="docutils literal notranslate"><span class="pre">_</span></code> drop</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#cut-reshape"><code class="docutils literal notranslate"><span class="pre">cut</span></code> reshape</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#cat-concatenate-all"><code class="docutils literal notranslate"><span class="pre">cat</span></code> concatenate all</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#cats-partial-concatenate-all"><code class="docutils literal notranslate"><span class="pre">cats</span></code> partial concatenate all</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#set-operations">Set Operations</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#in-contains"><code class="docutils literal notranslate"><span class="pre">in</span></code> contains</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#inter-intersection"><code class="docutils literal notranslate"><span class="pre">inter</span></code> intersection</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#union"><code class="docutils literal notranslate"><span class="pre">union</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#uniq-unique-elements"><code class="docutils literal notranslate"><span class="pre">uniq</span></code> unique elements</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#sorting">Sorting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#asc-sort-ascending"><code class="docutils literal notranslate"><span class="pre">asc</span></code> sort ascending</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dsc-sort-descending"><code class="docutils literal notranslate"><span class="pre">dsc</span></code> sort descending</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sort-custom-sort"><code class="docutils literal notranslate"><span class="pre">sort</span></code> custom sort</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#types">Types</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#of-type-conversion"><code class="docutils literal notranslate"><span class="pre">of</span></code> type conversion</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#type"><code class="docutils literal notranslate"><span class="pre">type</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sv-scalar-from-vector"><code class="docutils literal notranslate"><span class="pre">sv</span></code> scalar from vector</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#vs-vector-from-scalar"><code class="docutils literal notranslate"><span class="pre">vs</span></code> vector from scalar</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#i-o">I/O</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#open-open-file"><code class="docutils literal notranslate"><span class="pre">open</span></code> open file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#read-read-data"><code class="docutils literal notranslate"><span class="pre">read</span></code> read data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#write-write-data"><code class="docutils literal notranslate"><span class="pre">write</span></code> write data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#seek-change-file-position"><code class="docutils literal notranslate"><span class="pre">seek</span></code> change file position</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#close-close-file-handle"><code class="docutils literal notranslate"><span class="pre">close</span></code> close file handle</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#readl-read-lines"><code class="docutils literal notranslate"><span class="pre">readl</span></code> read lines</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#writel-write-lines"><code class="docutils literal notranslate"><span class="pre">writel</span></code> write lines</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#misc">Misc</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#rand-random-value"><code class="docutils literal notranslate"><span class="pre">rand</span></code> random value</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#include-evaluate-file"><code class="docutils literal notranslate"><span class="pre">include</span></code> evaluate file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#measure-elapsed-time"><code class="docutils literal notranslate"><span class="pre">measure</span></code> elapsed time</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#eval-evaluate"><code class="docutils literal notranslate"><span class="pre">eval</span></code> evaluate</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="tutorial.html" title="previous chapter">Tutorial</a></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="tutorial.html" class="btn btn-neutral float-left" title="Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
-</div>
-<script>$('#searchbox').show(0);</script>
+  
 
+  <hr/>
 
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Sturm Mabie
 
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-
-
-
+</footer>
 
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2020, Sturm Mabie.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.0</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-      |
-      <a href="_sources/reference.rst.txt"
-          rel="nofollow">Page source</a>
-    </div>
 
-    
+    </section>
 
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
     
-  </body>
+   
+
+</body>
 </html>
