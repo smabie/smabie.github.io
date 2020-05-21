@@ -59,7 +59,7 @@ integer = {digit};
 float = integer, &quot;.&quot;, integer;
 identifier = {letter}, {digit};
 quote = &quot;`&quot;,  identifier;
-boolean = &quot;0b&quot; | &quot;1b&quot;;
+booleans = {&quot;0&quot; | &quot;1&quot;}, &quot;b&quot;;
 null = &quot;0n&quot; | &quot;0N&quot;;
 string = &quot;\&quot;&quot;, {char}, &quot;\&quot;&quot;;
 fn = &quot;(&quot;, {expr}, &quot;)&quot;;
@@ -127,6 +127,13 @@ individually, even if not seperated by whitespace.</p>
 </tr>
 </tbody>
 </table>
+<p>Though not a distinct data-type (though it might be in the future),
+there’s special syntactic sugar for boolean lists:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; type 1011b
+0: `L
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">`1011b</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">[1b</span> <span class="pre">0b</span> <span class="pre">1b</span> <span class="pre">1b]</span></code>.</p>
 </div>
 <div class="section" id="parsing">
 <h2>Parsing<a class="headerlink" href="#parsing" title="Permalink to this headline">¶</a></h2>
