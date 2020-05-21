@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
     <title>Examples &#8212; xs 0.1 documentation</title>
@@ -39,11 +39,11 @@
 </pre></div>
 </div>
 <p>Fibonnaci:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>fib:(n:(neg 1)+;0@n do(2 enlist 1@x sum x~)[0 1])
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>fib:(n:(neg 1)+;0@n do(2 enlist 1@x sum x~)[0 1]);
 </pre></div>
 </div>
 <p>Euclid’s GCD:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>gcd:{([`x`y]):..;if y==0(x)(y gcd x mod y)}
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>gcd:{([`x`y]):..;if y==0(x)(y gcd x mod y)};
 </pre></div>
 </div>
 <p>Advent of Code 2019 Day 1:</p>
@@ -130,7 +130,7 @@ ldist:(2+min sum ((inter/x)?)&#39;x~expand&#39;);
       &copy;2020, Sturm Mabie.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

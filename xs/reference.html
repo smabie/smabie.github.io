@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
     <title>Language Reference &#8212; xs 0.1 documentation</title>
@@ -1164,6 +1164,22 @@ string per line.</p>
 </div>
 <div class="section" id="misc">
 <h2>Misc<a class="headerlink" href="#misc" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rand-random-value">
+<h3><code class="docutils literal notranslate"><span class="pre">rand</span></code> random value<a class="headerlink" href="#rand-random-value" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>rand x:0 -&gt; R
+rand x:Z -&gt; Z
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">x</span></code> is 0, return a real number between 0 and 1
+inclusive. Otherwise, return a number between 0 and <code class="docutils literal notranslate"><span class="pre">x</span></code> exclusive:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xs&gt; rand 0
+0: 0.06343
+
+xs&gt; rand 2
+0: 1
+</pre></div>
+</div>
+</div>
 <div class="section" id="include-evaluate-file">
 <h3><code class="docutils literal notranslate"><span class="pre">include</span></code> evaluate file<a class="headerlink" href="#include-evaluate-file" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>include f:S
@@ -1332,6 +1348,7 @@ string per line.</p>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#misc">Misc</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rand-random-value"><code class="docutils literal notranslate"><span class="pre">rand</span></code> random value</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#include-evaluate-file"><code class="docutils literal notranslate"><span class="pre">include</span></code> evaluate file</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#measure-elapsed-time"><code class="docutils literal notranslate"><span class="pre">measure</span></code> elapsed time</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#eval-evaluate"><code class="docutils literal notranslate"><span class="pre">eval</span></code> evaluate</a></li>
@@ -1375,7 +1392,7 @@ string per line.</p>
       &copy;2020, Sturm Mabie.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
