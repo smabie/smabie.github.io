@@ -155,6 +155,16 @@
 <code class="docutils literal notranslate"><span class="pre">opam</span></code>, the Ocaml package manager. <code class="docutils literal notranslate"><span class="pre">opam</span></code> is included with all
 major distributions; for more information on installing opam, check
 out the installation instructions <a class="reference external" href="https://opam.ocaml.org/doc/Install.html">here</a></p>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">opam</span></code> version 2.0 or above is required. Also, <em>xs</em> has
+only been tested with OCaml 4.10.0, though it might work with other
+versions. If the included OCaml with your distribution is out-of-date,
+run:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>opam switch create 4.10.0+flamda 4.10.0+flambda
+</pre></div>
+</div>
+<p>This creates a new opam switch based on the latest release of the
+OCaml compiler. Also, this enables aggressive compilation
+optimizations that might improve the performance of <em>xs</em>.</p>
 <p>After <code class="docutils literal notranslate"><span class="pre">opam</span></code> is installed, run the following command:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>opam pin add xs https://github.com/smabie/xs.git
 </pre></div>
