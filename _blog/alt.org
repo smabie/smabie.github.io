@@ -10,7 +10,7 @@ only two assets classes one should consider for personal investments:
 equities (stocks) and fixed income (bonds). Wherever you look, these
 two asset classes dominate the financial landscape. All robo-advisors
 and most personal advisors implement a mix of bonds and equities for
-the portfolio's of their clients. The idea behind this mix is simple:
+the portfolios of their clients. The idea behind this mix is simple:
 bonds are low risk and will earn you a marginal return, while equities
 are riskier and will be the real engine of returns in good times. In
 bad times, bonds will rise, mitigating some of the losses of your
@@ -45,7 +45,7 @@ investment, gold, and explore ways to mix it into a pure equity, S&P
    out to be paranoid, crazy, and irrational. Despite being so rare
    and valuable, the percentage of the world's gold supply that is
    used for industrial uses is comparatively small, creating a
-   phenomenon that untethers the price of gold from other assets
+   phenomenon that untethers the price of gold from other asset
    classes. Let's look at the returns of gold versus the S&P 500
    between 2010-01-01 and 2020-07-08:
 
@@ -57,21 +57,21 @@ investment, gold, and explore ways to mix it into a pure equity, S&P
    as it meanders around, seemingly uncorrelated to the S&P 500. And
    indeed, it is almost entirely uncorrelated, with a correlation to
    the S&P 500 of only 1% over this time period. Is it even worth
-   including in our portfolio? And if it is, how would be determine
+   including in our portfolio? And if it is, how would we determine
    the allocation size?
 
 ** Monte-Carlo
 
    To clarify, we're trying to determine the weights for the S&P 500
-   and gold part of our portfolio that takes on no leverage:
+   and gold parts of our portfolio, taking on no leverage:
 
    $$|x_a| + |x_b| = 1$$
 
-   and maximizes the risk-adjusted return. For every unit of risk we
+   And maximizing the risk-adjusted return. For every unit of risk we
    take, we would like to maximize the amount of return we
    receive. We'll first start off by doing the most straightforward
    thing, and randomly choosing different weights for our two asset
-   portfolio and graphing them:
+   portfolio and then graphing them:
 
    #+caption: Return vs Volatility
    [[file:/assets/ef.png]]
@@ -116,7 +116,7 @@ investment, gold, and explore ways to mix it into a pure equity, S&P
    &= x_a \mu_a + x_b \mu_b\\
    \end{align}$$
 
-   Likewise, recall the equation for variance:
+   And the equation for variance:
 
    $$\text{Var}[X] = \sigma^2 = E[(X-\mu)^2]$$
 
@@ -124,7 +124,6 @@ investment, gold, and explore ways to mix it into a pure equity, S&P
    variable after demeaning:
 
    $$\text{Cov}[X,Y] = E[(X-\mu_X)(Y-\mu_Y)]$$
-
 
    Now we just need to derive the portfolio variance:
 
@@ -194,18 +193,18 @@ investment, gold, and explore ways to mix it into a pure equity, S&P
    the weights. Everyday, we slide our window over one and generate
    the new weights for that day. Below is the generated graph:
 
-
    #+caption: S&P 500 Weight vs Gold weight
    [[file:/assets/gw.png]]
 
    Well that's interesting, the weights change considerably over
    time. In a real portfolio, not only would we be using an optimizer
    and a multitude of risk factors to determine the weights, but we
-   would also have constraints on position size, turnover, deviation
-   magnitude from "ideal" portfolio, and etc. But even in this simple
-   and contrived example, we see that our formula is doing its job: as
-   the volatility of the S&P 500 increases, like at the end of 2018
-   and during Coronavirus, we start cutting back our equity exposure.
+   would also have constraints on position size, turnover, and the
+   magnitude of deviation from the "ideal" portfolio, and etc. But
+   even in this simple and contrived example, we see that our formula
+   is doing its job: as the volatility of the S&P 500 increases, like
+   at the end of 2018 and during Coronavirus, we start cutting back
+   our equity exposure.
 
    Let's now look at the returns of our portfolio compared to both
    gold and the S&P 500:
@@ -218,12 +217,12 @@ investment, gold, and explore ways to mix it into a pure equity, S&P
    looking at a graph of cumulative returns isn't super informative,
    so here's a table of various metrics:
 
-   | Metric  |  Gold | S&P 500 | Portfolio |
-   |---------+-------+---------+-----------|
-   | Ann Vol | 15.8% |   17.4% |     10.8% |
-   | Ann Ret |  4.3% |   12.4% |      8.4% |
-   | Beta    |  0.01 |       1 |      0.41 |
-   | Sharpe  |  0.27 |    0.71 |      0.77 |
+   | Metric      |  Gold | S&P 500 | Portfolio |
+   |-------------+-------+---------+-----------|
+   | Ann. Vol    | 15.8% |   17.4% |     10.8% |
+   | Ann. Ret    |  4.3% |   12.4% |      8.4% |
+   | Beta        |  0.01 |       1 |      0.41 |
+   | Ann. Sharpe |  0.27 |    0.71 |      0.77 |
 
    Wow! Our volatility is lower than either gold or the S&P 500 alone,
    our beta has been cut more than in half compared to the S&P 500,
