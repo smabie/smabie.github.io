@@ -40,19 +40,19 @@ of stocks with high beta stability generates excess returns.
 
    Our goal is to construct a beta neutral long/short portfolio that
    tries to capture the abnormal return that we hypothesized might be
-   associated with a beta stable portfolio. To do this, we're going to
-   the /Q500US/ universe provided by [[https://www.quantopian.com/][Quantopian]]. This universe consists
-   of the top 500 most liquid (and therefore, probably largest market
-   cap) equities on any given day. To construct our alpha factor, we're
-   going to use the following equation:
+   associated with a beta stable portfolio. To do this, we're going
+   use to the /Q500US/ universe provided by [[https://www.quantopian.com/][Quantopian]]. This universe
+   consists of the top 500 most liquid (and therefore, probably
+   largest market cap) equities on any given day. We construct our
+   alpha factor as follows:
 
    $$f = \text{Z}[\text{rank}(-|\beta_{21}-\beta_{63}|)]$$
 
-   Where $\beta_{21}$ is the 21-day (one month) rolling beta,
-   $\beta_{63}$ and the 63-day (three month) rolling beta. We then
-   take the absolute value, negate, rank, and Z-score. This factor
-   gives us a portfolio that goes long stocks that have lower changes
-   in beta and shorts those that have greater changes in beta.
+   Where $\beta_{21}$ is the 21-day (one month) rolling beta, and
+   $\beta_{63}$ the 63-day (three month) rolling beta. We then take
+   the absolute value, negate, rank, and Z-score. This factor gives us
+   a portfolio that goes long stocks that have lower changes in beta
+   and shorts those that have greater changes in beta.
 
    Because we suspect that higher beta stocks tend to have more
    instability, we will zero out the beta exposure by dynamically
@@ -133,14 +133,14 @@ of stocks with high beta stability generates excess returns.
    and highest quantile. Still, there is some effect (the first
    quantile realizes the lowest returns), which bodes well for the
    robustness of our factor. Now, for the moment of truth, our factor
-   portfolio compared with the S&P 500:
+   portfolio compared to the S&P 500:
 
    #+caption: Beta Stable vs S&P 500
    [[file:/assets/bsvs.png]]
 
    Wow! This is an amazing result: over a 10 year period, our factor
-   portfolio returns a little under a 50% superior return to the S&P
-   500. Here's a table of metrics for comparison:
+   portfolio returns a little under a 50% superior return compared to
+   the S&P 500. Here's a table of metrics for comparison:
 
    | Metric      | Portfolio | S&P 500 |
    |-------------+-----------+---------|
@@ -156,16 +156,16 @@ of stocks with high beta stability generates excess returns.
 ** Conclusion
 
    Based on the results, perhaps we should consider beta stability a
-   new persistent factor, along with others like low-volatility,
+   new persistent factor, alongside the classics like low-volatility,
    value, and size? This is a bold claim of course, and much more
    research needs to be done; but the preliminary results are very
    positive, especially for the long-only version. It would be very
-   easy to overlay onto an existing beta exposure portfolio,
-   generating a moderate amount of excess return without taking on any
-   more risk. The beta neutral version also has promise, though
-   ideally it would be combined with other factors (such as maybe
-   value or low-beta) in order to boost the Sharpe ratio and
-   unleveraged return.
+   easy to overlay onto an existing beta exposed portfolio, generating
+   a moderate amount of excess return without taking on any more
+   risk. The beta neutral version also has promise, though ideally it
+   would be combined with other factors (such as maybe value or
+   low-beta) in order to boost the Sharpe ratio and unleveraged
+   return.
 
    Thanks for reading, I hope you enjoyed this post! for the source
    code, check out the Quantopian notebook [[https://www.quantopian.com/posts/beta-stability][here]]. Feel free to play
