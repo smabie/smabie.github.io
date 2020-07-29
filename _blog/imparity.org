@@ -7,27 +7,27 @@
 
 Risk parity is a popular method of investing that aims to outperform
 the traditional 60/40 equity/bond portfolio by equalizing the risk of
-the bond portion with that of the equity part of the portfolio. Using
-the risk parity approach, we would adjust the weights and leverage up
-the bond portion of the portfolio until the amount of risk taken by
-each constituent is roughly equal. Using the Sharpe ratios,
-covariance, and volatility of the components, we can generate a
-portfolio and leverage ratio for a given level of desired risk. This
-works for two reasons: bonds have a low or inverse correlation to
-equities and they generally have superior risk-adjusted returns as
-well. Bridgewater and Ray Dalio pioneered this approach in the 90s
-with the introduction of his now famous /All Weather/ fund.
+the bond portion with that of the equity part of the portfolio and
+then leveraging up the portfolio to hit the desired risk target. Using
+the Sharpe ratios covariance, and volatility of the components, we can
+generate a portfolio and leverage ratio for a given level of desired
+risk. This works for two reasons: bonds have a low or inverse
+correlation to equities and they generally have superior risk-adjusted
+returns as well, and combining low correlation assets allows us to
+lower the volatility of the portfolio. Bridgewater and Ray Dalio
+pioneered this approach in the 90s with the introduction of his now
+famous /All Weather/ fund.
 
 The appeal of this approach is obvious compared to the 60/40
 portfolio: by setting a volatility target, we stabilize our risk
 throughout different market regimes. This is an attractive property
 for investors who might otherwise choose a 60/40 or even all equity
 portfolio; they can sleep well knowing an appropriate level of risk
-will be taken, regardless of the market.
-
-Well, in this post, we're going to take a less sensible approach and
-do the opposite: leverage up our equity component and use bonds to
-stabilize our portfolio.
+will be taken, regardless of the market. Well, in this post, we're
+going to take a less sensible approach and instead of equalizing the
+risk in our portfolio, we're going to leverage up the equity component
+(representing almost all of the risk of the portfolio) and use the
+bonds to generate yield.
 
 ** Risk Imparity
 
