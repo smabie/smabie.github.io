@@ -95,7 +95,7 @@ methods: risk parity.
 
    We want each component to be equal:
 
-   $$\frac{\partial \sigma_P}{\partial x_a}=\frac{\partial \sigma_P}{\partial x_b}$$
+   $$x_a \frac{\partial \sigma_P}{\partial x_a}=x_b \frac{\partial \sigma_P}{\partial x_b}$$
 
    $$\rho\sigma_{a}\sigma_{b}x_{a}x_{b}+\sigma_{a}^{2}x_{a}^{2} =\rho \sigma_{a} \sigma_{b} x_{a} x_{b} + \sigma_{b}^{2} x_{b}^{2}$$
 

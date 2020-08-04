@@ -1,0 +1,83 @@
+#+AUTHOR: Sturm Mabie
+#+CATEGORY:Posts
+#+DATE:2020-08-03
+#+MATHJAX:true
+#+STARTUP:showeverything
+#+TITLE:Implied Volatility of At-The-Money Options
+
+Note: I wanted to thank Algoseek for providing option OHLC data at a
+very reasonable price. Algoseek provides all the market data you could
+possibly need, including equity, future, option data and more! If
+you're interested in high quality market data at low quality prices,
+check them out [[https://www.algoseek.com/][here]]!
+
+Options are popular among investors for both the leverage and
+asymmetric exposure they provide to the market. Options can be used to
+as portfolio insurance to hedge against losses, or combined in various
+ways to provide specific exposure to an investment thesis.
+
+** Implied Volatility
+
+   The expected future volatility of the underlying asset is one of
+   the six inputs to the famous /Black-Scholes/ model, along with the
+   current price of the underlying, the risk-free rate, the time to
+   maturity, the strike price, and whether the option is a call or a
+   put. Given these inputs, the model can generate a fair market
+   price, or value, of the option. Unfortunately, the expected future
+   volatility of the underlying is unobservable and can only be
+   estimated.
+
+   Using Black-Scholes, we can also go the other way, finding the
+   expected future volatility of the asset by using the current market
+   price. This expected volatility is called /implied volatility/, or
+   simply IV. For an option to be fairly priced from a mathematical
+   perspective, the option's IV should be equal to the realized
+   volatility, which we can only observe after the option has
+   expired. Let's consider /SPY/ options that are at-the-money (ATM) and also have the shortest time to
+   maturity. Below is a graph of the annualized IV of puts and calls
+   vs the realized volatility over a 63-day rolling window:
+
+   #+caption:IV vs RV
+   [[file:/assets/IV.svg]]
+
+   Note that because we're simply using a trailing window for the
+   volatility calculation, this isn't an exact apples-to-apples
+   comparison. Regardless, the results are interesting: the historical
+   volatility is almost always lower than the IV for both puts and
+   calls. From this chart, it's evident that options are rarely sold
+   for a fair price, with a large premium on puts and a moderate
+   premium on calls. And this is for close to or ATM options,
+   which tend to have lower IVs than other options (see [[https://en.wikipedia.org/wiki/Volatility_smile][volatility smile]]
+   for more information).
+
+   An interesting exception to this premium was during coronavirus,
+   where it seems like both calls and puts were actually underpriced,
+   at least just by going on IV alone. It should come as no surprise
+   that puts command a premium compared to calls: there are many more
+   natural buyers of puts (predominantly investors looking for
+   portfolio insurance) than buyers of calls (primarily speculators).
+
+** IV/RV Arbitrage
+
+   In order to profit off of the premium that puts and calls command,
+   instead of buying options, we want to be selling them
+   instead. Let's consider the case where we sell an ATM option every
+   single day, a put or a call on SPY. For each of these strategies,
+   let's look at the cumulative profit or loss over a period of about
+   8 years:
+
+   #+caption:Put
+   [[file:/assets/put.svg]]
+
+   #+caption:Call
+   [[file:/assets/call.svg]]
+
+   As expected from the IV graph, the amount of profit is greater from
+   selling the puts than the calls, around an order of magnitude
+   difference. Focusing on the put version, the strategy seems
+   relatively stable until early 2018, when we start making large and
+   losing large amounts of money quite rapidly. Though we end up doing
+   fairly well, at least with the puts, the amount of long-tail risk
+   taken is so staggering as to make any but the riskiest investors
+   run for the hills. With one bad day, not only could we be wiped
+   out, but we could on the hook for money we do not have.
