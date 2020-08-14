@@ -91,7 +91,7 @@ Strategy.
 
    Even though the expected value is 0, the chance of losing \$3 is
    only 25%, while the chance of winning \$1 is 75%. In the general
-   case, we need $2^{n-1}$ dollars to place $n$ bets, where the chance
+   case, we need $2^n-1$ dollars to place $n$ bets, where the chance
    of winning $1 is:
 
    $$\text{P}(\$1) = 1 - \left(\frac{1}{2}\right)^n$$
