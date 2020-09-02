@@ -110,7 +110,7 @@ Strategy.
    long-tail, except while the former has a long-tail of a windfall,
    the Martingale has a long-tail of absolute ruin. In general, if you
    want a $\left(\frac{1}{2}\right)^n$ chance of ruin, then you need
-   $2^{n-1}$ dollars. So for example, to push your chance of losing it
+   $2^n-1$ dollars. So for example, to push your chance of losing it
    all to around one in a million, you would need about a million
    dollars to make that happen; and with such a large capital base, a
    one dollar profit in the best case isn't particularly appealing.
