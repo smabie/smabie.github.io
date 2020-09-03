@@ -3,7 +3,7 @@
 #+DATE:2020-09-02
 #+MATHJAX:true
 #+STARTUP:showeverything
-#+TITLE:Forecasting Market Kurtosis with the Volatility Smile
+#+TITLE:Forecasting Market Kurtosis with the Volatility Smile (Poorly)
 
 Note: I want to thank Algoseek for providing historical SPY
 option-chain data at a very reasonable price. Algoseek provides all
