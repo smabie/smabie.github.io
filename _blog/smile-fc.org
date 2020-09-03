@@ -38,25 +38,24 @@ IVs is a predictor of SPY excess kurtosis.
 ** Methodology
 
    The methodology is simple, we will look at a simple linear
-   regression between standard deviation of calls with the same
+   regression between the standard deviation of calls with the same
    maturity date and the excess kurtosis of SPY between the current
    date and the maturity date:
 
    $$ \text{Kurt}[r_{SPY}] \sim \sigma_{IV}$$
 
-   We will restrict the data set to only options that will expire
-   before today's date so that the kurtosis of the market between the
-   date of the option and maturity can be fully quantified. If the IVs
-   of each option at each strike is the same in accordance to
-   Black-Scholes, the standard deviation will be zero and if the
-   market returns fit a log-normal distribution, the excess kurtosis
-   will be zero as well. Let's look at the output of the linear
-   regression:
+   We will restrict the data set to only calls that expire before
+   today's date so that the kurtosis of the market between the date of
+   the option and maturity can be fully quantified. If the IVs of each
+   option at each strike is the same in accordance to Black-Scholes,
+   the standard deviation will be zero; if the market returns fit a
+   log-normal distribution, the excess kurtosis will be zero as
+   well. Let's look at the output of the linear regression:
 
    #+caption: Linear Regression
    [[file:/assets/linreg.png]]
 
-   Not a particularly great fight, but it does seem like there's a
+   Not a particularly great fit, but it does seem like there's a
    positive correlation between the standard deviation of IVs and the
    future market kurtosis. In addition, the R-squared is 4.12%, which
    means that the linear model predicts only 4.12% of the future
