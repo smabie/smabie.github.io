@@ -5,7 +5,7 @@ highlighter:      rouge
 # Setup
 title:            Sturm Mabie
 tagline:          'A Jekyll theme'
-description:      'Quantitative developer interested in finance, machine learning, and functional programming.'
+description:      'Quantitative trader interested in finance, machine learning, and functional programming.'
 url:              https://smabie.github.io
 baseurl:          ''
                   # the optional subpath of your site, e.g. "/blog"
