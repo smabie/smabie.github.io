@@ -1,4 +1,4 @@
-#+AUTHOR: Sturm Mabie
+#+AUTHOR: smabie
 #+CATEGORY:Posts
 #+DATE:2020-09-02
 #+MATHJAX:true

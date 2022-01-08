@@ -21,7 +21,7 @@ start the interpreter by simply running::
 You should see a prompt similar to the below in which you can enter
 commands::
 
-  Public domain interpreter for the xs language. Created by Sturm Mabie
+  Public domain interpreter for the xs language. Created by smabie
   (sturm@cryptm.org). For more information check out the project's github at
   http://github.com/smabie/xs
   xs>

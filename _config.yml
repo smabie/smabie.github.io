@@ -3,7 +3,7 @@ markdown:         kramdown
 highlighter:      rouge
 
 # Setup
-title:            Sturm Mabie
+title:            smabie
 tagline:          'A Jekyll theme'
 description:      'Quantitative trading, finance, machine learning, and functional programming.'
 url:              https://smabie.github.io
@@ -15,7 +15,7 @@ baseurl:          ''
                   # sidebar_blog_link below.
 
 author:
-  name:           'Sturm Mabie'
+  name:           'smabie'
   url:            https://cryptm.org
 
 paginate:         5
